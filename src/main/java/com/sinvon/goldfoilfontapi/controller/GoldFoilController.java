@@ -1,6 +1,7 @@
 package com.sinvon.goldfoilfontapi.controller;
 
 import com.sinvon.goldfoilfontapi.config.ProjectConfig;
+import com.sinvon.goldfoilfontapi.service.GoldFoilService;
 import com.sinvon.goldfoilfontapi.utils.img.GoldFoilImageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -23,8 +24,9 @@ import java.io.IOException;
 @RestController
 @RequestMapping("/api")
 class GoldFoilController {
+
     @Autowired
-    private ProjectConfig projectConfig;
+    private GoldFoilService goldFoilService;
 
     // test
     @GetMapping("test")
@@ -34,23 +36,11 @@ class GoldFoilController {
 
     // 接口2: 返回图片
     @GetMapping("gold-foil-image")
-    public ResponseEntity<Resource> getGoldFoilImage(@RequestParam String text) throws IOException {
-        BufferedImage image = GoldFoilImageUtils.createGoldFoilImage(text);
-
-        // 获取图片存储的文件夹
-        String imagePath = projectConfig.imagePath;
-        // 判断image文件夹是否存在，不存在则创建
-        File imageDir = new File(imagePath);
-        if (!imageDir.exists()) {
-            imageDir.mkdirs();
-        }
-        // 存放为image/gold-foil-image.png
-        File file = new File(imagePath + File.separator + "gold-foil-image.png");
-        ImageIO.write(image, "PNG", file);
-
+    public ResponseEntity<Resource> getGoldFoilImage(@RequestParam String text) {
+        File goldFoilImage = goldFoilService.createGoldFoilImage(text);
         return ResponseEntity.ok()
                 .contentType(MediaType.IMAGE_PNG)
-                .body(new org.springframework.core.io.FileSystemResource(file));
+                .body(new org.springframework.core.io.FileSystemResource(goldFoilImage));
     }
 
     // 接口3: 返回HTML渲染页面
