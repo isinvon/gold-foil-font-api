@@ -1,7 +1,7 @@
 package com.sinvon.goldfoilfontapi.controller;
 
 import com.sinvon.goldfoilfontapi.config.ProjectConfig;
-import com.sinvon.goldfoilfontapi.utils.img.GoldFoilImageUtils_v3;
+import com.sinvon.goldfoilfontapi.utils.img.GoldFoilImageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
@@ -44,7 +44,7 @@ class GoldFoilController {
     // 接口2: 返回图片
     @GetMapping("gold-foil-image")
     public ResponseEntity<Resource> getGoldFoilImage(@RequestParam String text) throws IOException {
-        BufferedImage image = GoldFoilImageUtils_v3.createGoldFoilImage(text);
+        BufferedImage image = GoldFoilImageUtils.createGoldFoilImage(text);
 
         // 获取图片存储的文件夹
         String imagePath = projectConfig.imagePath;
@@ -65,7 +65,7 @@ class GoldFoilController {
     // 接口3: 返回HTML渲染页面
     @GetMapping("/gold-foil-html")
     public String getGoldFoilHtml(@RequestParam String text) throws IOException {
-        BufferedImage image = GoldFoilImageUtils_v3.createGoldFoilImage(text);
+        BufferedImage image = GoldFoilImageUtils.createGoldFoilImage(text);
         String imagePath = "gold-foil-image.png";
 
         // 保存为文件

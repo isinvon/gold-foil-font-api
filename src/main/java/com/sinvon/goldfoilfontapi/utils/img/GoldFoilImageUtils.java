@@ -13,7 +13,7 @@ import java.io.IOException;
  * @description : 金梅毛碑文字GoldFoilFont
  * @since : 2024/12/7 上午12:51
  */
-public class GoldFoilImageUtils_v3 {
+public class GoldFoilImageUtils {
 
     public static BufferedImage createGoldFoilImage(String text) {
         int width = 800;
