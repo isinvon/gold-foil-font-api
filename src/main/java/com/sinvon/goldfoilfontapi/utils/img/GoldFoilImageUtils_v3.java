@@ -28,7 +28,7 @@ public class GoldFoilImageUtils_v3 {
 
         // 加载书法字体
         try {
-            Font font = Font.createFont(Font.TRUETYPE_FONT, new File("金梅毛碑楷.ttf"));
+            Font font = Font.createFont(Font.TRUETYPE_FONT, new File("三极泼墨体.ttf"));
             font = font.deriveFont(150f); // 设置字体大小
             g2d.setFont(font);
         } catch (FontFormatException | IOException e) {
