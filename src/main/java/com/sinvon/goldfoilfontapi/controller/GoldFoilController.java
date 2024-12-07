@@ -111,16 +111,3 @@ class GoldFoilController {
 
 }
 
-@Controller
-@RequestMapping("/images")
-class ImageController {
-
-    // 提供静态图片访问
-    @GetMapping("gold-foil-image.png")
-    public ResponseEntity<Resource> getImage() {
-        File file = new File("gold-foil-image.png");
-        return ResponseEntity.ok()
-                .contentType(MediaType.IMAGE_PNG)
-                .body(new org.springframework.core.io.FileSystemResource(file));
-    }
-}
