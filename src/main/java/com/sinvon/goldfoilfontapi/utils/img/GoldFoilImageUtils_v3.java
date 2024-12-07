@@ -61,7 +61,7 @@ public class GoldFoilImageUtils_v3 {
                 Color.decode("#ead26d"),
                 Color.decode("#eed46f"),
                 Color.decode("#c0a03a"),
-                Color.decode("#d9a659"),
+                Color.decode("#d9b35b"),
                 Color.decode("#f8e17c")
         };
 
