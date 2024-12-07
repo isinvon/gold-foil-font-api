@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -33,14 +32,6 @@ class GoldFoilController {
         return "test";
     }
 
-    // 烫金效果字体绘制的参数
-    @GetMapping("params")
-    public ResponseEntity<String> getFontParams(@RequestParam String text) {
-        // 这里只是示例，实际中你可以返回更多的参数
-        String params = "Text: " + text + ", Font: Gold Foil, Color: Golden";
-        return ResponseEntity.ok(params);
-    }
-
     // 接口2: 返回图片
     @GetMapping("gold-foil-image")
     public ResponseEntity<Resource> getGoldFoilImage(@RequestParam String text) throws IOException {
@@ -50,7 +41,7 @@ class GoldFoilController {
         String imagePath = projectConfig.imagePath;
         // 判断image文件夹是否存在，不存在则创建
         File imageDir = new File(imagePath);
-        if (!imageDir.exists()){
+        if (!imageDir.exists()) {
             imageDir.mkdirs();
         }
         // 存放为image/gold-foil-image.png
