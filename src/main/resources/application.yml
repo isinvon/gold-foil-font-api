@@ -14,3 +14,5 @@ server:
 app:
   # 文件存放路径
   profile: "#{systemProperties['os.name'].toLowerCase().contains('win') ? 'D:\\gold-foil-font-api' : '/home/gold-foil-font-api'}"
+  # 图片存放路径(在profile下的image中)
+  image: "#{systemProperties['os.name'].toLowerCase().contains('win') ? 'D:\\gold-foil-font-api\\image' : '/home/gold-foil-font-api/image'}"
