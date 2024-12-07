@@ -15,7 +15,7 @@ import java.io.IOException;
  */
 public class GoldFoilImageUtils {
 
-    public static BufferedImage createGoldFoilImage(String text) {
+    public static BufferedImage createGoldFoilImage(String text, String gradientPos) {
         int width = 800;
         int height = 300;
         BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
@@ -39,7 +39,7 @@ public class GoldFoilImageUtils {
         }
 
         // 创建渐变填充，使用指定颜色范围
-        Paint gradient = GoldGradient.createGoldGradient(width, height);
+        Paint gradient = GoldGradient.createGoldGradient(width, height, gradientPos);
         g2d.setPaint(gradient);
 
         // 绘制文字

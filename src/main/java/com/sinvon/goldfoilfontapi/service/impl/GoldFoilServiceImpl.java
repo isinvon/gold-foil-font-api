@@ -24,13 +24,14 @@ public class GoldFoilServiceImpl implements GoldFoilService {
 
     /**
      * 创建GoldFoil图片
+     *
      * @param text 需要生成的文本
      * @return 图片文件
      */
     @Override
-    public File createGoldFoilImage(String text) {
+    public File createGoldFoilImage(String text, String gradientPos) {
         try {
-            BufferedImage image = GoldFoilImageUtils.createGoldFoilImage(text);
+            BufferedImage image = GoldFoilImageUtils.createGoldFoilImage(text, gradientPos);
             // 获取图片存储的文件夹
             String imagePath = projectConfig.imagePath;
             // 判断image文件夹是否存在，不存在则创建

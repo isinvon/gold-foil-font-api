@@ -1,6 +1,6 @@
 package com.sinvon.goldfoilfontapi.controller;
 
-import com.sinvon.goldfoilfontapi.config.ProjectConfig;
+import com.sinvon.goldfoilfontapi.enums.GradientPositionType;
 import com.sinvon.goldfoilfontapi.service.GoldFoilService;
 import com.sinvon.goldfoilfontapi.utils.img.GoldFoilImageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,8 +36,8 @@ class GoldFoilController {
 
     // 接口2: 返回图片
     @GetMapping("gold-foil-image")
-    public ResponseEntity<Resource> getGoldFoilImage(@RequestParam String text) {
-        File goldFoilImage = goldFoilService.createGoldFoilImage(text);
+    public ResponseEntity<Resource> getGoldFoilImage(@RequestParam String text, @RequestParam(required = false, defaultValue = GradientPositionType.RANDOM) String gradientPos) {
+        File goldFoilImage = goldFoilService.createGoldFoilImage(text, gradientPos);
         return ResponseEntity.ok()
                 .contentType(MediaType.IMAGE_PNG)
                 .body(new org.springframework.core.io.FileSystemResource(goldFoilImage));
@@ -45,8 +45,8 @@ class GoldFoilController {
 
     // 接口3: 返回HTML渲染页面
     @GetMapping("/gold-foil-html")
-    public String getGoldFoilHtml(@RequestParam String text) throws IOException {
-        BufferedImage image = GoldFoilImageUtils.createGoldFoilImage(text);
+    public String getGoldFoilHtml(@RequestParam String text, @RequestParam(required = false, defaultValue = GradientPositionType.RANDOM) String gradientPos) throws IOException {
+        BufferedImage image = GoldFoilImageUtils.createGoldFoilImage(text, gradientPos);
         String imagePath = "gold-foil-image.png";
 
         // 保存为文件
