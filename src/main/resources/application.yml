@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: gold-foil-font-api
+  #    version: 1.0.0
+  #    description: "烫金字体API"
+  web:
+    resources:
+      static-locations: classpath:/static/
+
+server:
+  port: 8080
+
+# 项目相关配置
+app:
+  # 文件存放路径
+  profile: "#{systemProperties['os.name'].toLowerCase().contains('win') ? 'D:\\gold-foil-font-api' : '/home/gold-foil-font-api'}"
