@@ -46,8 +46,15 @@ class GoldFoilController {
     public ResponseEntity<Resource> getGoldFoilImage(@RequestParam String text) throws IOException {
         BufferedImage image = GoldFoilImageUtils_v3.createGoldFoilImage(text);
 
-        String imgPath = projectConfig.imagePath();
-        File file = new File(imgPath + "/" + "gold-foil-image.png");
+        // 获取图片存储的文件夹
+        String imagePath = projectConfig.imagePath;
+        // 判断image文件夹是否存在，不存在则创建
+        File imageDir = new File(imagePath);
+        if (!imageDir.exists()){
+            imageDir.mkdirs();
+        }
+        // 存放为image/gold-foil-image.png
+        File file = new File(imagePath + File.separator + "gold-foil-image.png");
         ImageIO.write(image, "PNG", file);
 
         return ResponseEntity.ok()
