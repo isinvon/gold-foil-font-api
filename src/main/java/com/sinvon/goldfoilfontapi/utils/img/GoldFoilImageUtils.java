@@ -25,7 +25,7 @@ public class GoldFoilImageUtils {
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
         // 设置背景为白色
-        g2d.setColor(Color.WHITE);
+        // g2d.setColor(Color.WHITE);
         g2d.fillRect(0, 0, width, height);
 
         // 加载书法字体
