@@ -16,3 +16,7 @@ app:
   profile: "#{systemProperties['os.name'].toLowerCase().contains('win') ? 'D:\\gold-foil-font-api' : '/home/gold-foil-font-api'}"
   # 图片存放路径(在profile下的image中)
   image: "#{systemProperties['os.name'].toLowerCase().contains('win') ? 'D:\\gold-foil-font-api\\image' : '/home/gold-foil-font-api/image'}"
+  # SVG存放路径
+  svg: "#{systemProperties['os.name'].toLowerCase().contains('win') ? 'D:\\gold-foil-font-api\\svg' : '/home/gold-foil-font-api/svg'}"
+  # HTML存放路径
+  html: "#{systemProperties['os.name'].toLowerCase().contains('win') ? 'D:\\gold-foil-font-api\\html' : '/home/gold-foil-font-api/html'}"

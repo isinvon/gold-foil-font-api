@@ -23,6 +23,14 @@ public class ProjectConfig {
     @Value("${app.image}")
     public String imagePath;
 
+    // SVG存放的位置
+    @Value("${app.svg}")
+    public String svgPath;
+
+    // HTML存放的位置
+    @Value("${app.html}")
+    public String htmlPath;
+
 
     /**
      * 获取存放图片的路径(和项目同级)
