@@ -42,16 +42,12 @@ class GoldFoilController {
 
     // 接口3: 返回HTML渲染页面
     @GetMapping("/gold-foil-html")
-    public String getGoldFoilHtml(@RequestParam String text, @RequestParam(required = false, defaultValue = GradientPositionType.RANDOM) String gradientPos) throws IOException {
-        BufferedImage image = GoldFoilImageUtils.createGoldFoilImage(text, gradientPos);
-        String imagePath = "gold-foil-image.png";
-
-        // 保存为文件
-        File file = new File(imagePath);
-        ImageIO.write(image, "PNG", file);
-
-        // 返回HTML页面
-        return "<html><body><h1>Gold Foil Font</h1><img src='/images/gold-foil-image.png' /></body></html>";
+    public ResponseEntity<Resource> getGoldFoilHtml(@RequestParam String text, @RequestParam(required = false, defaultValue = GradientPositionType.RANDOM) String gradientPos) throws IOException {
+        File file = goldFoilService.getGoldFoilHtml(text, gradientPos);
+        if (file == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().contentType(MediaType.TEXT_HTML).body(new org.springframework.core.io.FileSystemResource(file));
     }
 
     // 接口4: 返回SVG格式
