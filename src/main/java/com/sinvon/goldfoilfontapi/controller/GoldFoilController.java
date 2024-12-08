@@ -56,9 +56,12 @@ class GoldFoilController {
 
     // 接口4: 返回SVG格式
     @GetMapping("gold-foil-svg")
-    public ResponseEntity<String> getGoldFoilSvg(@RequestParam String text) {
-        String svgContent = createGoldFoilSvg(text);
-        return ResponseEntity.ok(svgContent);
+    public ResponseEntity<Resource> getGoldFoilSvg(@RequestParam String text, @RequestParam(required = false, defaultValue = GradientPositionType.RANDOM) String gradientPos) {
+        File svgFile = goldFoilService.getGoldFoilSvg(text, gradientPos);
+        if (svgFile == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok().contentType(MediaType.TEXT_PLAIN).body(new org.springframework.core.io.FileSystemResource(svgFile));
     }
 }
 

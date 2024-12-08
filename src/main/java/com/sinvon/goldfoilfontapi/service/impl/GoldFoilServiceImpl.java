@@ -48,4 +48,13 @@ public class GoldFoilServiceImpl implements GoldFoilService {
         }
         return null;
     }
+    @Override
+    public File getGoldFoilSvg(String text, String gradientPos) {
+        String outSvgPath = projectConfig.svgPath + File.separator + "gold-foil-image.svg";
+        Boolean b = PngToSvgUtils.createSvgByPng(getGoldFoilImage(text, gradientPos).getAbsolutePath(), outSvgPath);
+        if (b) {
+            return new File(outSvgPath);
+        }
+        return null;
+    }
 }
