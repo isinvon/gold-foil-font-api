@@ -29,7 +29,7 @@ public class GoldFoilServiceImpl implements GoldFoilService {
      * @return 图片文件
      */
     @Override
-    public File createGoldFoilImage(String text, String gradientPos) {
+    public File getGoldFoilImage(String text, String gradientPos) {
         try {
             BufferedImage image = GoldFoilImageUtils.createGoldFoilImage(text, gradientPos);
             // 获取图片存储的文件夹

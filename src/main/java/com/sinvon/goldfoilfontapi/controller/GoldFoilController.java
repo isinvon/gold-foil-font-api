@@ -34,7 +34,7 @@ class GoldFoilController {
     // 接口2: 返回图片
     @GetMapping("gold-foil-image")
     public ResponseEntity<Resource> getGoldFoilImage(@RequestParam String text, @RequestParam(required = false, defaultValue = GradientPositionType.RANDOM) String gradientPos) {
-        File goldFoilImage = goldFoilService.createGoldFoilImage(text, gradientPos);
+        File goldFoilImage = goldFoilService.getGoldFoilImage(text, gradientPos);
         return ResponseEntity.ok()
                 .contentType(MediaType.IMAGE_PNG)
                 .body(new org.springframework.core.io.FileSystemResource(goldFoilImage));
