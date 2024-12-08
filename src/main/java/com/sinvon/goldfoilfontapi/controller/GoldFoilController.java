@@ -2,7 +2,6 @@ package com.sinvon.goldfoilfontapi.controller;
 
 import com.sinvon.goldfoilfontapi.enums.GradientPositionType;
 import com.sinvon.goldfoilfontapi.service.GoldFoilService;
-import com.sinvon.goldfoilfontapi.utils.img.GoldFoilImageUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
@@ -12,8 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.imageio.ImageIO;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
@@ -63,41 +60,5 @@ class GoldFoilController {
         String svgContent = createGoldFoilSvg(text);
         return ResponseEntity.ok(svgContent);
     }
-
-    // 接口5: 返回JSON数据
-    @GetMapping("gold-foil-json")
-    public ResponseEntity<String> getGoldFoilJson(@RequestParam String text) {
-        // 假设返回json格式
-        String json = "{ \"text\": \"" + text + "\", \"font\": \"Gold Foil\" }";
-        return ResponseEntity.ok(json);
-    }
-
-    // 创建烫金字体的SVG格式
-    private String createGoldFoilSvg(String text) {
-        return """
-                <?xml version="1.0" encoding="UTF-8"?>
-                <svg xmlns="http://www.w3.org/2000/svg" width="800" height="300">
-                    <defs>
-                        <linearGradient id="gold-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" style="stop-color:#c2a52e;stop-opacity:1"/>
-                            <stop offset="50%" style="stop-color:#e8c657;stop-opacity:1"/>
-                            <stop offset="100%" style="stop-color:#f8e17c;stop-opacity:1"/>
-                        </linearGradient>
-                        <filter id="gold-glow" x="-50%" y="-50%" width="200%" height="200%">
-                            <feGaussianBlur in="SourceAlpha" stdDeviation="4" result="blur"/>
-                            <feOffset in="blur" dx="4" dy="4" result="offsetBlur"/>
-                            <feMerge>
-                                <feMergeNode in="offsetBlur"/>
-                                <feMergeNode in="SourceGraphic"/>
-                            </feMerge>
-                        </filter>
-                    </defs>
-                    <text x="50" y="200" font-family="Arial" font-size="150" fill="url(#gold-gradient)" filter="url(#gold-glow)">
-                        """ + text + """
-                    </text>
-                </svg>
-                """;
-    }
-
 }
 
