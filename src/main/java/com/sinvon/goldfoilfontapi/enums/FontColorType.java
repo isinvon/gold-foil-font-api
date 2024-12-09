@@ -22,4 +22,9 @@ public class FontColorType {
      * 黑色
      */
     public static final String BLACK = "black";
+
+    /**
+     * 渐变黑
+     */
+    public static final String BLACK_GRADIENT = "blackGradient";
 }
