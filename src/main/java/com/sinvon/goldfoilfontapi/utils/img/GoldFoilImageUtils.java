@@ -1,5 +1,6 @@
 package com.sinvon.goldfoilfontapi.utils.img;
 
+import com.sinvon.goldfoilfontapi.enums.FontColorType;
 import com.sinvon.goldfoilfontapi.utils.img.param.BrushTexture;
 import com.sinvon.goldfoilfontapi.utils.img.param.GoldGradient;
 
@@ -22,7 +23,7 @@ public class GoldFoilImageUtils {
      * @param gradientPos 渐变位置
      * @return 图片
      */
-    public static BufferedImage createGoldFoilImage(String text, String gradientPos) {
+    public static BufferedImage createGoldFoilImage(String text, String gradientPos, String fontColorType) {
         int padding = 50; // 给文本左右留出一定的间距
         int height = 300;
 

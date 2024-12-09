@@ -23,8 +23,8 @@ public class GoldFoilSvgGenerationStrategy implements GoldFoilGenerationStrategy
     private GoldFoilImageGenerationStrategy imageGenerationStrategy;
 
     @Override
-    public File generate(String text, String gradientPos) {
-        File imageFile = imageGenerationStrategy.generate(text, gradientPos);
+    public File generate(String text, String gradientPos, String fontColorType) {
+        File imageFile = imageGenerationStrategy.generate(text, gradientPos, fontColorType);
         String svgPath = projectConfig.svgPath + File.separator + projectConfig.fileName + ".svg";
 
         if (PngToSvgUtils.createSvgByPng(imageFile.getAbsolutePath(), svgPath)) {

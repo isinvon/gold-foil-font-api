@@ -25,9 +25,9 @@ public class GoldFoilImageGenerationStrategy implements GoldFoilGenerationStrate
     private ProjectConfig projectConfig;
 
     @Override
-    public File generate(String text, String gradientPos) {
+    public File generate(String text, String gradientPos, String fontColorType) {
         try {
-            BufferedImage image = GoldFoilImageUtils.createGoldFoilImage(text, gradientPos);
+            BufferedImage image = GoldFoilImageUtils.createGoldFoilImage(text, gradientPos, fontColorType);
             String imagePath = projectConfig.imagePath + File.separator + projectConfig.fileName + ".png";
             File imageFile = FileUtils.ensureFile(imagePath);
             ImageIO.write(image, "PNG", imageFile);

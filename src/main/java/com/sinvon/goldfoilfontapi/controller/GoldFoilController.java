@@ -1,5 +1,6 @@
 package com.sinvon.goldfoilfontapi.controller;
 
+import com.sinvon.goldfoilfontapi.enums.FontColorType;
 import com.sinvon.goldfoilfontapi.enums.GradientPositionType;
 import com.sinvon.goldfoilfontapi.service.GoldFoilService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,8 +35,11 @@ class GoldFoilController {
      * @return 包含生成的PNG图像的ResponseEntity对象。
      */
     @GetMapping("gold-foil-image")
-    public ResponseEntity<Resource> getGoldFoilImage(@RequestParam String text, @RequestParam(required = false, defaultValue = GradientPositionType.RANDOM) String gradientPos) {
-        File goldFoilImage = goldFoilService.getGoldFoilImage(text, gradientPos);
+    public ResponseEntity<Resource> getGoldFoilImage(
+            @RequestParam String text,
+            @RequestParam(required = false, defaultValue = GradientPositionType.RANDOM) String gradientPos,
+            @RequestParam(required = false, defaultValue = FontColorType.GOLD) String fontColorType) {
+        File goldFoilImage = goldFoilService.getGoldFoilImage(text, gradientPos, fontColorType);
         return ResponseEntity.ok()
                 .contentType(MediaType.IMAGE_PNG)
                 .body(new org.springframework.core.io.FileSystemResource(goldFoilImage));
@@ -50,8 +54,8 @@ class GoldFoilController {
     //  * @return 包含生成的HTML页面的ResponseEntity对象。
     //  */
     // @GetMapping("/gold-foil-html")
-    // public ResponseEntity<Resource> getGoldFoilHtml(@RequestParam String text, @RequestParam(required = false, defaultValue = GradientPositionType.RANDOM) String gradientPos) {
-    //     File file = goldFoilService.getGoldFoilHtml(text, gradientPos);
+    // public ResponseEntity<Resource> getGoldFoilHtml(@RequestParam String text, @RequestParam(required = false, defaultValue = GradientPositionType.RANDOM) String gradientPos, @RequestParam(required = false, defaultValue = FontColorType.GOLD) String fontColorType) {
+    //     File file = goldFoilService.getGoldFoilHtml(text, gradientPos, fontColorType);
     //     if (file == null) {
     //         return ResponseEntity.notFound().build();
     //     }
@@ -67,8 +71,11 @@ class GoldFoilController {
      * @return 包含生成的SVG图像的ResponseEntity对象。
      */
     @GetMapping("gold-foil-svg")
-    public ResponseEntity<Resource> getGoldFoilSvg(@RequestParam String text, @RequestParam(required = false, defaultValue = GradientPositionType.RANDOM) String gradientPos) {
-        File svgFile = goldFoilService.getGoldFoilSvg(text, gradientPos);
+    public ResponseEntity<Resource> getGoldFoilSvg(
+            @RequestParam String text,
+            @RequestParam(required = false, defaultValue = GradientPositionType.RANDOM) String gradientPos,
+            @RequestParam(required = false, defaultValue = FontColorType.GOLD) String fontColorType) {
+        File svgFile = goldFoilService.getGoldFoilSvg(text, gradientPos, fontColorType);
         if (svgFile == null) {
             return ResponseEntity.notFound().build();
         }

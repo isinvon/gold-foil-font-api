@@ -27,17 +27,17 @@ public class GoldFoilServiceImpl implements GoldFoilService {
     private GoldFoilHtmlGenerationStrategy htmlStrategy;
 
     @Override
-    public File getGoldFoilImage(String text, String gradientPos) {
-        return imageStrategy.generate(text, gradientPos);
+    public File getGoldFoilImage(String text, String gradientPos, String fontColorType) {
+        return imageStrategy.generate(text, gradientPos, fontColorType);
     }
 
     @Override
-    public File getGoldFoilSvg(String text, String gradientPos) {
-        return svgStrategy.generate(text, gradientPos);
+    public File getGoldFoilSvg(String text, String gradientPos, String fontColorType) {
+        return svgStrategy.generate(text, gradientPos, fontColorType);
     }
 
     @Override
-    public File getGoldFoilHtml(String text, String gradientPos) {
-        return htmlStrategy.generate(text, gradientPos);
+    public File getGoldFoilHtml(String text, String gradientPos, String fontColorType) {
+        return htmlStrategy.generate(text, gradientPos, fontColorType);
     }
 }

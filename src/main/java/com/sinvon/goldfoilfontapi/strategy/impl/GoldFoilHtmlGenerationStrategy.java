@@ -24,8 +24,8 @@ public class GoldFoilHtmlGenerationStrategy implements GoldFoilGenerationStrateg
     private GoldFoilSvgGenerationStrategy svgGenerationStrategy;
 
     @Override
-    public File generate(String text, String gradientPos) {
-        File svgFile = svgGenerationStrategy.generate(text, gradientPos);
+    public File generate(String text, String gradientPos, String fontColorType) {
+        File svgFile = svgGenerationStrategy.generate(text, gradientPos, fontColorType);
         String svgContent = GoldFoilSvgUtils.svgFileToString(svgFile.getAbsolutePath());
         String htmlContent = GoldFoilSvgUtils.SvgTextToHtml(svgContent);
 
