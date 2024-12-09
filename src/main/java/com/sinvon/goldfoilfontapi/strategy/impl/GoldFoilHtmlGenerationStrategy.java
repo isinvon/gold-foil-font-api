@@ -29,7 +29,7 @@ public class GoldFoilHtmlGenerationStrategy implements GoldFoilGenerationStrateg
         String svgContent = GoldFoilSvgUtils.svgFileToString(svgFile.getAbsolutePath());
         String htmlContent = GoldFoilSvgUtils.SvgTextToHtml(svgContent);
 
-        String htmlPath = projectConfig.htmlPath + File.separator + "gold-foil-image.html";
+        String htmlPath = projectConfig.htmlPath + File.separator + projectConfig.fileName + ".html";
         return FileUtils.writeToFile(htmlPath, htmlContent);
     }
 }

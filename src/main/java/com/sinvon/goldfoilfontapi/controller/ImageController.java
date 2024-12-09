@@ -37,6 +37,6 @@ class ImageController {
         }
         return ResponseEntity.ok()
                 .contentType(MediaType.IMAGE_PNG)
-                .body(new org.springframework.core.io.FileSystemResource(imagePath + File.separator + "gold-foil-image.png"));
+                .body(new org.springframework.core.io.FileSystemResource(imagePath + File.separator + projectConfig.fileName + ".png"));
     }
 }

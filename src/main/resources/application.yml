@@ -20,3 +20,5 @@ app:
   svg: "#{systemProperties['os.name'].toLowerCase().contains('win') ? 'D:\\gold-foil-font-api\\svg' : '/home/gold-foil-font-api/svg'}"
   # HTML存放路径
   html: "#{systemProperties['os.name'].toLowerCase().contains('win') ? 'D:\\gold-foil-font-api\\html' : '/home/gold-foil-font-api/html'}"
+  # 文件名称(不加后缀的)
+  filename: "gold-foil-font"

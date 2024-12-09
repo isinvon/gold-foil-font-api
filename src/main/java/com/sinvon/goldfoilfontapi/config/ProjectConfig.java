@@ -32,6 +32,8 @@ public class ProjectConfig {
     @Value("${app.html}")
     public String htmlPath;
 
+    @Value("${app.filename}")
+    public String fileName;
 
     /**
      * 获取存放图片的路径(和项目同级)
