@@ -35,6 +35,14 @@ public class ProjectConfig {
     @Value("${app.filename}")
     public String fileName;
 
+    // 背景图片文件名
+    @Value("${app.background-image-filename}")
+    public String backgroundImageFilename;
+
+    // 背景图片存放的路径
+    @Value("${app.background-image-path}")
+    public String backgroundImagePath;
+
     /**
      * 获取存放图片的路径(和项目同级)
      *
