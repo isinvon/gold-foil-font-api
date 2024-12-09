@@ -1,13 +1,16 @@
-package com.sinvon.goldfoilfontapi.utils.img;
+package com.sinvon.goldfoilfontapi.service.impl;
 
 import com.sinvon.goldfoilfontapi.config.ProjectConfig;
 import com.sinvon.goldfoilfontapi.enums.FontColorType;
+import com.sinvon.goldfoilfontapi.service.GoldFoilImageUtilsService;
+import com.sinvon.goldfoilfontapi.service.SpringCoupletBackgroundImageUtilsService;
 import com.sinvon.goldfoilfontapi.utils.FileUtils;
-import com.sinvon.goldfoilfontapi.utils.SpringCoupletBackgroundImageUtils;
 import com.sinvon.goldfoilfontapi.utils.img.param.BlackGradient;
 import com.sinvon.goldfoilfontapi.utils.img.param.BrushTexture;
 import com.sinvon.goldfoilfontapi.utils.img.param.GoldGradient;
 import com.sinvon.goldfoilfontapi.utils.img.param.SilverGradient;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -21,7 +24,14 @@ import java.io.IOException;
  * @author : sinvon
  * @since : 2024/12/7 上午12:51
  */
-public class GoldFoilImageUtils {
+@Service
+public class GoldFoilImageUtilsServiceImpl implements GoldFoilImageUtilsService {
+
+    @Autowired
+    private ProjectConfig projectConfig;
+
+    @Autowired
+    private SpringCoupletBackgroundImageUtilsService springCoupletBackgroundImageUtilsService;
 
     /**
      * 创建金梅毛碑文字图片
@@ -30,7 +40,7 @@ public class GoldFoilImageUtils {
      * @param gradientPos 渐变位置
      * @return 图片
      */
-    public static BufferedImage createGoldFoilImage(String text, String gradientPos, String fontColorType, boolean isBackground) {
+    public BufferedImage createGoldFoilImage(String text, String gradientPos, String fontColorType, boolean isBackground) {
         int padding = 50; // 给文本左右留出一定的间距
         int height = 300;
 
@@ -68,7 +78,6 @@ public class GoldFoilImageUtils {
         if (isBackground) { // 如果需要背景
             // 设置背景图片
             try {
-                ProjectConfig projectConfig = new ProjectConfig();
                 // 获取背景图片的名字
                 String backgroundImageFilename = projectConfig.backgroundImageFilename;
                 // 获取背景图片的路径
@@ -78,7 +87,7 @@ public class GoldFoilImageUtils {
                 // 确保背景图片的路径存在(即文件夹存在)
                 FileUtils.ensureFile(backgroundImageFilePath);
                 // 生成春联背景图片
-                SpringCoupletBackgroundImageUtils.createSpringCoupletBackgroundImage(width, height);
+                springCoupletBackgroundImageUtilsService.createSpringCoupletBackgroundImage(width, height);
                 // 加载背景图片
                 BufferedImage background = ImageIO.read(new File(backgroundImageFilePath)); // 加载背景图片
                 // 绘制背景图片
