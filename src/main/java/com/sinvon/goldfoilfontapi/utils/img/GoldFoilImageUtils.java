@@ -1,11 +1,15 @@
 package com.sinvon.goldfoilfontapi.utils.img;
 
+import com.sinvon.goldfoilfontapi.config.ProjectConfig;
 import com.sinvon.goldfoilfontapi.enums.FontColorType;
+import com.sinvon.goldfoilfontapi.utils.FileUtils;
+import com.sinvon.goldfoilfontapi.utils.SpringCoupletBackgroundImageUtils;
 import com.sinvon.goldfoilfontapi.utils.img.param.BlackGradient;
 import com.sinvon.goldfoilfontapi.utils.img.param.BrushTexture;
 import com.sinvon.goldfoilfontapi.utils.img.param.GoldGradient;
 import com.sinvon.goldfoilfontapi.utils.img.param.SilverGradient;
 
+import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -26,7 +30,7 @@ public class GoldFoilImageUtils {
      * @param gradientPos 渐变位置
      * @return 图片
      */
-    public static BufferedImage createGoldFoilImage(String text, String gradientPos, String fontColorType) {
+    public static BufferedImage createGoldFoilImage(String text, String gradientPos, String fontColorType, boolean isBackground) {
         int padding = 50; // 给文本左右留出一定的间距
         int height = 300;
 
@@ -61,8 +65,32 @@ public class GoldFoilImageUtils {
         // 设置抗锯齿
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
-        // 设置背景为透明
-        g2d.fillRect(0, 0, width, height);
+        if (isBackground) { // 如果需要背景
+            // 设置背景图片
+            try {
+                ProjectConfig projectConfig = new ProjectConfig();
+                // 获取背景图片的名字
+                String backgroundImageFilename = projectConfig.backgroundImageFilename;
+                // 获取背景图片的路径
+                String backgroundImagePath = projectConfig.backgroundImagePath;
+                // 拼接成图片的文件路径
+                String backgroundImageFilePath = backgroundImagePath + File.separator + backgroundImageFilename + ".png";
+                // 确保背景图片的路径存在(即文件夹存在)
+                FileUtils.ensureFile(backgroundImageFilePath);
+                // 生成春联背景图片
+                SpringCoupletBackgroundImageUtils.createSpringCoupletBackgroundImage(width, height);
+                // 加载背景图片
+                BufferedImage background = ImageIO.read(new File(backgroundImageFilePath)); // 加载背景图片
+                // 绘制背景图片
+                g2d.drawImage(background, 0, 0, width, height, null); // 绘制背景图片
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else { // 不需要背景
+            // 设置背景为透明
+            g2d.fillRect(0, 0, width, height);
+        }
+
 
         // 设置字体
         g2d.setFont(font);

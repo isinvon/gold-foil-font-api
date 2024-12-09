@@ -38,8 +38,9 @@ class GoldFoilController {
     public ResponseEntity<Resource> getGoldFoilImage(
             @RequestParam String text,
             @RequestParam(required = false, defaultValue = GradientPositionType.RANDOM) String gradientPos,
-            @RequestParam(required = false, defaultValue = FontColorType.GOLD) String fontColorType) {
-        File goldFoilImage = goldFoilService.getGoldFoilImage(text, gradientPos, fontColorType);
+            @RequestParam(required = false, defaultValue = FontColorType.GOLD) String fontColorType,
+            @RequestParam(required = false, defaultValue = "false") Boolean isBackground) {
+        File goldFoilImage = goldFoilService.getGoldFoilImage(text, gradientPos, fontColorType, isBackground);
         return ResponseEntity.ok()
                 .contentType(MediaType.IMAGE_PNG)
                 .body(new org.springframework.core.io.FileSystemResource(goldFoilImage));
@@ -54,8 +55,11 @@ class GoldFoilController {
     //  * @return 包含生成的HTML页面的ResponseEntity对象。
     //  */
     // @GetMapping("/gold-foil-html")
-    // public ResponseEntity<Resource> getGoldFoilHtml(@RequestParam String text, @RequestParam(required = false, defaultValue = GradientPositionType.RANDOM) String gradientPos, @RequestParam(required = false, defaultValue = FontColorType.GOLD) String fontColorType) {
-    //     File file = goldFoilService.getGoldFoilHtml(text, gradientPos, fontColorType);
+    // public ResponseEntity<Resource> getGoldFoilHtml(@RequestParam String text,
+    //                                                 @RequestParam(required = false, defaultValue = GradientPositionType.RANDOM) String gradientPos,
+    //                                                 @RequestParam(required = false, defaultValue = FontColorType.GOLD) String fontColorType,
+    //                                                 @RequestParam(required = false, defaultValue = "false") Boolean isBackground) {
+    //     File file = goldFoilService.getGoldFoilHtml(text, gradientPos, fontColorType, isBackground);
     //     if (file == null) {
     //         return ResponseEntity.notFound().build();
     //     }
@@ -74,8 +78,9 @@ class GoldFoilController {
     public ResponseEntity<Resource> getGoldFoilSvg(
             @RequestParam String text,
             @RequestParam(required = false, defaultValue = GradientPositionType.RANDOM) String gradientPos,
-            @RequestParam(required = false, defaultValue = FontColorType.GOLD) String fontColorType) {
-        File svgFile = goldFoilService.getGoldFoilSvg(text, gradientPos, fontColorType);
+            @RequestParam(required = false, defaultValue = FontColorType.GOLD) String fontColorType,
+            @RequestParam(required = false, defaultValue = "false") Boolean isBackground) {
+        File svgFile = goldFoilService.getGoldFoilSvg(text, gradientPos, fontColorType, isBackground);
         if (svgFile == null) {
             return ResponseEntity.notFound().build();
         }

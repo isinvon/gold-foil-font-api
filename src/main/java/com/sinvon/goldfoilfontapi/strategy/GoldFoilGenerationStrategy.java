@@ -9,5 +9,5 @@ import java.io.File;
  * @since :  2024/12/9 下午12:06
  */
 public interface GoldFoilGenerationStrategy {
-    File generate(String text, String gradientPos, String fontColorType);
+    File generate(String text, String gradientPos, String fontColorType, Boolean isBackground);
 }
