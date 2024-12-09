@@ -67,19 +67,22 @@ public class GoldFoilImageUtils {
         // 设置字体
         g2d.setFont(font);
 
-
-        if (fontColorType.equals(FontColorType.BLACK)) { // 纯黑
-            g2d.setColor(Color.BLACK);
-        } else if (fontColorType.equals(FontColorType.SILVER)) { // 银色字体
-            Paint gradient = SilverGradient.createSilverGradient(width, height, gradientPos);
-            g2d.setPaint(gradient);
-        }else if (fontColorType.equals(FontColorType.BLACK_GRADIENT)){ // 渐变黑
-            Paint gradient = BlackGradient.createBlackGradient(width, height, gradientPos);
-            g2d.setPaint(gradient);
-        } else { // 默认是金色
-            // 创建渐变填充，使用指定颜色范围
-            Paint gradient = GoldGradient.createGoldGradient(width, height, gradientPos);
-            g2d.setPaint(gradient);
+        switch (fontColorType) {
+            case FontColorType.BLACK ->  // 纯黑
+                    g2d.setColor(Color.BLACK);
+            case FontColorType.SILVER -> { // 银色字体
+                Paint gradient = SilverGradient.createSilverGradient(width, height, gradientPos);
+                g2d.setPaint(gradient);
+            }
+            case FontColorType.BLACK_GRADIENT -> { // 渐变黑
+                Paint gradient = BlackGradient.createBlackGradient(width, height, gradientPos);
+                g2d.setPaint(gradient);
+            }
+            default -> { // 默认是金色
+                // 创建渐变填充，使用指定颜色范围
+                Paint gradient = GoldGradient.createGoldGradient(width, height, gradientPos);
+                g2d.setPaint(gradient);
+            }
         }
 
         // 绘制文字（水平居中绘制）
