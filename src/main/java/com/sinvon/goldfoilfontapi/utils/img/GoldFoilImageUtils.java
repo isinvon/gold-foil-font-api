@@ -1,8 +1,10 @@
 package com.sinvon.goldfoilfontapi.utils.img;
 
 import com.sinvon.goldfoilfontapi.enums.FontColorType;
+import com.sinvon.goldfoilfontapi.utils.img.param.BlackGradient;
 import com.sinvon.goldfoilfontapi.utils.img.param.BrushTexture;
 import com.sinvon.goldfoilfontapi.utils.img.param.GoldGradient;
+import com.sinvon.goldfoilfontapi.utils.img.param.SilverGradient;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -19,7 +21,8 @@ public class GoldFoilImageUtils {
 
     /**
      * 创建金梅毛碑文字图片
-     * @param text 文本
+     *
+     * @param text        文本
      * @param gradientPos 渐变位置
      * @return 图片
      */
@@ -64,9 +67,20 @@ public class GoldFoilImageUtils {
         // 设置字体
         g2d.setFont(font);
 
-        // 创建渐变填充，使用指定颜色范围
-        Paint gradient = GoldGradient.createGoldGradient(width, height, gradientPos);
-        g2d.setPaint(gradient);
+
+        if (fontColorType.equals(FontColorType.BLACK)) { // 纯黑
+            g2d.setColor(Color.BLACK);
+        } else if (fontColorType.equals(FontColorType.SILVER)) { // 银色字体
+            Paint gradient = SilverGradient.createSilverGradient(width, height, gradientPos);
+            g2d.setPaint(gradient);
+        }else if (fontColorType.equals(FontColorType.BLACK_GRADIENT)){ // 渐变黑
+            Paint gradient = BlackGradient.createBlackGradient(width, height, gradientPos);
+            g2d.setPaint(gradient);
+        } else { // 默认是金色
+            // 创建渐变填充，使用指定颜色范围
+            Paint gradient = GoldGradient.createGoldGradient(width, height, gradientPos);
+            g2d.setPaint(gradient);
+        }
 
         // 绘制文字（水平居中绘制）
         int textX = padding;
