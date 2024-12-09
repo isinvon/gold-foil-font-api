@@ -23,6 +23,6 @@ app:
   # 文件名称(不加后缀的)
   filename: "gold-foil-font"
   # 背景图片名称(不加后缀的)
-  background-image-filename: "background"
+  background-image-filename: "backgroundImage"
   # 背景图片路径
   background-image-path: "#{systemProperties['os.name'].toLowerCase().contains('win') ? 'D:\\gold-foil-font-api\\backgroundImage' : '/home/gold-foil-font-api/backgroundImage'}"
