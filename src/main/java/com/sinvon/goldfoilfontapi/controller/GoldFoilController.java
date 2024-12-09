@@ -41,22 +41,22 @@ class GoldFoilController {
                 .body(new org.springframework.core.io.FileSystemResource(goldFoilImage));
     }
 
-    /**
-     * 返回HTML渲染页面
-     *
-     * @param text        要显示在页面上的文本内容。
-     * @param gradientPos 渐变效果的位置，可选值为GradientPositionType中的常量，
-     *                    默认值为GradientPositionType.RANDOM。
-     * @return 包含生成的HTML页面的ResponseEntity对象。
-     */
-    @GetMapping("/gold-foil-html")
-    public ResponseEntity<Resource> getGoldFoilHtml(@RequestParam String text, @RequestParam(required = false, defaultValue = GradientPositionType.RANDOM) String gradientPos) {
-        File file = goldFoilService.getGoldFoilHtml(text, gradientPos);
-        if (file == null) {
-            return ResponseEntity.notFound().build();
-        }
-        return ResponseEntity.ok().contentType(MediaType.TEXT_HTML).body(new org.springframework.core.io.FileSystemResource(file));
-    }
+    // /**
+    //  * 返回HTML渲染页面
+    //  *
+    //  * @param text        要显示在页面上的文本内容。
+    //  * @param gradientPos 渐变效果的位置，可选值为GradientPositionType中的常量，
+    //  *                    默认值为GradientPositionType.RANDOM。
+    //  * @return 包含生成的HTML页面的ResponseEntity对象。
+    //  */
+    // @GetMapping("/gold-foil-html")
+    // public ResponseEntity<Resource> getGoldFoilHtml(@RequestParam String text, @RequestParam(required = false, defaultValue = GradientPositionType.RANDOM) String gradientPos) {
+    //     File file = goldFoilService.getGoldFoilHtml(text, gradientPos);
+    //     if (file == null) {
+    //         return ResponseEntity.notFound().build();
+    //     }
+    //     return ResponseEntity.ok().contentType(MediaType.TEXT_HTML).body(new org.springframework.core.io.FileSystemResource(file));
+    // }
 
     /**
      * 返回SVG格式
