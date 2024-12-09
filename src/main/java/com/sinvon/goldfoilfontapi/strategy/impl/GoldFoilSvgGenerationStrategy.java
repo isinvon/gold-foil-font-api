@@ -9,6 +9,8 @@ import org.springframework.stereotype.Service;
 import java.io.File;
 
 /**
+ * SVG 生成策略
+ *
  * @author : sinvon
  * @since :  2024/12/9 下午12:11
  */

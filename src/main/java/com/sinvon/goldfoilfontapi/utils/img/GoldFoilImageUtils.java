@@ -9,8 +9,9 @@ import java.io.File;
 import java.io.IOException;
 
 /**
+ * 金梅毛碑文字GoldFoilFont
+ *
  * @author : sinvon
- * @description : 金梅毛碑文字GoldFoilFont
  * @since : 2024/12/7 上午12:51
  */
 public class GoldFoilImageUtils {

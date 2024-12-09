@@ -5,8 +5,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 /**
+ * 文件工具类
+ *
  * @author : sinvon
- * @description : 文件工具类
  * @since :  2024/12/9 下午12:09
  */
 

@@ -13,7 +13,6 @@ import java.io.File;
  * GoldFoilService的实现类
  *
  * @author : sinvon
- * @ClassName : GoldFoilServiceImpl
  * @since :  2024/12/8 上午1:12
  */
 

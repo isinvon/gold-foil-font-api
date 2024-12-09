@@ -13,6 +13,8 @@ import java.io.File;
 import java.io.IOException;
 
 /**
+ * Image 生成策略
+ *
  * @author : sinvon
  * @since :  2024/12/9 下午12:06
  */

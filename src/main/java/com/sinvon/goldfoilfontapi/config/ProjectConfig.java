@@ -6,8 +6,9 @@ import org.springframework.context.annotation.Configuration;
 import java.io.File;
 
 /**
+ * 项目配置
+ *
  * @author : sinvon
- * @Description : 项目配置
  * @since :  2024/12/7 上午1:58
  */
 @Configuration
