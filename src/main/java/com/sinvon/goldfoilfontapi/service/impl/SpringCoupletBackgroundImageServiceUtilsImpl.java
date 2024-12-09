@@ -48,7 +48,6 @@ public class SpringCoupletBackgroundImageServiceUtilsImpl implements SpringCoupl
 
             // 背景图片的全路径名
             String backgroundImagePathAndFilename = projectConfig.backgroundImagePath + File.separator + projectConfig.backgroundImageFilename + ".png";
-            System.out.println("背景图片保存路径：" + backgroundImagePathAndFilename);
             // 确保背景图片保存路径存在
             FileUtils.ensureFile(backgroundImagePathAndFilename);
             // 保存为 PNG 图像
