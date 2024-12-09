@@ -1,7 +1,5 @@
 <img src="./image/gold-foil-font-api.png" width="800" />
 
-# gold-foil-font-api - 烫金字体 API, 为新年欢呼!
-
 <img src="./image/gold-foil-font-api description chinese.png" width="800" />
 <img src="./image/gold-foil-font-api description english.png" width="800" />
 
@@ -62,7 +60,5 @@ http://localhost:8080/api/gold-foil-image?text=66大顺
 
 http://localhost:8080/api/gold-foil-image?text=66大顺
 
-arduino
-复制代码
 
 <img src="./image/66大顺.png" width="800" />
