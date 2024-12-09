@@ -88,7 +88,7 @@ public class GoldFoilImageUtils {
         g2d.drawString(text, textX, textY);
 
         // 叠加改进的纹理效果
-        TexturePaint texture = BrushTexture.createImprovedBrushTexture(width, height, 150);
+        TexturePaint texture = BrushTexture.createImprovedBrushTexture(width, height, 100);
         g2d.setPaint(texture);
         g2d.setComposite(AlphaComposite.SrcOver.derive(0.5f)); // 控制纹理覆盖比例
         g2d.drawString(text, textX, textY);
