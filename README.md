@@ -46,22 +46,26 @@ http://localhost:8080/api/gold-foil-image?text=新年快乐&fontColorType=blackG
 
 ## ✏️ 修改字体内容 ➽
 
-### 🔤 默认字体 ➽
-
 修改参数 `text` 为想要的字即可，无需加其他参数，例如:
 
 http://localhost:8080/api/gold-foil-image?text=66大顺
 
-
 <img src="./image/66大顺.png" width="800" />
 
-## 🌈 修改背景颜色 ➽
+## 🏮 春联背景 ➽
 
-### 🏮 春联背景 ➽
+添加参数 `background` 为 `true`，例如:
 
-添加参数 `background` 为 `spring`，例如:
+http://localhost:8080/api/gold-foil-image?text=鸡你太美&background=true
 
-http://localhost:8080/api/gold-foil-image?text=66大顺
+每一次请求都是随机的，所以每次请求的背景颜色都是不一样的，例如:
 
+<img src="./image/ikun-1.png" width="800" />
 
-<img src="./image/66大顺.png" width="800" />
+<img src="./image/ikun-2.png" width="800" />
+
+<img src="./image/ikun-3.png" width="800" />
+
+<img src="./image/ikun-4.png" width="800" />
+
+<img src="./image/ikun-5.png" width="800" />
