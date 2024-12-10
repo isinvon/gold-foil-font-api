@@ -7,9 +7,13 @@
 <img src="./image/gold-foil-font-api description english.png" width="800" />
 
 <div style="display: flex; justify-content: center; align-items: center;gap: 10px;margin: 20px">
-  <a href="https://github.com/isinvon/gold-foil-font-api/blob/main/README_zh.md">中文 README.md</a>
-  |
-  <a href="https://github.com/isinvon/gold-foil-font-api/blob/main/README_en.md">English README.md</a>
+<a href="https://github.com/isinvon/gold-foil-font-api/blob/main/README.md">
+<img src="./image/chinese readme.png" alt="README.md" height="30" style="border-radius: 10px"/>
+</a>
+
+<a href="https://github.com/isinvon/gold-foil-font-api/blob/main/README_en.md">
+<img src="image/english readme.png" alt="README_en.md" height="30" style="border-radius: 10px"/>
+</a>
 </div>
 
 ## ✨ 修改字体颜色 ➽
