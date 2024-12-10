@@ -5,6 +5,7 @@ import com.sinvon.goldfoilfontapi.enums.FontColorType;
 import com.sinvon.goldfoilfontapi.service.GoldFoilImageUtilsService;
 import com.sinvon.goldfoilfontapi.service.SpringCoupletBackgroundImageUtilsService;
 import com.sinvon.goldfoilfontapi.utils.FileUtils;
+import com.sinvon.goldfoilfontapi.utils.FontResourceUtil;
 import com.sinvon.goldfoilfontapi.utils.img.param.BlackGradient;
 import com.sinvon.goldfoilfontapi.utils.img.param.BrushTexture;
 import com.sinvon.goldfoilfontapi.utils.img.param.GoldGradient;
@@ -31,6 +32,9 @@ public class GoldFoilImageUtilsServiceImpl implements GoldFoilImageUtilsService 
     private ProjectConfig projectConfig;
 
     @Autowired
+    private FontResourceUtil fontResourceUtil;
+
+    @Autowired
     private SpringCoupletBackgroundImageUtilsService springCoupletBackgroundImageUtilsService;
 
     /**
@@ -51,7 +55,8 @@ public class GoldFoilImageUtilsServiceImpl implements GoldFoilImageUtilsService 
         // 加载书法字体
         Font font;
         try {
-            font = Font.createFont(Font.TRUETYPE_FONT, new File("三极泼墨体.ttf"));
+            File fontFile = fontResourceUtil.getFontFile("三极泼墨体.ttf");
+            font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
             font = font.deriveFont(150f); // 设置字体大小
             tempG2d.setFont(font);
         } catch (FontFormatException | IOException e) {
