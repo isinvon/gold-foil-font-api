@@ -14,9 +14,14 @@
 </a>
 
 <a href="https://github.com/isinvon/gold-foil-font-api/blob/main/README_en.md">
-<img src="image/english readme.png" alt="README_en.md" height=>
+<img src="image/english readme.png" alt="README_en.md">
 </a>
 </div>
+
+## 🚀 Test Env ➽
+
+- Java v21
+- Maven v3.9.8
 
 ## ✨ Change Font Color ➽
 
