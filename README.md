@@ -150,3 +150,14 @@ http://localhost:8080/api/gold-foil-image?text=圆形随机&gradientPos=circular
 添加参数 `gradientPos` 为 `random`，例如:
 
 http://localhost:8080/api/gold-foil-image?text=随机渐变&gradientPos=random
+
+## 🌟 SVG 生成
+
+请使用以下接口
+
+http://localhost:8080/api/gold-foil-svg?text=你好
+
+请求之后出现如下页面, 直接复制即可
+
+<img src="./image/svg.png" width="800" />
+

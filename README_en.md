@@ -150,3 +150,14 @@ If the `gradientPos` parameter is omitted, it defaults to a random gradient, for
 http://localhost:8080/api/gold-foil-image?text=RandomGradient&gradientPos=random
 
 ---
+
+## 🌟 SVG generate
+
+Please use the following api
+
+http://localhost:8080/api/gold-foil-svg?text=你好
+
+After the request, the following page appears. Copy it directly
+
+<img src="./image/svg.png" width="800" />
+
