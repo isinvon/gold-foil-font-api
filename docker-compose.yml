@@ -1,7 +1,0 @@
-version: '3.8'
-services:
-  app:
-    image: gold-foil-font-api:latest
-    ports:
-      - "22680:8080"
-    restart: always
