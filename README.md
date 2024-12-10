@@ -68,4 +68,70 @@ http://localhost:8080/api/gold-foil-image?text=鸡你太美&background=true
 
 <img src="./image/ikun-4.png" width="800" />
 
-<img src="./image/ikun-5.png" width="800" />
+## ☀️ 渐变方向 ➽
+
+### `leftToRight` - 从左到右
+
+添加参数 `gradientPos` 为 `leftToRight`，例如:
+
+http://localhost:8080/api/gold-foil-image?text=鸡你太美&gradientPos=leftToRight
+
+### `topToBottom` - 从上到下
+
+添加参数 `gradientPos` 为 `topToBottom`，例如:
+
+http://localhost:8080/api/gold-foil-image?text=光泽效果&gradientPos=topToBottom
+
+### `leftTopToRightBottom` - 从左上到右下
+
+添加参数 `gradientPos` 为 `leftTopToRightBottom`，例如:
+
+http://localhost:8080/api/gold-foil-image?text=从左上到右下&gradientPos=leftTopToRightBottom
+
+### `leftBottomToRightTop` - 从左下到右上
+
+添加参数 `gradientPos` 为 `leftBottomToRightTop`，例如:
+
+http://localhost:8080/api/gold-foil-image?text=从左下到右上&gradientPos=leftBottomToRightTop
+
+### `rightToLeft` - 从右到左
+
+添加参数 `gradientPos` 为 `rightToLeft`，例如:
+
+http://localhost:8080/api/gold-foil-image?text=从右到左&gradientPos=rightToLeft
+
+### `bottomToTop` - 从下到上
+
+添加参数 `gradientPos` 为 `bottomToTop`，例如:
+
+http://localhost:8080/api/gold-foil-image?text=从下到上&gradientPos=bottomToTop
+
+### `rightTopToLeftBottom` - 从右上到左下
+
+添加参数 `gradientPos` 为 `rightTopToLeftBottom`，例如:
+
+http://localhost:8080/api/gold-foil-image?text=从右上到左下&gradientPos=rightTopToLeftBottom
+
+### `rightBottomToLeftTop` - 从右下到左上
+
+添加参数 `gradientPos` 为 `rightBottomToLeftTop`，例如:
+
+http://localhost:8080/api/gold-foil-image?text=从右下到左上&gradientPos=rightBottomToLeftTop
+
+### `circular` - 圆形
+
+添加参数 `gradientPos` 为 `circular`，例如:
+
+http://localhost:8080/api/gold-foil-image?text=圆形渐变&gradientPos=circular
+
+### `circularRandom` - 圆形随机
+
+添加参数 `gradientPos` 为 `circularRandom`，例如:
+
+http://localhost:8080/api/gold-foil-image?text=圆形随机&gradientPos=circularRandom
+
+### `random` - 随机 (如果不加 gradientPos 参数，默认就是这个随机的)
+
+添加参数 `gradientPos` 为 `random`，例如:
+
+http://localhost:8080/api/gold-foil-image?text=随机渐变&gradientPos=random
