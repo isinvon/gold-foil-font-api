@@ -6,6 +6,12 @@
 <img src="./image/gold-foil-font-api description chinese.png" width="800" />
 <img src="./image/gold-foil-font-api description english.png" width="800" />
 
+<div style="display: flex; justify-content: center; align-items: center;gap: 10px;margin: 20px">
+  <a href="https://github.com/isinvon/gold-foil-font-api/blob/main/README_zh.md">中文 README.md</a>
+  |
+  <a href="https://github.com/isinvon/gold-foil-font-api/blob/main/README_en.md">English README.md</a>
+</div>
+
 ## ✨ 修改字体颜色 ➽
 
 ### 🟡 金色 ➽
