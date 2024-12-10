@@ -1,4 +1,4 @@
-<img src="./image/gold-foil-font-api title.png" width="800" />
+<img src="./image/gold-foil-font-api title.png"/>
 
 [//]: # (<img src="./image/gold-foil-font-api.png" width="800" />)
 
