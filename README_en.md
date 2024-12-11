@@ -5,9 +5,6 @@
 <img src="./image/gold-foil-font-api description chinese.png" width="800" />
 <img src="./image/gold-foil-font-api description english.png" width="800" />
 
-<img src="./image/gold-foil-font-api description chinese.png" width="800" />
-<img src="./image/gold-foil-font-api description english.png" width="800" />
-
 <div style="display: flex; justify-content: center; align-items: center;gap: 20px;margin: 20px">
 <a href="https://github.com/isinvon/gold-foil-font-api/blob/main/README.md">
 <img src="./image/chinese readme.png" alt="README.md"/>
@@ -67,9 +64,9 @@ http://localhost:8080/api/gold-foil-image?text=66大顺
 
 ## 🏮 Couplets Background ➽
 
-Add the `background` parameter as `true`, for example:
+Add the `isBackground` parameter as `true`, for example:
 
-http://localhost:8080/api/gold-foil-image?text=鸡你太美&background=true
+http://localhost:8080/api/gold-foil-image?text=鸡你太美&isBackground=true
 
 Each request generates a random background, so each background color will be different, for example:
 

@@ -69,9 +69,9 @@ http://localhost:8080/api/gold-foil-image?text=66大顺
 
 ## 🏮 春联背景 ➽
 
-添加参数 `background` 为 `true`，例如:
+添加参数 `isBackground` 为 `true`，例如:
 
-http://localhost:8080/api/gold-foil-image?text=鸡你太美&background=true
+http://localhost:8080/api/gold-foil-image?text=鸡你太美&isBackground=true
 
 每一次请求都是随机的，所以每次请求的背景颜色都是不一样的，例如:
 
