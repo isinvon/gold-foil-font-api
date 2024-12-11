@@ -16,6 +16,11 @@ public class ProjectConfig {
     // 获取当前项目路径
     private static final String projectPath = System.getProperty("user.dir");
 
+    // 获取前端项目地址
+    @Value("${frontend.host}")
+    public String frontendHost;
+
+
     // 文件存放的位置
     @Value("${app.profile}")
     public String profile;
