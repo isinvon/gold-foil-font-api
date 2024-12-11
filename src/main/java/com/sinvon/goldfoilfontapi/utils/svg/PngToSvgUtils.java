@@ -33,6 +33,7 @@ public class PngToSvgUtils {
             image = ImageIO.read(new File(inputPngPath));
         } catch (IOException e) {
             e.printStackTrace();
+            return false;
         }
 
         // 步骤2：转换为BufferedImage对象
@@ -48,13 +49,22 @@ public class PngToSvgUtils {
         // 创建SVG画布
         SVGGraphics2D svg = new SVGGraphics2D(document);
 
+        // 设置SVG画布的大小
+        svg.setSVGCanvasSize(new java.awt.Dimension(image.getWidth(), image.getHeight()));
+
         // 绘制图像到SVG
         svg.drawImage(bufferedImage, 0, 0, null);
 
+        // 设置SVG视图框架 (viewBox)
+        String viewBox = "0 0 " + image.getWidth() + " " + image.getHeight();
+        document.getDocumentElement().setAttribute("viewBox", viewBox);
+        document.getDocumentElement().setAttribute("width", String.valueOf(image.getWidth()));
+        document.getDocumentElement().setAttribute("height", String.valueOf(image.getHeight()));
+
         // 判断输出目录，如果不存在则创建输出目录
         File file = new File(outputSvgPath);
-        if (!file.exists()){
-            // 创建他的父目录
+        if (!file.exists()) {
+            // 创建父目录
             file.getParentFile().mkdirs();
         }
 
