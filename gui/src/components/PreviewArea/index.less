@@ -1,0 +1,56 @@
+@import url('@/styles/globalVariable');
+.preview-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 30px;
+  //background: linear-gradient(135deg, #e0e0e0, #b3b3b3, #e0e0e0); /* 银色渐变 */
+  background: @Global-color-gradient;
+  padding: 20px;
+  border-radius: @Global-radius;
+}
+
+.preview-card {
+  width: auto;
+  border-radius: @Global-radius;
+}
+
+.preview-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: @Global-radius;
+}
+
+.svg-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: @Global-radius;
+}
+
+.download-buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.download-btn {
+  color: @Global-btn-color;
+  background-color: @Global-btn-background;
+  font-size: 16px;
+  border-radius: @Global-radius;
+  padding: 10px 20px;
+  transition: background-color 0.3s;
+  border: none;
+}
+
+.download-btn:hover {
+  background-color: @Global-btn-background-hover;
+  border: none;
+}
+
+.no-content {
+  font-size: 16px;
+  color: #e5e5e5;
+  text-align: center;
+  padding: 20px;
+}
