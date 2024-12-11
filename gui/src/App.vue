@@ -33,6 +33,13 @@ const imageUrl = ref('');
 const svgContent = ref('');
 
 const generateContent = async (type) => {
+
+  // 校验用户是否输入了文本
+  if (!settings.value.text) {
+    ElMessage.warning('请输入要生成的文本！');
+    return;
+  }
+
   // 显示加载动画
   const loading = ElLoading.service({
     lock: true,
