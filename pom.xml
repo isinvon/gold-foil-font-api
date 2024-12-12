@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.sinvon</groupId>
     <artifactId>gold-foil-font-api</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.0.1</version>
     <name>gold-foil-font-api</name>
     <description>gold-foil-font-api</description>
     <url/>
