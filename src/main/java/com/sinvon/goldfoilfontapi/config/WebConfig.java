@@ -22,7 +22,6 @@ public class WebConfig {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
-                System.out.println("corsConfigurer" + projectConfig.frontendHost);
                 registry.addMapping("/api/**")
                         .allowedOrigins(projectConfig.frontendHost)
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
