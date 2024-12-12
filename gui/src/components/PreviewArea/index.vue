@@ -27,7 +27,6 @@
 </template>
 
 <script setup>
-import {defineProps} from 'vue';
 import {useImagePreview} from './imagePreview.js'; // 导入新的 JS 文件
 
 // 接收父组件传递的数据
