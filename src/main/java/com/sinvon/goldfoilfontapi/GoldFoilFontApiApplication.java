@@ -1,7 +1,9 @@
 package com.sinvon.goldfoilfontapi;
 
+import com.sinvon.goldfoilfontapi.webview.WebviewLauncher;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.ApplicationContext;
 
 /**
  * @author : sinvon
@@ -11,7 +13,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class GoldFoilFontApiApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(GoldFoilFontApiApplication.class, args);
+        ApplicationContext context = SpringApplication.run(GoldFoilFontApiApplication.class, args);
+        WebviewLauncher webviewLauncher = context.getBean(WebviewLauncher.class);
+        webviewLauncher.launchWebview();
     }
-
 }
