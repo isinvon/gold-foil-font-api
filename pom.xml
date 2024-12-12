@@ -30,11 +30,6 @@
         <java.version>21</java.version>
     </properties>
     <dependencies>
-        <dependency>
-            <groupId>dev.webview.webview_java</groupId>
-            <artifactId>core</artifactId>
-            <version>1.0.0</version>
-        </dependency>
         <!--排除commons-logging-->
         <dependency>
             <groupId>org.springframework</groupId>
