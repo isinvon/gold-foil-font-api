@@ -3,6 +3,7 @@ import vue from "@vitejs/plugin-vue";
 import path from "path";
 
 export default defineConfig({
+  base: "./",
   plugins: [vue()],
   resolve: {
     alias: {
@@ -23,7 +24,7 @@ export default defineConfig({
   },
   build: {
     sourcemap: false, // 生产环境关闭 Source Map
-    outDir: "dist", // 输出目录
+    outDir: "../src/main/resources/static", // 输出目录
     rollupOptions: {
       output: {
         manualChunks: {
