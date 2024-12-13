@@ -44,8 +44,8 @@ def run_command(command):
         sys.exit(1)
 
 
-# cd 到 gui下运行 pnpm build,然后在cd回去
-run_command('cd gui && pnpm build && cd ..')
+# cd 到 gui下运行 pnpm build --emptyOutDir, 然后在cd回去
+run_command('cd gui && pnpm build --emptyOutDir && cd ..')
 
 # 清理项目
 run_command('mvn clean')
