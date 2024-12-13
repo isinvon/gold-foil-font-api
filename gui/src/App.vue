@@ -1,6 +1,6 @@
 <template>
   <div class="app-container">
-    <a href="https://github.com/isinvon/Pvideo-demo" target="_blank" class="github-link">
+    <a href="https://github.com/isinvon/gold-foil-font-api" target="_blank" class="github-link">
       <button class="quarter-circle-btn">
         <span class="icon-container">
             <svg class="icon" xmlns="http://www.w3.org/2000/svg" width="20" height="18" viewBox="0 0 24 24"><path
