@@ -1,3 +1,4 @@
+# see https://docs.oracle.com/en/java/javase/21/docs/specs/man/jpackage.html
 import os
 import subprocess
 import sys
@@ -6,12 +7,16 @@ import sys
 PROJECT_PATH = os.getcwd()
 OUTPUT_DIR = os.path.join(PROJECT_PATH, 'output')
 APP_NAME = 'gold-foil-font-api'
+APP_DECRIPTION = 'gold-foil-font-api is a program to convert fonts into images and SVG'
 APP_VERSION = '0.0.1'
 LAUNCHER_CLASS = 'com.sinvon.goldfoilfontapi.GoldFoilFontApiApplication'
+HELP_URL = 'https://github.com/sinvon-dev/gold-foil-font'
+UUID = '41e8b4b3-cee4-4c66-9a22-2b1d320c3be9'
 
 # 检查 output 文件夹是否存在，若不存在则创建
 if not os.path.exists(OUTPUT_DIR):
     os.makedirs(OUTPUT_DIR)
+
 
 # 检查 jpackage 是否可用
 
@@ -26,6 +31,7 @@ def check_jpackage():
 
 
 check_jpackage()
+
 
 # 执行命令
 
@@ -73,8 +79,19 @@ jpackage_command = (
     # f'--main-class "{LAUNCHER_CLASS}" '  # 指定主类 (springboot默认已经设置了main-class,无需自己去设置)
     f'--name "{APP_NAME}" '
     f'--app-version "{APP_VERSION}" '
+    f'--description "{APP_DECRIPTION}" '
     f'--dest "{OUTPUT_DIR}" '
     f'--win-dir-chooser '  # 允许用户选择安装目录
+    f'--win-help-url "{HELP_URL}" '  # 帮助链接
+    f'--win-menu-group "GoldFoilFont" '  # 显示提示此应用程序所在的“开始”菜单组
+    f'--win-shortcut-prompt '  # 添加一个对话框，使用户能够选择是否将快捷方式 由 installer 创建
+    f'--win-per-user-install '  # 安装为每个用户
+    f'--win-menu '  # 在菜单中创建快捷方式
+    f'--win-shortcut '  # 在桌面创建快捷方式
+    # f'--win-console ' # 启用控制台
+    f'--icon gui/public/favicon.ico '  # 图标
+    # f'--verbose ' # 显示详细日志
+    f'--win-upgrade-uuid "{UUID} '  # 与此程序包的升级关联的 UUID
 )
 
 run_command(jpackage_command)
