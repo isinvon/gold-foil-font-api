@@ -23,12 +23,22 @@ public class GoldFoilGenerationContext {
      * 是否有背景
      */
     private Boolean isBackground;
+    /**
+     * 背景类型
+     */
+    private String backgroundType;
+    /**
+     * 背景颜色
+     */
+    private String backgroundColor;
 
-    public GoldFoilGenerationContext(String text, String gradientPos, String fontColorType, Boolean isBackground) {
+    public GoldFoilGenerationContext(String text, String gradientPos, String fontColorType, Boolean isBackground, String backgroundType, String backgroundColor) {
         this.text = text;
         this.gradientPos = gradientPos;
         this.fontColorType = fontColorType;
         this.isBackground = isBackground;
+        this.backgroundType = backgroundType;
+        this.backgroundColor = backgroundColor;
     }
 
     public String getText() {
@@ -45,5 +55,13 @@ public class GoldFoilGenerationContext {
 
     public Boolean getIsBackground() {
         return isBackground;
+    }
+
+    public String getBackgroundColor() {
+        return backgroundColor;
+    }
+
+    public String getBackgroundType() {
+        return backgroundType;
     }
 }

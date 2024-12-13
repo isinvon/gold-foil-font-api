@@ -1,5 +1,6 @@
 package com.sinvon.goldfoilfontapi.controller;
 
+import com.sinvon.goldfoilfontapi.enums.BackgroundType;
 import com.sinvon.goldfoilfontapi.enums.FontColorType;
 import com.sinvon.goldfoilfontapi.enums.GradientPositionType;
 import com.sinvon.goldfoilfontapi.service.GoldFoilService;
@@ -14,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.io.File;
-import java.io.IOException;
 
 /**
  * @author : sinvon
@@ -30,9 +30,13 @@ class GoldFoilController {
     /**
      * 返回PNG格式
      *
-     * @param text        要显示在图像上的文本内容。
-     * @param gradientPos 渐变效果的位置，可选值为GradientPositionType中的常量，
-     *                    默认值为GradientPositionType.RANDOM。
+     * @param text            要显示在图像上的文本内容。
+     * @param gradientPos     渐变效果的位置，可选值为GradientPositionType中的常量，
+     *                        默认值为GradientPositionType.RANDOM。
+     * @param fontColorType   文本颜色，可选值为FontColorType中的常量，默认值为FontColorType.GOLD。
+     * @param isBackground    是否添加背景，默认为false。
+     * @param backgroundType  背景类型，可选值为BackgroundType中的常量，默认值为BackgroundType.NONE。
+     * @param backgroundColor 背景颜色，仅在backgroundType为BackgroundType.CUSTOM或者BackgroundType.RANDOM时生效。
      * @return 包含生成的PNG图像的ResponseEntity对象。
      */
     @GetMapping("gold-foil-image")
@@ -40,8 +44,10 @@ class GoldFoilController {
             @RequestParam String text,
             @RequestParam(required = false, defaultValue = GradientPositionType.RANDOM) String gradientPos,
             @RequestParam(required = false, defaultValue = FontColorType.GOLD) String fontColorType,
-            @RequestParam(required = false, defaultValue = "false") Boolean isBackground) {
-        GoldFoilGenerationContext context = new GoldFoilGenerationContext(text, gradientPos, fontColorType, isBackground);
+            @RequestParam(required = false, defaultValue = "false") Boolean isBackground,
+            @RequestParam(required = false, defaultValue = BackgroundType.NONE) String backgroundType,
+            @RequestParam(required = false) String backgroundColor) {
+        GoldFoilGenerationContext context = new GoldFoilGenerationContext(text, gradientPos, fontColorType, isBackground, backgroundType, backgroundColor);
         File goldFoilImage = goldFoilService.getGoldFoilImage(context);
         return ResponseEntity.ok()
                 .contentType(MediaType.IMAGE_PNG)
@@ -71,9 +77,13 @@ class GoldFoilController {
     /**
      * 返回SVG格式
      *
-     * @param text        要显示在图像上的文本内容。
-     * @param gradientPos 渐变效果的位置，可选值为GradientPositionType中的常量，
-     *                    默认值为GradientPositionType.RANDOM。
+     * @param text            要显示在图像上的文本内容。
+     * @param gradientPos     渐变效果的位置，可选值为GradientPositionType中的常量，
+     *                        默认值为GradientPositionType.RANDOM。
+     * @param fontColorType   文本颜色，可选值为FontColorType中的常量，默认值为FontColorType.GOLD。
+     * @param isBackground    是否添加背景，默认为false。
+     * @param backgroundType  背景类型，可选值为BackgroundType中的常量，默认值为BackgroundType.NONE。
+     * @param backgroundColor 背景颜色，仅在backgroundType为BackgroundType.CUSTOM或者BackgroundType.RANDOM时生效。
      * @return 包含生成的SVG图像的ResponseEntity对象。
      */
     @GetMapping("gold-foil-svg")
@@ -81,8 +91,10 @@ class GoldFoilController {
             @RequestParam String text,
             @RequestParam(required = false, defaultValue = GradientPositionType.RANDOM) String gradientPos,
             @RequestParam(required = false, defaultValue = FontColorType.GOLD) String fontColorType,
-            @RequestParam(required = false, defaultValue = "false") Boolean isBackground) {
-        GoldFoilGenerationContext context = new GoldFoilGenerationContext(text, gradientPos, fontColorType, isBackground);
+            @RequestParam(required = false, defaultValue = "false") Boolean isBackground,
+            @RequestParam(required = false, defaultValue = BackgroundType.NONE) String backgroundType,
+            @RequestParam(required = false) String backgroundColor) {
+        GoldFoilGenerationContext context = new GoldFoilGenerationContext(text, gradientPos, fontColorType, isBackground, backgroundType, backgroundColor);
         File svgFile = goldFoilService.getGoldFoilSvg(context);
         if (svgFile == null) {
             return ResponseEntity.notFound().build();
