@@ -63,6 +63,11 @@ public class ColorPaletteGeneratorUtils {
      * @return 调色板颜色列表
      */
     public static List<Color> generateColorPalette(String baseColorHex) {
+        // 确保 baseColorHex 是有效的十六进制颜色字符串
+        if (baseColorHex.startsWith("java.awt.Color")) {
+            // 如果 baseColorHex 已经是一个 Color 对象的字符串表示
+            baseColorHex = extractHexColor(baseColorHex);
+        }
         // 将输入的颜色转换为HSL（色调、饱和度、亮度）
         Color baseColor = Color.decode(baseColorHex);
         float[] hsl = rgbToHsl(baseColor.getRed(), baseColor.getGreen(), baseColor.getBlue());
@@ -159,5 +164,23 @@ public class ColorPaletteGeneratorUtils {
         int blue = Math.round((b + m) * 255);
 
         return new Color(red, green, blue);
+    }
+
+    /**
+     * 如果 baseColorHex 是 Color 对象的字符串表示，则提取出十六进制颜色值
+     *
+     * @param colorString 颜色字符串
+     * @return 十六进制颜色值
+     */
+    private static String extractHexColor(String colorString) {
+        // 通过正则提取 RGB 值并转换为十六进制
+        String hexColor = colorString.replaceAll("[^0-9,]", ""); // 移除非数字和逗号
+        String[] rgb = hexColor.split(",");
+        int r = Integer.parseInt(rgb[0]);
+        int g = Integer.parseInt(rgb[1]);
+        int b = Integer.parseInt(rgb[2]);
+
+        // 返回十六进制格式的颜色
+        return String.format("#%02x%02x%02x", r, g, b);
     }
 }
