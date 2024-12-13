@@ -15,23 +15,41 @@
 </a>
 </div>
 
-## 🖼️ GUI ➽
+## 🖼️ GUI Interface ➽
 
 Download: [🔗GitHub Releases](https://github.com/isinvon/gold-foil-font-api/releases)
 
-<img src="./image/gui_v1.png" width="800" />
+<img src="image/gui_v0.0.2.png" width="800" />
 
+## 🚀 Test Environment ➽
 
-## 🚀 Test Env ➽
+- Windows 11
+- Java v21 for backend development
+- Spring Boot 3.3.6 backend framework
+- Maven v3.9.8 for backend build and dependency management
+- JPackage21 for packaging
+- Node.js v20.15.0 for frontend development
+- Vue.js v3.5.13 frontend framework
+- Vite v6.0.1 frontend build tool
+- pnpm v9.14.2 package manager
 
-- Java v21
-- Maven v3.9.8
+## API Parameters
 
-## ✨ Change Font Color ➽
+| Parameter             | Type   | Default  | Description                                                                                                                                                                                                                                           
+|-----------------------|--------|----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| text                  | String | -        | The text content, required                                                                                                                                                                                                                            
+| gradientPos           | String | `random` | Gradient direction, defaults to `random`. Options: `leftToRight`, `topToBottom`, `leftTopToRightBottom`, `leftBottomToRightTop`, `rightToLeft`, `bottomToTop`, `rightTopToLeftBottom`, `rightBottomToLeftTop`, `circular`, `circularRandom`, `random` 
+| fontColorType         | String | `gold`   | Font color type, defaults to `gold`. Options: `silver`, `black`, `blackGradient`, `custom`, `customGradient`, `random`, `randomGradient`                                                                                                              
+| fontCustomColor       | String | -        | Custom font color, only effective when `fontColorType` is `custom` or `customGradient`. Accepts hex color codes like `#ff0000`.                                                                                                                       
+| isBackground          | String | `false`  | Whether to use a background, defaults to `false`. Options: `true`, `false`                                                                                                                                                                            
+| isRandomBackground    | String | `false`  | Whether to use a random background, defaults to `false`. Options: `true`, `false`                                                                                                                                                                     
+| backgroundCustomColor | String | -        | Custom background color, only effective when `isBackground` is `true` and `isRandomBackground` is `false`. Accepts hex color codes like `#ff0000`.                                                                                                    
+
+## ✨ Basic Usage ➽
 
 ### 🟡 Gold ➽
 
-Simply change the `text` parameter to the desired text without any additional parameters, for example:
+Set the parameter `text` to the desired content without adding other parameters. Example:
 
 http://localhost:8080/api/gold-foil-image?text=新年快乐
 
@@ -39,7 +57,7 @@ http://localhost:8080/api/gold-foil-image?text=新年快乐
 
 ### ⚪ Silver ➽
 
-Change the `text` parameter to the desired text and set the `fontColorType` parameter to `silver`, for example:
+Set the parameter `text` to the desired content and set `fontColorType` to `silver`. Example:
 
 http://localhost:8080/api/gold-foil-image?text=新年快乐&fontColorType=silver
 
@@ -47,7 +65,7 @@ http://localhost:8080/api/gold-foil-image?text=新年快乐&fontColorType=silver
 
 ### ⚫ Black ➽
 
-Change the `text` parameter to the desired text and set the `fontColorType` parameter to `black`, for example:
+Set the parameter `text` to the desired content and set `fontColorType` to `black`. Example:
 
 http://localhost:8080/api/gold-foil-image?text=新年快乐&fontColorType=black
 
@@ -55,113 +73,199 @@ http://localhost:8080/api/gold-foil-image?text=新年快乐&fontColorType=black
 
 ### 🖤 Black Gradient ➽
 
-Change the `text` parameter to the desired text and set the `fontColorType` parameter to `blackGradient`, for example:
+Set the parameter `text` to the desired content and set `fontColorType` to `blackGradient`. Example:
 
 http://localhost:8080/api/gold-foil-image?text=新年快乐&fontColorType=blackGradient
 
 <img src="./image/happy new year blackGradient.png" width="800" />
 
-## ✏️ Modify Font Content ➽
+## ✏️ Modify Text ➽
 
-Change the `text` parameter to the desired text without any additional parameters, for example:
+Set the parameter `text` to the desired content without adding other parameters. Example:
 
 http://localhost:8080/api/gold-foil-image?text=66大顺
 
 <img src="./image/66大顺.png" width="800" />
 
-## 🏮 Couplets Background ➽
+## 🎨 Modify Font Color Type ➽
 
-Add the `isBackground` parameter as `true`, for example:
+`fontColorType` supports the following options:
 
-http://localhost:8080/api/gold-foil-image?text=鸡你太美&isBackground=true
+1. `gold` - Gold
+2. `silver` - Silver
+3. `black` - Black
+4. `blackGradient` - Black Gradient
+5. `custom` - Custom
+6. `customGradient` - Custom Gradient
+7. `random` - Random
+8. `randomGradient` - Random Gradient
 
-Each request generates a random background, so each background color will be different, for example:
+Set the `fontColorType` parameter to the desired type:
+
+Example 1: http://localhost:8080/api/gold-foil-image?text=新年快乐&fontColorType=silver
+
+Example 2: http://localhost:8080/api/gold-foil-image?text=新年快乐&fontColorType=black
+
+Example 3: http://localhost:8080/api/gold-foil-image?text=新年快乐&fontColorType=random
+
+Example 4: http://localhost:8080/api/gold-foil-image?text=新年快乐&fontColorType=randomGradient
+
+Example 5: http://localhost:8080/api/gold-foil-image?text=新年快乐&fontColorType=custom&fontCustomColor=#ff0000
+
+Example
+6: http://localhost:8080/api/gold-foil-image?text=新年快乐&fontColorType=customGradient&fontCustomGradientColor=#999999
+
+## 🎨 Modify Font Color ➽
+
+Change the parameter `fontCustomColor` to your desired color.
+
+You need to use a hexadecimal color code, e.g., `#ff0000`. Note that to use `fontCustomColor`, you must
+set `fontColorType` to either `custom` (custom color) or `customGradient` (custom gradient).
+
+### Custom Color
+
+Example 1:  
+http://localhost:8080/api/gold-foil-image?text=你好&fontColorType=custom&fontCustomColor=#999999
+
+### Custom Gradient
+
+Example 2:  
+http://localhost:8080/api/gold-foil-image?text=你好&fontColorType=customGradient&fontCustomColor=#999999
+
+### Random Color
+
+Example 3:  
+http://localhost:8080/api/gold-foil-image?text=你好&fontColorType=random
+
+### Random Gradient
+
+Example 4:  
+http://localhost:8080/api/gold-foil-image?text=你好&fontColorType=randomGradient&fontCustomGradientColor=#999999
+
+## 🎨 Modify Background ➽
+
+The parameter `isBackground` supports the following values:
+
+1. `true` - Enable background
+2. `false` - Disable background
+
+The parameter `isRandomBackground` supports the following values:
+
+1. `true` - Enable random background (this will use a decorative pattern background)
+2. `false` - Disable random background
+
+The parameter `backgroundColor` supports:
+
+1. Hexadecimal color codes, e.g., `#ff0000`
+
+### Combined Examples
+
+Enable random background (in this case, background color cannot be set):  
+Example 1:  
+http://localhost:8080/api/gold-foil-image?text=鸡你太美&isBackground=true&isRandomBackground=true
+
+Disable random background and set background color:  
+Example 2:  
+http://localhost:8080/api/gold-foil-image?text=鸡你太美&isBackground=true&isRandomBackground=false&backgroundColor=#ff0000
+
+Disable random background without setting a color (resulting in a transparent background):  
+Example 3:  
+http://localhost:8080/api/gold-foil-image?text=鸡你太美&isBackground=true&isRandomBackground=false
+
+## 🏮 Decorative Background Showcase ➽
+
+Add the parameter `isBackground=true`, e.g.:
+
+http://localhost:8080/api/gold-foil-image?text=鸡你太美&isBackground=true&isRandomBackground=true
+
+Each request generates a random decorative background, so the colors and patterns vary. Examples:
 
 <img src="./image/ikun-1.png" width="800" />
-
 <img src="./image/ikun-2.png" width="800" />
-
 <img src="./image/ikun-3.png" width="800" />
-
 <img src="./image/ikun-4.png" width="800" />
 
 ## ☀️ Gradient Direction ➽
 
-### `leftToRight` - Left to Right
+The parameter `gradientPos` supports:
 
-Add the `gradientPos` parameter as `leftToRight`, for example:
+1. `leftToRight` - Left to Right
+2. `topToBottom` - Top to Bottom
+3. `leftTopToRightBottom` - Top-Left to Bottom-Right
+4. `leftBottomToRightTop` - Bottom-Left to Top-Right
+5. `rightToLeft` - Right to Left
+6. `bottomToTop` - Bottom to Top
+7. `rightTopToLeftBottom` - Top-Right to Bottom-Left
+8. `rightBottomToLeftTop` - Bottom-Right to Top-Left
+9. `circular` - Circular Gradient
+10. `circularRandom` - Circular Gradient (Randomized)
 
-http://localhost:8080/api/gold-foil-image?text=LeftToRight&gradientPos=leftToRight
+### Examples:
 
-### `topToBottom` - Top to Bottom
+#### `leftToRight` - Left to Right
 
-Add the `gradientPos` parameter as `topToBottom`, for example:
+Add the parameter `gradientPos=leftToRight`, e.g.:  
+http://localhost:8080/api/gold-foil-image?text=鸡你太美&gradientPos=leftToRight
 
-http://localhost:8080/api/gold-foil-image?text=GlossEffect&gradientPos=topToBottom
+#### `topToBottom` - Top to Bottom
 
-### `leftTopToRightBottom` - Left Top to Right Bottom
+Add the parameter `gradientPos=topToBottom`, e.g.:  
+http://localhost:8080/api/gold-foil-image?text=光泽效果&gradientPos=topToBottom
 
-Add the `gradientPos` parameter as `leftTopToRightBottom`, for example:
+#### `leftTopToRightBottom` - Top-Left to Bottom-Right
 
-http://localhost:8080/api/gold-foil-image?text=LeftToptoRight Bottom&gradientPos=leftTopToRightBottom
+Add the parameter `gradientPos=leftTopToRightBottom`, e.g.:  
+http://localhost:8080/api/gold-foil-image?text=从左上到右下&gradientPos=leftTopToRightBottom
 
-### `leftBottomToRightTop` - Left Bottom to Right Top
+#### `leftBottomToRightTop` - Bottom-Left to Top-Right
 
-Add the `gradientPos` parameter as `leftBottomToRightTop`, for example:
+Add the parameter `gradientPos=leftBottomToRightTop`, e.g.:  
+http://localhost:8080/api/gold-foil-image?text=从左下到右上&gradientPos=leftBottomToRightTop
 
-http://localhost:8080/api/gold-foil-image?text=LeftBottomtoRightTop&gradientPos=leftBottomToRightTop
+#### `rightToLeft` - Right to Left
 
-### `rightToLeft` - Right to Left
+Add the parameter `gradientPos=rightToLeft`, e.g.:  
+http://localhost:8080/api/gold-foil-image?text=从右到左&gradientPos=rightToLeft
 
-Add the `gradientPos` parameter as `rightToLeft`, for example:
+#### `bottomToTop` - Bottom to Top
 
-http://localhost:8080/api/gold-foil-image?text=RighttoLeft&gradientPos=rightToLeft
+Add the parameter `gradientPos=bottomToTop`, e.g.:  
+http://localhost:8080/api/gold-foil-image?text=从下到上&gradientPos=bottomToTop
 
-### `bottomToTop` - Bottom to Top
+#### `rightTopToLeftBottom` - Top-Right to Bottom-Left
 
-Add the `gradientPos` parameter as `bottomToTop`, for example:
+Add the parameter `gradientPos=rightTopToLeftBottom`, e.g.:  
+http://localhost:8080/api/gold-foil-image?text=从右上到左下&gradientPos=rightTopToLeftBottom
 
-http://localhost:8080/api/gold-foil-image?text=BottomtoTop&gradientPos=bottomToTop
+#### `rightBottomToLeftTop` - Bottom-Right to Top-Left
 
-### `rightTopToLeftBottom` - Right Top to Left Bottom
+Add the parameter `gradientPos=rightBottomToLeftTop`, e.g.:  
+http://localhost:8080/api/gold-foil-image?text=从右下到左上&gradientPos=rightBottomToLeftTop
 
-Add the `gradientPos` parameter as `rightTopToLeftBottom`, for example:
+#### `circular` - Circular Gradient
 
-http://localhost:8080/api/gold-foil-image?text=RightToptoLeft Bottom&gradientPos=rightTopToLeftBottom
+Add the parameter `gradientPos=circular`, e.g.:  
+http://localhost:8080/api/gold-foil-image?text=圆形渐变&gradientPos=circular
 
-### `rightBottomToLeftTop` - Right Bottom to Left Top
+#### `circularRandom` - Random Circular Gradient
 
-Add the `gradientPos` parameter as `rightBottomToLeftTop`, for example:
+Add the parameter `gradientPos=circularRandom`, e.g.:  
+http://localhost:8080/api/gold-foil-image?text=圆形随机&gradientPos=circularRandom
 
-http://localhost:8080/api/gold-foil-image?text=RightBottomtoLeftTop&gradientPos=rightBottomToLeftTop
+#### `random` - Random Gradient (default if `gradientPos` is not specified)
 
-### `circular` - Circular
+Add the parameter `gradientPos=random`, e.g.:  
+http://localhost:8080/api/gold-foil-image?text=随机渐变&gradientPos=random
 
-Add the `gradientPos` parameter as `circular`, for example:
+## 🌟 SVG Generation ➽
 
-http://localhost:8080/api/gold-foil-image?text=CircularGradient&gradientPos=circular
+To generate SVG, replace `http://localhost:8080/api/gold-foil-image` with `http://localhost:8080/api/gold-foil-svg`.
 
-### `circularRandom` - Random Circular
-
-Add the `gradientPos` parameter as `circularRandom`, for example:
-
-http://localhost:8080/api/gold-foil-image?text=RandomCircular&gradientPos=circularRandom
-
-### `random` - Random (Default)
-
-If the `gradientPos` parameter is omitted, it defaults to a random gradient, for example:
-
-http://localhost:8080/api/gold-foil-image?text=RandomGradient&gradientPos=random
-
----
-
-## 🌟 SVG generate
-
-Please use the following api
-
+For example, use the following URL:  
 http://localhost:8080/api/gold-foil-svg?text=你好
 
-After the request, the following page appears. Copy it directly
+The resulting page will display the SVG content, which you can directly copy:
 
 <img src="./image/svg.png" width="800" />
+
 

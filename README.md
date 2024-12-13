@@ -20,14 +20,33 @@
 
 下载地址: [🔗GitHub Releases](https://github.com/isinvon/gold-foil-font-api/releases)
 
-<img src="./image/gui_v1.png" width="800" />
+<img src="image/gui_v0.0.2.png" width="800" />
 
 ## 🚀 测试环境 ➽
 
-- Java v21
-- Maven v3.9.8
+- Windows11 系统
+- Java v21 后端开发
+- Springboot 3.3.6 后端框架
+- Maven v3.9.8 后端构建,依赖管理工具
+- JPackage21 打包
+- Node.js v20.15.0 前端开发
+- Vue.js v3.5.13 前端框架
+- Vite v6.0.1 前端构建
+- pnpm v9.14.2 包管理工具
 
-## ✨ 修改字体颜色 ➽
+## 接口参数列表
+
+| 参数名                   | 类型     | 默认值      | 描述                                                                                                                                                                                                              
+|-----------------------|--------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+| text                  | String | -        | 文字内容，必填                                                                                                                                                                                                         
+| gradientPos           | String | `random` | 渐变方向，默认为 `random`，可选值为 `leftToRight`、`topToBottom`、`leftTopToRightBottom`、`leftBottomToRightTop`、`rightToLeft`、`bottomToTop`、`rightTopToLeftBottom`、`rightBottomToLeftTop`、`circular`、`circularRandom`、`random` 
+| fontColorType         | String | `gold`   | 字体颜色类型，默认为 `gold`，可选值为 `silver`、`black`、`blackGradient`、`custom`、`customGradient`、`random`、`randomGradient`                                                                                                     
+| fontCustomColor       | String | -        | 自定义字体颜色，无默认值，仅当 `fontColorType` 为 `custom`或者`customGradient` 时有效，仅支持十六进制颜色，例如：`#ff0000`                                                                                                                         
+| isBackground          | String | `false`  | 是否使用背景，默认为 `false`，可选值为 `true`、`false`                                                                                                                                                                          
+| isRandomBackground    | String | `false`  | 是否使用随机背景，默认为 `false`，可选值为 `true`、`false`                                                                                                                                                                        
+| backgroundCustomColor | String | -        | 自定义背景颜色，无默认值，仅当 `isBackground` 为 `true` ,且`isRandomBackground`为`false`时有效，仅支持十六进制颜色，例如：`#ff0000`                                                                                                                
+
+## ✨ 基本用法 ➽
 
 ### 🟡 金色 ➽
 
@@ -73,11 +92,88 @@ http://localhost:8080/api/gold-foil-image?text=66大顺
 
 <img src="./image/66大顺.png" width="800" />
 
-## 🏮 春联背景 ➽
+## 🎨 修改字体颜色类型 ➽
+
+`fontColorType`支持参数
+
+1. `gold` - 金色
+2. `silver` - 银色
+3. `black` - 黑色
+4. `blackGradient` - 黑色渐变
+5. `custom` - 自定义
+6. `customGradient` - 自定义渐变
+7. `random` - 随机
+8. `randomGradient` - 随机渐变
+
+修改参数 `fontColorType` 为想要的类型:
+
+例1: http://localhost:8080/api/gold-foil-image?text=新年快乐&fontColorType=silver
+
+例2: http://localhost:8080/api/gold-foil-image?text=新年快乐&fontColorType=black
+
+例3: http://localhost:8080/api/gold-foil-image?text=新年快乐&fontColorType=random
+
+例4: http://localhost:8080/api/gold-foil-image?text=新年快乐&fontColorType=randomGradient
+
+例5: http://localhost:8080/api/gold-foil-image?text=新年快乐&fontColorType=custom&fontCustomColor=#ff0000
+
+例6: http://localhost:8080/api/gold-foil-image?text=新年快乐&fontColorType=customGradient&fontCustomGradientColor=red&fontCustomGradientColor=#999999
+
+## 🎨 修改字体颜色 ➽
+
+修改参数 `fontCustomColor` 为想要的颜色
+
+需要十六进制颜色，例如: `#ff0000` (需要将`fontColorType`设置为`custom`(自定义)或者`customGradient`(自定义渐变)
+才能够使用`fontCustomColor`)
+
+自定义
+
+例1: http://localhost:8080/api/gold-foil-image?text=你好&fontColorType=custom&fontCustomColor=#999999
+
+自定义渐变:
+
+例2: http://localhost:8080/api/gold-foil-image?text=你好&fontColorTypecustomGradient&fontCustomColor=#999999
+
+随机
+
+例3: http://localhost:8080/api/gold-foil-image?text=你好&fontColorType=random
+
+随机渐变:
+
+例4: http://localhost:8080/api/gold-foil-image?text=你好&fontColorType=randomGradient&fontCustomGradientColor=#999999
+
+## 🎨 修改背景 ➽
+
+`isBackground`支持参数
+
+1. `true` - 开启背景
+2. `false` - 关闭背景
+
+`isRandomBackground`支持参数
+
+1. `true` - 开启随机背景(会启动春联背景,也就是有点图案)
+2. `false` - 关闭随机背景
+
+`backgroundColor`支持参数
+
+1. 十六进制的颜色，例如：`#ff0000`
+
+三者结合示例:
+
+开启随机背景(此时不允许设置背景颜色),
+例1: http://localhost:8080/api/gold-foil-image?text=鸡你太美&isBackground=true&isRandomBackground=true
+
+关闭随机背景,
+例2: http://localhost:8080/api/gold-foil-image?text=鸡你太美&isBackground=true&isRandomBackground=false&backgroundColor=#ff0000
+
+关闭随机背景并且不设置颜色,就会是无色的背景
+例3: http://localhost:8080/api/gold-foil-image?text=鸡你太美&isBackground=true&isRandomBackground=false
+
+## 🏮 春联背景展示 ➽
 
 添加参数 `isBackground` 为 `true`，例如:
 
-http://localhost:8080/api/gold-foil-image?text=鸡你太美&isBackground=true
+http://localhost:8080/api/gold-foil-image?text=鸡你太美&isBackground=true&isRandomBackground=true
 
 每一次请求都是随机的，所以每次请求的背景颜色都是不一样的，例如:
 
@@ -90,6 +186,19 @@ http://localhost:8080/api/gold-foil-image?text=鸡你太美&isBackground=true
 <img src="./image/ikun-4.png" width="800" />
 
 ## ☀️ 渐变方向 ➽
+
+`gradientPos`支持参数
+
+1. `leftToRight` - 从左到右
+2. `topToBottom` - 从上到下
+3. `leftTopToRightBottom` - 从左上到右下
+4. `leftBottomToRightTop` - 从左下到右上
+5. `rightToLeft` - 从右到左
+6. `bottomToTop` - 从下到上
+7. `rightTopToLeftBottom` - 从右上到左下
+8. `rightBottomToLeftTop` - 从右下到左上
+9. `circular` - 圆形渐变
+10. `circularRandom` - 圆形渐变(随机)
 
 ### `leftToRight` - 从左到右
 
@@ -157,13 +266,16 @@ http://localhost:8080/api/gold-foil-image?text=圆形随机&gradientPos=circular
 
 http://localhost:8080/api/gold-foil-image?text=随机渐变&gradientPos=random
 
-## 🌟 SVG 生成
+## 🌟 SVG 生成 (其他参数和image相同,用法一样)
 
-请使用以下接口
+将`http://localhost:8080/api/gold-foil-image`
+换成`http://localhost:8080/api/gold-foil-svg`
+就是请求生成svg了
+
+例如, 请使用以下接口
 
 http://localhost:8080/api/gold-foil-svg?text=你好
 
 请求之后出现如下页面, 直接复制即可
 
 <img src="./image/svg.png" width="800" />
-
