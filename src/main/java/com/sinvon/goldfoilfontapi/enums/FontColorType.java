@@ -9,22 +9,44 @@ package com.sinvon.goldfoilfontapi.enums;
 public class FontColorType {
 
     /**
-     * 金色
+     * 金色 - 最主要的
      */
     public static final String GOLD = "gold";
 
     /**
-     * 银色
+     * 银色 - 最主要的
      */
     public static final String SILVER = "silver";
 
     /**
-     * 黑色
+     * 黑色 - 最主要的
      */
     public static final String BLACK = "black";
 
     /**
-     * 渐变黑
+     * 渐变黑 - 最主要的
      */
     public static final String BLACK_GRADIENT = "blackGradient";
+
+    /**
+     * 自定义颜色
+     */
+    public static final String CUSTOM = "custom";
+
+    /**
+     * 自定义渐变色
+     */
+
+    public static final String CUSTOM_GRADIENT = "customGradient";
+
+    /**
+     * 随机颜色
+     */
+
+    public static final String RANDOM = "random";
+
+    /**
+     * 随机渐变色
+     */
+    public static final String RANDOM_GRADIENT = "randomGradient";
 }
