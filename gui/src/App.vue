@@ -25,6 +25,7 @@ import {defaultValue} from "@/data/defaultValue.js";
 const settings = ref({
   text: defaultValue.text,
   fontColorType: defaultValue.fontColorType,
+  fontCustomColor: defaultValue.fontCustomColor,
   isBackground: defaultValue.isBackground,
   gradientPos: defaultValue.gradientPos,
 });
@@ -52,6 +53,7 @@ const generateContent = async (type) => {
       text: settings.value.text,
       gradientPos: settings.value.gradientPos,
       fontColorType: settings.value.fontColorType,
+      fontCustomColor: settings.value.fontCustomColor,
       isBackground: settings.value.isBackground.toString(),
     };
     console.log('params:', params)

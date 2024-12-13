@@ -10,14 +10,26 @@
       />
     </el-form-item>
 
-    <!-- 字体颜色 -->
-    <el-form-item label="字体颜色">
+    <!-- 字体颜色类型 -->
+    <el-form-item label="字体颜色类型">
       <el-select v-model="settings.fontColorType" placeholder="选择颜色, 默认是金色">
         <el-option label="金色" value="gold"/>
         <el-option label="银色" value="silver"/>
         <el-option label="黑色" value="black"/>
         <el-option label="黑色渐变" value="blackGradient"/>
+        <el-option label="自定义" value="custom"/>
+        <el-option label="自定义渐变" value="customGradient"/>
+        <el-option label="随机" value="random"/>
+        <el-option label="随机渐变" value="randomGradient"/>
       </el-select>
+    </el-form-item>
+
+    <!--只有在自定义, 自定义渐变的时候才显示-->
+    <el-form-item v-if="settings.fontColorType === 'custom' || settings.fontColorType === 'customGradient'" label="自定义字体颜色">
+      <el-color-picker v-model="settings.fontCustomColor" size="default"/>
+      <el-divider content-position="center" direction="vertical"/>
+      <el-button v-show="settings.fontCustomColor !== ''" class="apply-btn" type="info" @click="settings.fontCustomColor = ''">清除</el-button>
+      <!-- <span class="color-text" style="width: 100px">测试: {{ settings.fontCustomColor }}</span>-->
     </el-form-item>
 
     <!-- 背景 -->

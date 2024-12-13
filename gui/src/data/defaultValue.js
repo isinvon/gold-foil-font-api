@@ -2,6 +2,7 @@
 export const defaultValue = {
     text: '',
     fontColorType: '',
+    fontCustomColor: '',
     isBackground: false,
     gradientPos: '',
 }
