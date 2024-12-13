@@ -1,7 +1,6 @@
 package com.sinvon.goldfoilfontapi.service.impl;
 
 import com.sinvon.goldfoilfontapi.config.ProjectConfig;
-import com.sinvon.goldfoilfontapi.enums.BackgroundType;
 import com.sinvon.goldfoilfontapi.enums.FontColorType;
 import com.sinvon.goldfoilfontapi.service.GoldFoilImageUtilsService;
 import com.sinvon.goldfoilfontapi.service.SpringCoupletBackgroundImageUtilsService;
@@ -54,7 +53,7 @@ public class GoldFoilImageUtilsServiceImpl implements GoldFoilImageUtilsService 
         String fontColorType = context.getFontColorType();
         String fontCustomColor = context.getFontCustomColor();
         boolean isBackground = context.getIsBackground();
-        String backgroundType = context.getBackgroundType();
+        Boolean isRandomBackground = context.getIsRandomBackground();
         String backgroundColor = context.getBackgroundColor();
 
         int padding = 50; // 给文本左右留出一定的间距
