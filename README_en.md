@@ -15,6 +15,13 @@
 </a>
 </div>
 
+## 🖼️ GUI ➽
+
+Download: [🔗GitHub Releases](https://github.com/isinvon/gold-foil-font-api/releases)
+
+<img src="./image/gui_v1.png" width="800" />
+
+
 ## 🚀 Test Env ➽
 
 - Java v21
