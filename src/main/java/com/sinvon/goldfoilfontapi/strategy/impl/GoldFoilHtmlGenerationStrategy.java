@@ -2,6 +2,7 @@ package com.sinvon.goldfoilfontapi.strategy.impl;
 
 import com.sinvon.goldfoilfontapi.config.ProjectConfig;
 import com.sinvon.goldfoilfontapi.strategy.GoldFoilGenerationStrategy;
+import com.sinvon.goldfoilfontapi.strategy.context.GoldFoilGenerationContext;
 import com.sinvon.goldfoilfontapi.utils.FileUtils;
 import com.sinvon.goldfoilfontapi.utils.svg.GoldFoilSvgUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +25,8 @@ public class GoldFoilHtmlGenerationStrategy implements GoldFoilGenerationStrateg
     private GoldFoilSvgGenerationStrategy svgGenerationStrategy;
 
     @Override
-    public File generate(String text, String gradientPos, String fontColorType, Boolean isBackground) {
-        File svgFile = svgGenerationStrategy.generate(text, gradientPos, fontColorType, isBackground);
+    public File generate(GoldFoilGenerationContext context) {
+        File svgFile = svgGenerationStrategy.generate(context);
         String svgContent = GoldFoilSvgUtils.svgFileToString(svgFile.getAbsolutePath());
         String htmlContent = GoldFoilSvgUtils.SvgTextToHtml(svgContent);
 

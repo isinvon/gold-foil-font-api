@@ -3,6 +3,7 @@ package com.sinvon.goldfoilfontapi.strategy.impl;
 import com.sinvon.goldfoilfontapi.config.ProjectConfig;
 import com.sinvon.goldfoilfontapi.service.GoldFoilImageUtilsService;
 import com.sinvon.goldfoilfontapi.strategy.GoldFoilGenerationStrategy;
+import com.sinvon.goldfoilfontapi.strategy.context.GoldFoilGenerationContext;
 import com.sinvon.goldfoilfontapi.utils.FileUtils;
 import com.sinvon.goldfoilfontapi.service.impl.GoldFoilImageUtilsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,9 +30,9 @@ public class GoldFoilImageGenerationStrategy implements GoldFoilGenerationStrate
     private GoldFoilImageUtilsService goldFoilImageUtilsService;
 
     @Override
-    public File generate(String text, String gradientPos, String fontColorType, Boolean isBackground) {
+    public File generate(GoldFoilGenerationContext context) {
         try {
-            BufferedImage image = goldFoilImageUtilsService.createGoldFoilImage(text, gradientPos, fontColorType, isBackground);
+            BufferedImage image = goldFoilImageUtilsService.createGoldFoilImage(context);
             String imagePath = projectConfig.imagePath + File.separator + projectConfig.fileName + ".png";
             File imageFile = FileUtils.ensureFile(imagePath);
             ImageIO.write(image, "PNG", imageFile);

@@ -1,6 +1,7 @@
 package com.sinvon.goldfoilfontapi.service.impl;
 
 import com.sinvon.goldfoilfontapi.service.GoldFoilService;
+import com.sinvon.goldfoilfontapi.strategy.context.GoldFoilGenerationContext;
 import com.sinvon.goldfoilfontapi.strategy.impl.GoldFoilHtmlGenerationStrategy;
 import com.sinvon.goldfoilfontapi.strategy.impl.GoldFoilImageGenerationStrategy;
 import com.sinvon.goldfoilfontapi.strategy.impl.GoldFoilSvgGenerationStrategy;
@@ -27,17 +28,17 @@ public class GoldFoilServiceImpl implements GoldFoilService {
     private GoldFoilHtmlGenerationStrategy htmlStrategy;
 
     @Override
-    public File getGoldFoilImage(String text, String gradientPos, String fontColorType, Boolean isBackground) {
-        return imageStrategy.generate(text, gradientPos, fontColorType, isBackground);
+    public File getGoldFoilImage(GoldFoilGenerationContext context) {
+        return imageStrategy.generate(context);
     }
 
     @Override
-    public File getGoldFoilSvg(String text, String gradientPos, String fontColorType, Boolean isBackground) {
-        return svgStrategy.generate(text, gradientPos, fontColorType, isBackground);
+    public File getGoldFoilSvg(GoldFoilGenerationContext context) {
+        return svgStrategy.generate(context);
     }
 
     @Override
-    public File getGoldFoilHtml(String text, String gradientPos, String fontColorType, Boolean isBackground) {
-        return htmlStrategy.generate(text, gradientPos, fontColorType, isBackground);
+    public File getGoldFoilHtml(GoldFoilGenerationContext context) {
+        return htmlStrategy.generate(context);
     }
 }

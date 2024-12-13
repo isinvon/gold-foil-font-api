@@ -2,6 +2,7 @@ package com.sinvon.goldfoilfontapi.strategy.impl;
 
 import com.sinvon.goldfoilfontapi.config.ProjectConfig;
 import com.sinvon.goldfoilfontapi.strategy.GoldFoilGenerationStrategy;
+import com.sinvon.goldfoilfontapi.strategy.context.GoldFoilGenerationContext;
 import com.sinvon.goldfoilfontapi.utils.svg.PngToSvgUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,8 +24,8 @@ public class GoldFoilSvgGenerationStrategy implements GoldFoilGenerationStrategy
     private GoldFoilImageGenerationStrategy imageGenerationStrategy;
 
     @Override
-    public File generate(String text, String gradientPos, String fontColorType, Boolean isBackground) {
-        File imageFile = imageGenerationStrategy.generate(text, gradientPos, fontColorType, isBackground);
+    public File generate(GoldFoilGenerationContext context) {
+        File imageFile = imageGenerationStrategy.generate(context);
         String svgPath = projectConfig.svgPath + File.separator + projectConfig.fileName + ".svg";
 
         if (PngToSvgUtils.createSvgByPng(imageFile.getAbsolutePath(), svgPath)) {

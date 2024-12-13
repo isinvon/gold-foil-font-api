@@ -4,6 +4,7 @@ import com.sinvon.goldfoilfontapi.config.ProjectConfig;
 import com.sinvon.goldfoilfontapi.enums.FontColorType;
 import com.sinvon.goldfoilfontapi.service.GoldFoilImageUtilsService;
 import com.sinvon.goldfoilfontapi.service.SpringCoupletBackgroundImageUtilsService;
+import com.sinvon.goldfoilfontapi.strategy.context.GoldFoilGenerationContext;
 import com.sinvon.goldfoilfontapi.utils.FileUtils;
 import com.sinvon.goldfoilfontapi.utils.FontResourceUtil;
 import com.sinvon.goldfoilfontapi.utils.img.param.BlackGradient;
@@ -40,11 +41,16 @@ public class GoldFoilImageUtilsServiceImpl implements GoldFoilImageUtilsService 
     /**
      * 创建金梅毛碑文字图片
      *
-     * @param text        文本
-     * @param gradientPos 渐变位置
-     * @return 图片
+     * @param context 上下文对象
+     * @return BufferedImage 图片对象
      */
-    public BufferedImage createGoldFoilImage(String text, String gradientPos, String fontColorType, boolean isBackground) {
+    public BufferedImage createGoldFoilImage(GoldFoilGenerationContext context) {
+        // 注入上下文对象
+        String text = context.getText();
+        String gradientPos = context.getGradientPos();
+        String fontColorType = context.getFontColorType();
+        boolean isBackground = context.getIsBackground();
+
         int padding = 50; // 给文本左右留出一定的间距
         int height = 300;
 

@@ -3,6 +3,7 @@ package com.sinvon.goldfoilfontapi.controller;
 import com.sinvon.goldfoilfontapi.enums.FontColorType;
 import com.sinvon.goldfoilfontapi.enums.GradientPositionType;
 import com.sinvon.goldfoilfontapi.service.GoldFoilService;
+import com.sinvon.goldfoilfontapi.strategy.context.GoldFoilGenerationContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.MediaType;
@@ -40,7 +41,8 @@ class GoldFoilController {
             @RequestParam(required = false, defaultValue = GradientPositionType.RANDOM) String gradientPos,
             @RequestParam(required = false, defaultValue = FontColorType.GOLD) String fontColorType,
             @RequestParam(required = false, defaultValue = "false") Boolean isBackground) {
-        File goldFoilImage = goldFoilService.getGoldFoilImage(text, gradientPos, fontColorType, isBackground);
+        GoldFoilGenerationContext context = new GoldFoilGenerationContext(text, gradientPos, fontColorType, isBackground);
+        File goldFoilImage = goldFoilService.getGoldFoilImage(context);
         return ResponseEntity.ok()
                 .contentType(MediaType.IMAGE_PNG)
                 .body(new org.springframework.core.io.FileSystemResource(goldFoilImage));
@@ -80,7 +82,8 @@ class GoldFoilController {
             @RequestParam(required = false, defaultValue = GradientPositionType.RANDOM) String gradientPos,
             @RequestParam(required = false, defaultValue = FontColorType.GOLD) String fontColorType,
             @RequestParam(required = false, defaultValue = "false") Boolean isBackground) {
-        File svgFile = goldFoilService.getGoldFoilSvg(text, gradientPos, fontColorType, isBackground);
+        GoldFoilGenerationContext context = new GoldFoilGenerationContext(text, gradientPos, fontColorType, isBackground);
+        File svgFile = goldFoilService.getGoldFoilSvg(context);
         if (svgFile == null) {
             return ResponseEntity.notFound().build();
         }
