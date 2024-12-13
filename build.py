@@ -91,7 +91,7 @@ jpackage_command = (
     # f'--win-console ' # 启用控制台
     f'--icon gui/public/favicon.ico '  # 图标
     # f'--verbose ' # 显示详细日志
-    f'--win-upgrade-uuid "{UUID} '  # 与此程序包的升级关联的 UUID
+    f'--win-upgrade-uuid "{UUID}" '  # 与此程序包的升级关联的 UUID, uuid 要带有破折号
 )
 
 run_command(jpackage_command)
