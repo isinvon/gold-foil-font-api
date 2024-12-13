@@ -14,7 +14,7 @@ public class BackgroundType {
     /**
      * 自定义背景
      */
-    public static String CUSTOM = "custom";
+    public static final String CUSTOM = "custom";
     /**
      * 随机背景
      */
