@@ -45,7 +45,7 @@ class GoldFoilController {
             @RequestParam(required = false, defaultValue = GradientPositionType.RANDOM) String gradientPos,
             @RequestParam(required = false, defaultValue = FontColorType.GOLD) String fontColorType,
             @RequestParam(required = false, defaultValue = "false") Boolean isBackground,
-            @RequestParam(required = false, defaultValue = BackgroundType.NONE) String backgroundType,
+            @RequestParam(required = false, defaultValue = BackgroundType.RANDOM) String backgroundType,
             @RequestParam(required = false) String backgroundColor) {
         GoldFoilGenerationContext context = new GoldFoilGenerationContext(text, gradientPos, fontColorType, isBackground, backgroundType, backgroundColor);
         File goldFoilImage = goldFoilService.getGoldFoilImage(context);
@@ -92,7 +92,7 @@ class GoldFoilController {
             @RequestParam(required = false, defaultValue = GradientPositionType.RANDOM) String gradientPos,
             @RequestParam(required = false, defaultValue = FontColorType.GOLD) String fontColorType,
             @RequestParam(required = false, defaultValue = "false") Boolean isBackground,
-            @RequestParam(required = false, defaultValue = BackgroundType.NONE) String backgroundType,
+            @RequestParam(required = false, defaultValue = BackgroundType.RANDOM) String backgroundType,
             @RequestParam(required = false) String backgroundColor) {
         GoldFoilGenerationContext context = new GoldFoilGenerationContext(text, gradientPos, fontColorType, isBackground, backgroundType, backgroundColor);
         File svgFile = goldFoilService.getGoldFoilSvg(context);
