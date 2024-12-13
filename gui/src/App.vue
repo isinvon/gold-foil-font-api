@@ -35,15 +35,27 @@ const settings = ref({
 const imageUrl = ref('');
 const svgContent = ref('');
 
-const generateContent = async (type) => {
 
-  // 校验用户是否输入了文本
+const generateContent = async (type) => {
+  // 校验用户输入
   if (!settings.value.text) {
     ElMessage.warning('请输入要生成的文本！');
     return;
   }
+  if (settings.value.fontColorType === 'custom' && settings.value.fontCustomColor === '') {
+    ElMessage.warning('请选择字体颜色！');
+    return;
+  }
+  if (settings.value.fontColorType === 'customGradient' && settings.value.fontCustomColor === '') {
+    ElMessage.warning('请选择字体颜色！');
+    return;
+  }
+  if (settings.value.isBackground && !settings.value.isRandomBackground && settings.value.backgroundColor === '') {
+    ElMessage.warning('请选择背景颜色！');
+    return;
+  }
 
-  // 显示加载动画
+  // 显示加载动画（放在验证完成之后!避免不必要的加载!）
   const loading = ElLoading.service({
     lock: true,
     text: '生成中...',
@@ -61,28 +73,10 @@ const generateContent = async (type) => {
       backgroundColor: settings.value.backgroundColor,
     };
 
-    // 如果选择了自定义字体颜色,但是未输入字体颜色
-    if (settings.value.fontColorType === 'custom' && settings.value.fontCustomColor === '') {
-      ElMessage.warning('请选择字体颜色！');
-      return;
-      // 如果选择了自定义渐变色,但是未输入背景颜色
-    } else if (settings.value.fontColorType === 'customGradient' && settings.value.fontCustomColor === '') {
-      ElMessage.warning('请选择字体颜色！');
-      return;
-    // 如果选择了背景颜色,并且是不随机的,并且未输入背景颜色
-    } else if (settings.value.isBackground && !settings.value.isRandomBackground && settings.value.backgroundColor === '' ) {
-      ElMessage.warning('请选择背景颜色！');
-      return;
-    }
-
     if (type === 'image') {
-      // 调用生成图片的 API
       imageUrl.value = await generateGoldFoilImage(params);
-      console.log('imageUrl:', typeof imageUrl.value);
     } else if (type === 'svg') {
-      // 调用生成SVG的 API
       svgContent.value = await generateGoldFoilSVG(params);
-      console.log('svgContent:', typeof svgContent.value);
     }
   } catch (error) {
     ElMessage.error('生成内容失败，请检查输入或稍后重试！');
