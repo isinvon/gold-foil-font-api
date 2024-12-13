@@ -27,9 +27,8 @@
     <!--只有在自定义, 自定义渐变的时候才显示-->
     <el-form-item v-if="settings.fontColorType === 'custom' || settings.fontColorType === 'customGradient'" label="自定义字体颜色">
       <el-color-picker v-model="settings.fontCustomColor" size="default"/>
-      <el-divider content-position="center" direction="vertical"/>
+      <el-divider content-position="center" direction="vertical" border-style="hidden"/>
       <el-button v-show="settings.fontCustomColor !== ''" class="apply-btn" type="info" @click="settings.fontCustomColor = ''">清除</el-button>
-      <!-- <span class="color-text" style="width: 100px">测试: {{ settings.fontCustomColor }}</span>-->
     </el-form-item>
 
     <!-- 背景 -->
@@ -42,9 +41,27 @@
       />
     </el-form-item>
 
+    <el-form-item v-if="settings.isBackground" label="背景是否随机">
+      <el-switch
+          v-model="settings.isRandomBackground"
+          active-text="随机"
+          inactive-text="不随机"
+          class="switch-margin"
+      />
+    </el-form-item>
+
+    <el-form-item v-if="settings.isBackground && !settings.isRandomBackground" label="选择背景颜色">
+      <el-color-picker v-model="settings.backgroundColor" size="default"/>
+      <el-divider content-position="center" direction="vertical" border-style="hidden"/>
+      <el-button v-show="settings.backgroundColor !== ''" class="apply-btn" type="info" @click="settings.backgroundColor = ''">清除</el-button>
+    </el-form-item>
+
     <!-- 渐变方向 -->
     <el-form-item label="渐变方向">
       <el-select v-model="settings.gradientPos" placeholder="选择方向, 默认是随机">
+        <el-option label="随机" value="random"/>
+        <el-option label="圆形" value="circular"/>
+        <el-option label="圆形随机" value="circularRandom"/>
         <el-option label="从左到右" value="leftToRight"/>
         <el-option label="从上到下" value="topToBottom"/>
         <el-option label="从左上到右下" value="leftTopToRightBottom"/>
@@ -53,9 +70,6 @@
         <el-option label="从下到上" value="bottomToTop"/>
         <el-option label="从右上到左下" value="rightTopToLeftBottom"/>
         <el-option label="从右下到左上" value="rightBottomToLeftTop"/>
-        <el-option label="圆形" value="circular"/>
-        <el-option label="圆形随机" value="circularRandom"/>
-        <el-option label="随机" value="random"/>
       </el-select>
     </el-form-item>
 

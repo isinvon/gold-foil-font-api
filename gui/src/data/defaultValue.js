@@ -4,5 +4,7 @@ export const defaultValue = {
     fontColorType: '',
     fontCustomColor: '',
     isBackground: false,
+    isRandomBackground: false,
+    backgroundColor: '',
     gradientPos: '',
 }

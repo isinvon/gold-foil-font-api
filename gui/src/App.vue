@@ -27,6 +27,8 @@ const settings = ref({
   fontColorType: defaultValue.fontColorType,
   fontCustomColor: defaultValue.fontCustomColor,
   isBackground: defaultValue.isBackground,
+  isRandomBackground: defaultValue.isRandomBackground,
+  backgroundColor: defaultValue.backgroundColor,
   gradientPos: defaultValue.gradientPos,
 });
 
@@ -55,8 +57,23 @@ const generateContent = async (type) => {
       fontColorType: settings.value.fontColorType,
       fontCustomColor: settings.value.fontCustomColor,
       isBackground: settings.value.isBackground.toString(),
+      isRandomBackground: settings.value.isRandomBackground.toString(),
+      backgroundColor: settings.value.backgroundColor,
     };
-    console.log('params:', params)
+
+    // 如果选择了自定义字体颜色,但是未输入字体颜色
+    if (settings.value.fontColorType === 'custom' && settings.value.fontCustomColor === '') {
+      ElMessage.warning('请选择字体颜色！');
+      return;
+      // 如果选择了自定义渐变色,但是未输入背景颜色
+    } else if (settings.value.fontColorType === 'customGradient' && settings.value.fontCustomColor === '') {
+      ElMessage.warning('请选择字体颜色！');
+      return;
+    // 如果选择了背景颜色,并且是不随机的,并且未输入背景颜色
+    } else if (settings.value.isBackground && !settings.value.isRandomBackground && settings.value.backgroundColor === '' ) {
+      ElMessage.warning('请选择背景颜色！');
+      return;
+    }
 
     if (type === 'image') {
       // 调用生成图片的 API
