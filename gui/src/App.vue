@@ -23,7 +23,7 @@ import {ElLoading, ElMessage} from 'element-plus';
 import {defaultValue} from "@/data/defaultValue.js";
 
 const settings = ref({
-  text: '',
+  text: defaultValue.text,
   fontColorType: defaultValue.fontColorType,
   isBackground: defaultValue.isBackground,
   gradientPos: defaultValue.gradientPos,
