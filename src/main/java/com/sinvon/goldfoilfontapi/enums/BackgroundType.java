@@ -8,10 +8,6 @@ package com.sinvon.goldfoilfontapi.enums;
  */
 public class BackgroundType {
     /**
-     * 无背景
-     */
-    public static final String NONE = "none";
-    /**
      * 自定义背景
      */
     public static final String CUSTOM = "custom";
