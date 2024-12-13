@@ -8,8 +8,10 @@ import com.sinvon.goldfoilfontapi.service.SpringCoupletBackgroundImageUtilsServi
 import com.sinvon.goldfoilfontapi.strategy.context.GoldFoilGenerationContext;
 import com.sinvon.goldfoilfontapi.utils.FileUtils;
 import com.sinvon.goldfoilfontapi.utils.FontResourceUtil;
+import com.sinvon.goldfoilfontapi.utils.RandomColorUtils;
 import com.sinvon.goldfoilfontapi.utils.img.param.gradient.BlackGradient;
 import com.sinvon.goldfoilfontapi.utils.img.param.BrushTexture;
+import com.sinvon.goldfoilfontapi.utils.img.param.gradient.CommonGradient;
 import com.sinvon.goldfoilfontapi.utils.img.param.gradient.GoldGradient;
 import com.sinvon.goldfoilfontapi.utils.img.param.gradient.SilverGradient;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -50,6 +52,7 @@ public class GoldFoilImageUtilsServiceImpl implements GoldFoilImageUtilsService 
         String text = context.getText();
         String gradientPos = context.getGradientPos();
         String fontColorType = context.getFontColorType();
+        String fontCustomColor = context.getFontCustomColor();
         boolean isBackground = context.getIsBackground();
         String backgroundType = context.getBackgroundType();
         String backgroundColor = context.getBackgroundColor();
@@ -134,9 +137,15 @@ public class GoldFoilImageUtilsServiceImpl implements GoldFoilImageUtilsService 
         // 设置字体
         g2d.setFont(font);
 
+        // ======== 字体颜色加工=====================start=============
         switch (fontColorType) {
-            case FontColorType.BLACK ->  // 纯黑
-                    g2d.setColor(Color.BLACK);
+            case FontColorType.GOLD -> { // 金色字体
+                Paint gradient = GoldGradient.createGoldGradient(width, height, gradientPos);
+                g2d.setPaint(gradient);
+            }
+            case FontColorType.BLACK -> { // 纯黑
+                g2d.setColor(Color.BLACK);
+            }
             case FontColorType.SILVER -> { // 银色字体
                 Paint gradient = SilverGradient.createSilverGradient(width, height, gradientPos);
                 g2d.setPaint(gradient);
@@ -145,12 +154,28 @@ public class GoldFoilImageUtilsServiceImpl implements GoldFoilImageUtilsService 
                 Paint gradient = BlackGradient.createBlackGradient(width, height, gradientPos);
                 g2d.setPaint(gradient);
             }
+            case FontColorType.CUSTOM -> { // 自定义颜色
+                g2d.setColor(Color.decode(fontCustomColor));
+            }
+            case FontColorType.CUSTOM_GRADIENT -> { // 自定义渐变色
+                Paint gradient = CommonGradient.createGradient(width, height, gradientPos, fontCustomColor);
+                g2d.setPaint(gradient);
+            }
+            case FontColorType.RANDOM -> { // 随机颜色
+                Color color = RandomColorUtils.generateRandomColor();
+                g2d.setColor(color);
+            }
+            case FontColorType.RANDOM_GRADIENT -> { // 随机渐变色
+                Color color = RandomColorUtils.generateRandomColor();
+                Paint gradient = CommonGradient.createGradient(width, height, gradientPos, color.toString());
+                g2d.setPaint(gradient);
+            }
             default -> { // 默认是金色
-                // 创建渐变填充，使用指定颜色范围
                 Paint gradient = GoldGradient.createGoldGradient(width, height, gradientPos);
                 g2d.setPaint(gradient);
             }
         }
+        // ======== 字体颜色加工======================end===============
 
         // 绘制文字（水平居中绘制）
         int textX = padding;

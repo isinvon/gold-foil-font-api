@@ -34,6 +34,7 @@ class GoldFoilController {
      * @param gradientPos     渐变效果的位置，可选值为GradientPositionType中的常量，
      *                        默认值为GradientPositionType.RANDOM。
      * @param fontColorType   文本颜色，可选值为FontColorType中的常量，默认值为FontColorType.GOLD。
+     * @param fontCustomColor 自定义文本颜色，仅在fontColorType为FontColorType.CUSTOM时生效。
      * @param isBackground    是否添加背景，默认为false。
      * @param backgroundType  背景类型，可选值为BackgroundType中的常量，默认值为BackgroundType.NONE。
      * @param backgroundColor 背景颜色，仅在backgroundType为BackgroundType.CUSTOM或者BackgroundType.RANDOM时生效。
@@ -44,10 +45,11 @@ class GoldFoilController {
             @RequestParam String text,
             @RequestParam(required = false, defaultValue = GradientPositionType.RANDOM) String gradientPos,
             @RequestParam(required = false, defaultValue = FontColorType.GOLD) String fontColorType,
+            @RequestParam(required = false) String fontCustomColor,
             @RequestParam(required = false, defaultValue = "false") Boolean isBackground,
             @RequestParam(required = false, defaultValue = BackgroundType.RANDOM) String backgroundType,
             @RequestParam(required = false) String backgroundColor) {
-        GoldFoilGenerationContext context = new GoldFoilGenerationContext(text, gradientPos, fontColorType, isBackground, backgroundType, backgroundColor);
+        GoldFoilGenerationContext context = new GoldFoilGenerationContext(text, gradientPos, fontColorType, fontCustomColor, isBackground, backgroundType, backgroundColor);
         File goldFoilImage = goldFoilService.getGoldFoilImage(context);
         return ResponseEntity.ok()
                 .contentType(MediaType.IMAGE_PNG)
@@ -81,6 +83,7 @@ class GoldFoilController {
      * @param gradientPos     渐变效果的位置，可选值为GradientPositionType中的常量，
      *                        默认值为GradientPositionType.RANDOM。
      * @param fontColorType   文本颜色，可选值为FontColorType中的常量，默认值为FontColorType.GOLD。
+     * @param fontCustomColor 自定义文本颜色，仅在fontColorType为FontColorType.CUSTOM时生效。
      * @param isBackground    是否添加背景，默认为false。
      * @param backgroundType  背景类型，可选值为BackgroundType中的常量，默认值为BackgroundType.NONE。
      * @param backgroundColor 背景颜色，仅在backgroundType为BackgroundType.CUSTOM或者BackgroundType.RANDOM时生效。
@@ -91,10 +94,11 @@ class GoldFoilController {
             @RequestParam String text,
             @RequestParam(required = false, defaultValue = GradientPositionType.RANDOM) String gradientPos,
             @RequestParam(required = false, defaultValue = FontColorType.GOLD) String fontColorType,
+            @RequestParam(required = false) String fontCustomColor,
             @RequestParam(required = false, defaultValue = "false") Boolean isBackground,
             @RequestParam(required = false, defaultValue = BackgroundType.RANDOM) String backgroundType,
             @RequestParam(required = false) String backgroundColor) {
-        GoldFoilGenerationContext context = new GoldFoilGenerationContext(text, gradientPos, fontColorType, isBackground, backgroundType, backgroundColor);
+        GoldFoilGenerationContext context = new GoldFoilGenerationContext(text, gradientPos, fontColorType, fontCustomColor, isBackground, backgroundType, backgroundColor);
         File svgFile = goldFoilService.getGoldFoilSvg(context);
         if (svgFile == null) {
             return ResponseEntity.notFound().build();

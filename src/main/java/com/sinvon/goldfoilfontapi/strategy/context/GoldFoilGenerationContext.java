@@ -20,6 +20,10 @@ public class GoldFoilGenerationContext {
      */
     private String fontColorType;
     /**
+     * 自定义字体颜色
+     */
+    private String fontCustomColor;
+    /**
      * 是否有背景
      */
     private Boolean isBackground;
@@ -32,10 +36,11 @@ public class GoldFoilGenerationContext {
      */
     private String backgroundColor;
 
-    public GoldFoilGenerationContext(String text, String gradientPos, String fontColorType, Boolean isBackground, String backgroundType, String backgroundColor) {
+    public GoldFoilGenerationContext(String text, String gradientPos, String fontColorType, String fontCustomColor, Boolean isBackground, String backgroundType, String backgroundColor) {
         this.text = text;
         this.gradientPos = gradientPos;
         this.fontColorType = fontColorType;
+        this.fontCustomColor = fontCustomColor;
         this.isBackground = isBackground;
         this.backgroundType = backgroundType;
         this.backgroundColor = backgroundColor;
@@ -63,5 +68,9 @@ public class GoldFoilGenerationContext {
 
     public String getBackgroundType() {
         return backgroundType;
+    }
+
+    public String getFontCustomColor() {
+        return fontCustomColor;
     }
 }
