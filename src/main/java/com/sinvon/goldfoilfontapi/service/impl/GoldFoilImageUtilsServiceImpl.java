@@ -1,6 +1,7 @@
 package com.sinvon.goldfoilfontapi.service.impl;
 
 import com.sinvon.goldfoilfontapi.config.ProjectConfig;
+import com.sinvon.goldfoilfontapi.enums.BackgroundType;
 import com.sinvon.goldfoilfontapi.enums.FontColorType;
 import com.sinvon.goldfoilfontapi.service.GoldFoilImageUtilsService;
 import com.sinvon.goldfoilfontapi.service.SpringCoupletBackgroundImageUtilsService;
@@ -50,6 +51,8 @@ public class GoldFoilImageUtilsServiceImpl implements GoldFoilImageUtilsService 
         String gradientPos = context.getGradientPos();
         String fontColorType = context.getFontColorType();
         boolean isBackground = context.getIsBackground();
+        String backgroundType = context.getBackgroundType();
+        String backgroundColor = context.getBackgroundColor();
 
         int padding = 50; // 给文本左右留出一定的间距
         int height = 300;
@@ -86,31 +89,47 @@ public class GoldFoilImageUtilsServiceImpl implements GoldFoilImageUtilsService 
         // 设置抗锯齿
         g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
+
+        // ======== 背景加工判断 ==================start=============
         if (isBackground) { // 如果需要背景
-            // 设置背景图片
-            try {
-                // 获取背景图片的名字
-                String backgroundImageFilename = projectConfig.backgroundImageFilename;
-                // 获取背景图片的路径
-                String backgroundImagePath = projectConfig.backgroundImagePath;
-                // 拼接成图片的文件路径
-                String backgroundImageFilePath = backgroundImagePath + File.separator + backgroundImageFilename + ".png";
-                // 确保背景图片的路径存在(即文件夹存在)
-                FileUtils.ensureFile(backgroundImageFilePath);
-                // 生成春联背景图片
-                springCoupletBackgroundImageUtilsService.createSpringCoupletBackgroundImage(width, height);
-                // 加载背景图片
-                BufferedImage background = ImageIO.read(new File(backgroundImageFilePath)); // 加载背景图片
-                // 绘制背景图片
-                g2d.drawImage(background, 0, 0, width, height, null); // 绘制背景图片
-            } catch (IOException e) {
-                e.printStackTrace();
+            switch (backgroundType) {
+                case BackgroundType.CUSTOM: { // 自定义背景
+                    g2d.setColor(Color.decode(backgroundColor));
+                    g2d.fillRect(0, 0, width, height);
+                    break;
+                }
+                case BackgroundType.RANDOM: { // 随机背景(调用春联生成图片作为背景)
+                    // 设置背景图片
+                    try {
+                        // 获取背景图片的名字
+                        String backgroundImageFilename = projectConfig.backgroundImageFilename;
+                        // 获取背景图片的路径
+                        String backgroundImagePath = projectConfig.backgroundImagePath;
+                        // 拼接成图片的文件路径
+                        String backgroundImageFilePath = backgroundImagePath + File.separator + backgroundImageFilename + ".png";
+                        // 确保背景图片的路径存在(即文件夹存在)
+                        FileUtils.ensureFile(backgroundImageFilePath);
+                        // 生成春联背景图片
+                        springCoupletBackgroundImageUtilsService.createSpringCoupletBackgroundImage(width, height);
+                        // 加载背景图片
+                        BufferedImage background = ImageIO.read(new File(backgroundImageFilePath)); // 加载背景图片
+                        // 绘制背景图片
+                        g2d.drawImage(background, 0, 0, width, height, null); // 绘制背景图片
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                }
+                default: { // 默认
+                }
             }
+
         } else { // 不需要背景
             // 设置背景为透明
             g2d.fillRect(0, 0, width, height);
         }
 
+        // ======== 背景加工判断 =======================end===========
 
         // 设置字体
         g2d.setFont(font);
