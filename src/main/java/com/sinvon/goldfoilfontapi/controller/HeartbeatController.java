@@ -27,8 +27,8 @@ class HeartbeatController {
     @Scheduled(fixedRate = 100)  // 每 100ms 检查一次
     public void checkHeartbeat() {
         long currentTime = System.currentTimeMillis();
-        // 如果超过 3秒 没有收到心跳请求，则执行关闭操作
-        if (currentTime - lastHeartbeatTime > 3000) {
+        // 如果超过 4秒 没有收到心跳请求，则执行关闭操作
+        if (currentTime - lastHeartbeatTime > 4000) {
             System.out.println("No heartbeat received in the last 3 seconds. Shutting down...");
             // exit(1);  // 强制退出( JVM 在关闭时需要完成一些资源清理, 延迟较大)
             Runtime.getRuntime().halt(1);  // 强制退出，不进行任何清理工作, 由于不涉及数据,所以无所谓了╮(╯_╰)╭
