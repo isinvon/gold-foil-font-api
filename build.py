@@ -83,7 +83,9 @@ jpackage_command = (
     f'--dest "{OUTPUT_DIR}" '
     f'--win-dir-chooser '  # 允许用户选择安装目录
     f'--win-help-url "{HELP_URL}" '  # 帮助链接
-    f'--win-menu-group "GoldFoilFont" '  # 显示提示此应用程序所在的“开始”菜单组
+    # --win-menu 和 --win-menu-group <menu-group-name> 使用说明看底部注释
+    # f'--win-menu'  # 开启菜单
+    # f'--win-menu-group "GoldFoilFont" '  # 菜单组名称
     f'--win-shortcut-prompt '  # 添加一个对话框，使用户能够选择是否将快捷方式 由 installer 创建
     f'--win-per-user-install '  # 安装为每个用户
     f'--win-menu '  # 在菜单中创建快捷方式
@@ -97,3 +99,42 @@ jpackage_command = (
 run_command(jpackage_command)
 
 print(f">>>Packaging succeeded! The executable is located in: {OUTPUT_DIR}")
+
+"""
+jpackage 的 --win-menu-group 参数用于在创建 Windows 安装程序时指定快捷方式所属的 "开始菜单" 分组。通过指定一个菜单组名称，可以将应用程序的快捷方式归类到特定的文件夹中，例如 "公司名称" 或 "应用程序类别"。
+
+jpackage --type app-image \
+         --input <path-to-input> \
+         --main-jar <main-jar-file> \
+         --name <application-name> \
+         --win-menu \
+         --win-menu-group <menu-group-name>
+
+参数说明
+--win-menu-group: 指定快捷方式所属的 "开始菜单" 文件夹。
+menu-group-name: 这是一个字符串，表示菜单组名称，例如 "MyCompany\MyApplications"。如果不提供此参数，默认会将快捷方式放在顶层菜单中。
+
+示例
+场景：公司名为 "TechCorp"，应用名为 "MyApp"。
+以下命令会将快捷方式放置在 "开始菜单" 的 TechCorp 文件夹中。
+    
+    jpackage --type exe \
+             --input ./input \
+             --main-jar myapp.jar \
+             --name MyApp \
+             --win-menu \
+             --win-menu-group TechCorp
+             
+运行后：
+
+安装完成后，用户可以在 "开始菜单 -> TechCorp" 文件夹中找到 MyApp 的快捷方式。
+嵌套分组
+如果需要更精确的分组，可以使用嵌套路径。例如：
+
+--win-menu-group "TechCorp\Utilities"
+这会将快捷方式放置在 TechCorp 文件夹下的 Utilities 子文件夹中。
+
+--win-menu-group 需要搭配 --win-menu 一起使用：只有启用了 --win-menu，--win-menu-group 参数才会生效。
+分组名称的格式：确保分组名称是一个有效的路径字符串，不包含非法字符（如 \ / : * ? " < > | 等）。
+默认行为：如果未指定 --win-menu-group，快捷方式会直接出现在 "开始菜单" 的根目录下。
+"""
