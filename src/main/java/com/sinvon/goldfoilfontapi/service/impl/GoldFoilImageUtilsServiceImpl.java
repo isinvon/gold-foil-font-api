@@ -8,10 +8,10 @@ import com.sinvon.goldfoilfontapi.service.SpringCoupletBackgroundImageUtilsServi
 import com.sinvon.goldfoilfontapi.strategy.context.GoldFoilGenerationContext;
 import com.sinvon.goldfoilfontapi.utils.FileUtils;
 import com.sinvon.goldfoilfontapi.utils.FontResourceUtil;
-import com.sinvon.goldfoilfontapi.utils.img.param.BlackGradient;
+import com.sinvon.goldfoilfontapi.utils.img.param.gradient.BlackGradient;
 import com.sinvon.goldfoilfontapi.utils.img.param.BrushTexture;
-import com.sinvon.goldfoilfontapi.utils.img.param.GoldGradient;
-import com.sinvon.goldfoilfontapi.utils.img.param.SilverGradient;
+import com.sinvon.goldfoilfontapi.utils.img.param.gradient.GoldGradient;
+import com.sinvon.goldfoilfontapi.utils.img.param.gradient.SilverGradient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

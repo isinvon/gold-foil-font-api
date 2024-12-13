@@ -1,4 +1,11 @@
-package com.sinvon.goldfoilfontapi.utils.img.param;
+package com.sinvon.goldfoilfontapi.utils.img.param.gradient;
+
+/**
+ * 银渐变参数
+ *
+ * @author : sinvon
+ * @since :  2024/12/9 下午2:38
+ */
 
 import com.sinvon.goldfoilfontapi.enums.GradientPositionType;
 
@@ -6,35 +13,35 @@ import java.awt.*;
 import java.util.Random;
 
 /**
- * 黑色渐变参数
+ * 银色渐变参数
  *
  * @author : sinvon
- * @since : 2024年12月9日14:42:32
+ * @since : 2024/12/9 下午11:18
  */
-public class BlackGradient {
+public class SilverGradient {
 
     /**
-     * 创建改进的渐变效果（黑色光泽渐变）
+     * 创建改进的渐变效果（银色光泽渐变，仿射光）
      *
      * @param width       宽度
      * @param height      高度
      * @param gradientPos 渐变位置类型
      * @return 渐变
      */
-    public static Paint createBlackGradient(int width, int height, String gradientPos) {
-        // 定义黑色调色板
+    public static Paint createSilverGradient(int width, int height, String gradientPos) {
+        // 定义银色调色板
         Color[] colors = {
-                Color.decode("#000000"), // 纯黑
-                Color.decode("#1a1a1a"), // 极深灰
-                Color.decode("#333333"), // 深灰
-                Color.decode("#4d4d4d"), // 中深灰
-                Color.decode("#666666"), // 中灰
-                Color.decode("#808080"), // 浅灰
-                Color.decode("#999999")  // 非常浅的灰
+                Color.decode("#d7d7d7"), // 浅银色
+                Color.decode("#e3e3e3"), // 明亮银色
+                Color.decode("#c8c8c8"), // 中灰银色
+                Color.decode("#f0f0f0"), // 近白银色
+                Color.decode("#b5b5b5"), // 深灰银色
+                Color.decode("#e0e0e0"), // 亮灰银色
+                Color.decode("#ffffff")  // 纯白色，增加光泽
         };
 
         // fractions 数组与 colors 对应
-        float[] fractions = {0f, 0.15f, 0.3f, 0.45f, 0.6f, 0.8f, 1f};
+        float[] fractions = {0f, 0.17f, 0.34f, 0.51f, 0.68f, 0.85f, 1f};
         Random random = new Random();
 
         // 根据不同的渐变位置类型选择不同的起始和终止点
@@ -85,3 +92,4 @@ public class BlackGradient {
         }
     }
 }
+

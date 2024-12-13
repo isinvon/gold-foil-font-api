@@ -1,4 +1,4 @@
-package com.sinvon.goldfoilfontapi.utils.img.param;
+package com.sinvon.goldfoilfontapi.utils.img.param.gradient;
 
 import com.sinvon.goldfoilfontapi.enums.GradientPositionType;
 
