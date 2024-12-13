@@ -31,3 +31,15 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### python
+__pycache__/
+.pytest_cache/
+.coverage
+.coverage.*
+.pytest_cache/
+.nox/
+.tox/
+.venv/
+env/
+venv/
