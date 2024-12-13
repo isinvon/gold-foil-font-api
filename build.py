@@ -10,7 +10,7 @@ APP_NAME = 'gold-foil-font-api'
 APP_DECRIPTION = 'gold-foil-font-api is a program to convert fonts into images and SVG'
 APP_VERSION = '0.0.1'
 LAUNCHER_CLASS = 'com.sinvon.goldfoilfontapi.GoldFoilFontApiApplication'
-HELP_URL = 'https://github.com/sinvon-dev/gold-foil-font'
+HELP_URL = 'https://github.com/isinvon/gold-foil-font'
 UUID = '41e8b4b3-cee4-4c66-9a22-2b1d320c3be9'
 
 # 检查 output 文件夹是否存在，若不存在则创建
@@ -131,7 +131,7 @@ menu-group-name: 这是一个字符串，表示菜单组名称，例如 "MyCompa
 嵌套分组
 如果需要更精确的分组，可以使用嵌套路径。例如：
 
---win-menu-group "TechCorp\Utilities"
+--win-menu-group "TechCorp\\Utilities"
 这会将快捷方式放置在 TechCorp 文件夹下的 Utilities 子文件夹中。
 
 --win-menu-group 需要搭配 --win-menu 一起使用：只有启用了 --win-menu，--win-menu-group 参数才会生效。
