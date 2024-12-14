@@ -23,7 +23,9 @@ Download: [🔗GitHub Releases](https://github.com/isinvon/gold-foil-font-api/re
 
 ## 🧐 Possible issues that may be encountered
 
-😿 Due to the fact that the program is developed based on a webview GUI, if the system does not specify a default browser (any one is acceptable), there may be issues where it cannot be opened. Please manually set the system's default browser before use.
+😿 Due to the fact that the program is developed based on a webview GUI, if the system does not specify a default
+browser (any one is acceptable), there may be issues where it cannot be opened. Please manually set the system's default
+browser before use.
 
 ## ⚙️ Supported Features
 
@@ -50,6 +52,7 @@ Download: [🔗GitHub Releases](https://github.com/isinvon/gold-foil-font-api/re
 | Parameter             | Type   | Default  | Description                                                                                                                                                                                                                                           
 |-----------------------|--------|----------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 | text                  | String | -        | The text content, required                                                                                                                                                                                                                            
+| fontType              | String | `三极泼墨体`  | Font type, defaults to `三极泼墨体`. You can choose the system font.                                                                                                                                                                                       
 | gradientPos           | String | `random` | Gradient direction, defaults to `random`. Options: `leftToRight`, `topToBottom`, `leftTopToRightBottom`, `leftBottomToRightTop`, `rightToLeft`, `bottomToTop`, `rightTopToLeftBottom`, `rightBottomToLeftTop`, `circular`, `circularRandom`, `random` 
 | fontColorType         | String | `gold`   | Font color type, defaults to `gold`. Options: `silver`, `black`, `blackGradient`, `custom`, `customGradient`, `random`, `randomGradient`                                                                                                              
 | fontCustomColor       | String | -        | Custom font color, only effective when `fontColorType` is `custom` or `customGradient`. Accepts hex color codes like `#ff0000`.                                                                                                                       
