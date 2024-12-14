@@ -1,6 +1,7 @@
 package com.sinvon.goldfoilfontapi.service.impl;
 
 import com.sinvon.goldfoilfontapi.config.ProjectConfig;
+import com.sinvon.goldfoilfontapi.enums.DefaultFontType;
 import com.sinvon.goldfoilfontapi.enums.FontColorType;
 import com.sinvon.goldfoilfontapi.service.GoldFoilImageUtilsService;
 import com.sinvon.goldfoilfontapi.service.SpringCoupletBackgroundImageUtilsService;
@@ -68,12 +69,12 @@ public class GoldFoilImageUtilsServiceImpl implements GoldFoilImageUtilsService 
         // 加载书法字体
         Font font;
         try {
-            if ("三极泼墨体".equals(fontType)) {
-                File fontFile = fontResourceUtil.getFontFile("三极泼墨体.ttf");
+            if (DefaultFontType.APP_DEFAULT_FONT_TYPE.equals(fontType)) { // 默认字体
+                File fontFile = fontResourceUtil.getFontFile(DefaultFontType.APP_DEFAULT_FONT_TYPE + ".ttf");
                 font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
                 font = font.deriveFont(150f); // 设置字体大小
                 tempG2d.setFont(font);
-            } else {
+            } else { // 自定义字体(即从系统字体中选)
                 String fontPathByName = SystemFontUtils.getFontPathByName(fontType);
                 File fontFileFromPath = fontResourceUtil.getFontFileFromPath(fontPathByName);
                 font = Font.createFont(Font.TRUETYPE_FONT, fontFileFromPath);

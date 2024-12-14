@@ -1,5 +1,6 @@
 package com.sinvon.goldfoilfontapi.controller;
 
+import com.sinvon.goldfoilfontapi.enums.DefaultFontType;
 import com.sinvon.goldfoilfontapi.enums.FontColorType;
 import com.sinvon.goldfoilfontapi.enums.GradientPositionType;
 import com.sinvon.goldfoilfontapi.service.GoldFoilService;
@@ -42,7 +43,7 @@ class GoldFoilController {
     @GetMapping("gold-foil-image")
     public ResponseEntity<Resource> getGoldFoilImage(
             @RequestParam String text,
-            @RequestParam(required = false, defaultValue = "三极泼墨体") String fontType,
+            @RequestParam(required = false, defaultValue = DefaultFontType.APP_DEFAULT_FONT_TYPE) String fontType,
             @RequestParam(required = false, defaultValue = GradientPositionType.RANDOM) String gradientPos,
             @RequestParam(required = false, defaultValue = FontColorType.GOLD) String fontColorType,
             @RequestParam(required = false) String fontCustomColor,
@@ -92,7 +93,7 @@ class GoldFoilController {
     @GetMapping("gold-foil-svg")
     public ResponseEntity<Resource> getGoldFoilSvg(
             @RequestParam String text,
-            @RequestParam(required = false, defaultValue = "三极泼墨体") String fontType,
+            @RequestParam(required = false, defaultValue = DefaultFontType.APP_DEFAULT_FONT_TYPE) String fontType,
             @RequestParam(required = false, defaultValue = GradientPositionType.RANDOM) String gradientPos,
             @RequestParam(required = false, defaultValue = FontColorType.GOLD) String fontColorType,
             @RequestParam(required = false) String fontCustomColor,
