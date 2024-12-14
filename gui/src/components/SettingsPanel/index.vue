@@ -114,7 +114,7 @@ const emit = defineEmits(['update:settings', 'generate']); // 定义事件
 const getFontList = async () => {
   try {
     const res = await getSystemFonts();
-    console.log("系统字体列表:", res);
+    // console.log("系统字体列表:", res); // debug
     // 将res合并到给systemFontList
     systemFontList.value = [...systemFontList.value, ...res];
     // console.log("systemFontList:", systemFontList) // debug

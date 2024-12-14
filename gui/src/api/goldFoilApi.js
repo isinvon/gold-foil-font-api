@@ -17,7 +17,7 @@ export const generateGoldFoilImage = async (params) => {
       params,
       responseType: 'blob',  // 确保返回的是Blob类型
     });
-    console.log("Image 请求成功");
+    // console.log("Image 请求成功"); // debug
     return response.data;  // 返回的就是Blob类型
   } catch (error) {
     handleError(error);
@@ -31,7 +31,7 @@ export const generateGoldFoilSVG = async (params) => {
       params,
       responseType: 'text',  // 确保返回的是文本类型
     });
-    console.log("SVG 请求成功");
+    // console.log("SVG 请求成功"); // debug
     return response.data;  // 返回的是SVG的文本内容
   } catch (error) {
     handleError(error);

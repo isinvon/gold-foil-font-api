@@ -29,12 +29,11 @@ export const getSystemFonts = async (params) => {
  * @param fontType
  */
 export const fontIsExist = async (fontType) => {
-    console.log("fontIsExist", fontType)// 输出 fontIsExist Arial
     try {
         const response = await apiClient.get("/font/fontIsExist", {
             params: {fontType} // 使用 params 传递参数
         });
-        console.log(response)
+        // console.log(response) // debug
         return response.status === 200; // 如果 200 表示字体存在，可以保留
     } catch (error) {
         console.error("字体检测出错:", error);
