@@ -21,6 +21,10 @@ Download: [🔗GitHub Releases](https://github.com/isinvon/gold-foil-font-api/re
 
 <img src="image/gui_v0.0.2.png" width="800" />
 
+## 🧐 Possible issues that may be encountered
+
+😿 Due to the fact that the program is developed based on a webview GUI, if the system does not specify a default browser (any one is acceptable), there may be issues where it cannot be opened. Please manually set the system's default browser before use.
+
 ## ⚙️ Supported Features
 
 1. Text content
