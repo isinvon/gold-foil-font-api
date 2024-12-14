@@ -21,6 +21,14 @@ Download: [🔗GitHub Releases](https://github.com/isinvon/gold-foil-font-api/re
 
 <img src="image/gui_v0.0.2.png" width="800" />
 
+## ⚙️ Supported Features
+
+1. Text content
+2. Font selection (supports system fonts only)
+3. Font color type selection (supports random and random gradient)
+4. Background color/random background (supports random)
+5. Gradient direction
+
 ## 🚀 Test Environment ➽
 
 - Windows 11
