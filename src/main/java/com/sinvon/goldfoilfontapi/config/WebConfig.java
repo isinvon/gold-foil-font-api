@@ -31,6 +31,10 @@ public class WebConfig {
                 registry.addMapping("/heartbeat")
                         .allowedOrigins(projectConfig.frontendHost)
                         .allowedMethods("GET");
+                // 添加系统字体获取的 CORS 配置
+                registry.addMapping("/font/getSystemFonts")
+                        .allowedOrigins(projectConfig.frontendHost)
+                        .allowedMethods("GET");
             }
         };
     }
