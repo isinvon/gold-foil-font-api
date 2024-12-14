@@ -9,8 +9,6 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URLDecoder;
-import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 
 @Component
@@ -43,5 +41,21 @@ public class FontResourceUtil {
         }
 
         return tempFile; // 返回临时文件
+    }
+
+    /**
+     * 通过外部路径获取字体文件
+     *
+     * @param fontFilePath 字体文件路径
+     * @return 字体文件
+     */
+    public File getFontFileFromPath(String fontFilePath) {
+        File fontFile;
+        try {
+            fontFile = new File(fontFilePath);
+        } catch (Exception e) {
+            return null;
+        }
+        return fontFile; // 返回外部字体文件
     }
 }
