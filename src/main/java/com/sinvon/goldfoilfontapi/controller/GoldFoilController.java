@@ -42,13 +42,14 @@ class GoldFoilController {
     @GetMapping("gold-foil-image")
     public ResponseEntity<Resource> getGoldFoilImage(
             @RequestParam String text,
+            @RequestParam(required = false, defaultValue = "三极泼墨体") String fontType,
             @RequestParam(required = false, defaultValue = GradientPositionType.RANDOM) String gradientPos,
             @RequestParam(required = false, defaultValue = FontColorType.GOLD) String fontColorType,
             @RequestParam(required = false) String fontCustomColor,
             @RequestParam(required = false, defaultValue = "false") Boolean isBackground,
             @RequestParam(required = false, defaultValue = "false") Boolean isRandomBackground,
             @RequestParam(required = false) String backgroundColor) {
-        GoldFoilGenerationContext context = new GoldFoilGenerationContext(text, gradientPos, fontColorType, fontCustomColor, isBackground, isRandomBackground, backgroundColor);
+        GoldFoilGenerationContext context = new GoldFoilGenerationContext(text, fontType, gradientPos, fontColorType, fontCustomColor, isBackground, isRandomBackground, backgroundColor);
         File goldFoilImage = goldFoilService.getGoldFoilImage(context);
         return ResponseEntity.ok()
                 .contentType(MediaType.IMAGE_PNG)
@@ -91,13 +92,14 @@ class GoldFoilController {
     @GetMapping("gold-foil-svg")
     public ResponseEntity<Resource> getGoldFoilSvg(
             @RequestParam String text,
+            @RequestParam(required = false, defaultValue = "三极泼墨体") String fontType,
             @RequestParam(required = false, defaultValue = GradientPositionType.RANDOM) String gradientPos,
             @RequestParam(required = false, defaultValue = FontColorType.GOLD) String fontColorType,
             @RequestParam(required = false) String fontCustomColor,
             @RequestParam(required = false, defaultValue = "false") Boolean isBackground,
             @RequestParam(required = false, defaultValue = "false") Boolean isRandomBackground,
             @RequestParam(required = false) String backgroundColor) {
-        GoldFoilGenerationContext context = new GoldFoilGenerationContext(text, gradientPos, fontColorType, fontCustomColor, isBackground, isRandomBackground, backgroundColor);
+        GoldFoilGenerationContext context = new GoldFoilGenerationContext(text, fontType, gradientPos, fontColorType, fontCustomColor, isBackground, isRandomBackground, backgroundColor);
         File svgFile = goldFoilService.getGoldFoilSvg(context);
         if (svgFile == null) {
             return ResponseEntity.notFound().build();

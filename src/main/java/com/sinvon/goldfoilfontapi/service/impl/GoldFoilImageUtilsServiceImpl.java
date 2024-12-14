@@ -8,6 +8,7 @@ import com.sinvon.goldfoilfontapi.strategy.context.GoldFoilGenerationContext;
 import com.sinvon.goldfoilfontapi.utils.FileUtils;
 import com.sinvon.goldfoilfontapi.utils.FontResourceUtil;
 import com.sinvon.goldfoilfontapi.utils.RandomColorUtils;
+import com.sinvon.goldfoilfontapi.utils.SystemFontUtils;
 import com.sinvon.goldfoilfontapi.utils.img.param.gradient.BlackGradient;
 import com.sinvon.goldfoilfontapi.utils.img.param.BrushTexture;
 import com.sinvon.goldfoilfontapi.utils.img.param.gradient.CommonGradient;
@@ -49,6 +50,7 @@ public class GoldFoilImageUtilsServiceImpl implements GoldFoilImageUtilsService 
     public BufferedImage createGoldFoilImage(GoldFoilGenerationContext context) {
         // 注入上下文对象
         String text = context.getText();
+        String fontType = context.getFontType();
         String gradientPos = context.getGradientPos();
         String fontColorType = context.getFontColorType();
         String fontCustomColor = context.getFontCustomColor();
@@ -66,10 +68,23 @@ public class GoldFoilImageUtilsServiceImpl implements GoldFoilImageUtilsService 
         // 加载书法字体
         Font font;
         try {
-            File fontFile = fontResourceUtil.getFontFile("三极泼墨体.ttf");
-            font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
-            font = font.deriveFont(150f); // 设置字体大小
-            tempG2d.setFont(font);
+            if ("三极泼墨体".equals(fontType)) {
+                File fontFile = fontResourceUtil.getFontFile("三极泼墨体.ttf");
+                font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
+                font = font.deriveFont(150f); // 设置字体大小
+                tempG2d.setFont(font);
+            } else if ("金梅毛碑楷".equals(fontType)) {
+                File fontFile = fontResourceUtil.getFontFile("金梅毛碑楷.ttf");
+                font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
+                font = font.deriveFont(150f); // 设置字体大小
+                tempG2d.setFont(font);
+            } else {
+                String fontPathByName = SystemFontUtils.getFontPathByName(fontType);
+                File fontFileFromPath = fontResourceUtil.getFontFileFromPath(fontPathByName);
+                font = Font.createFont(Font.TRUETYPE_FONT, fontFileFromPath);
+                font = font.deriveFont(150f);
+                tempG2d.setFont(font);
+            }
         } catch (FontFormatException | IOException e) {
             e.printStackTrace();
             return tempImage;
