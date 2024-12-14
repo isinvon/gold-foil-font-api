@@ -32,6 +32,7 @@ import SettingForm from './components/SettingsPanel/index.vue';
 import PreviewArea from "./components/PreviewArea/index.vue";
 import {ElLoading, ElMessage} from 'element-plus';
 import {defaultValue} from "@/data/defaultValue.js";
+import {fontIsExist} from "@/api/fontApi.js";
 
 const settings = ref({
   text: defaultValue.text,
@@ -85,6 +86,12 @@ const generateContent = async (type) => {
       isRandomBackground: settings.value.isRandomBackground.toString(),
       backgroundColor: settings.value.backgroundColor,
     };
+
+    // 判断字体是否可用
+    if (!await fontIsExist(params.fontType)) {
+      ElMessage.warning('该字体在系统中不存在，请使用其他字体');
+      return;
+    }
 
     if (type === 'image') {
       imageUrl.value = await generateGoldFoilImage(params);
