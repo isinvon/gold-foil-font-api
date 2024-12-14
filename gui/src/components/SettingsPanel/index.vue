@@ -105,7 +105,7 @@ const props = defineProps({
   },
 });
 
-const systemFontList = ref(['三极泼墨体', '金梅毛碑楷'])
+const systemFontList = ref(['三极泼墨体'])
 const emit = defineEmits(['update:settings', 'generate']); // 定义事件
 
 //从后端接口请求getSystemFonts获取系统字体列表

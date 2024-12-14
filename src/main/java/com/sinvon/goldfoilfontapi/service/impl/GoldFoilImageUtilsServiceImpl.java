@@ -24,7 +24,7 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * 金梅毛碑文字GoldFoilFont
+ * GoldFoilFont
  *
  * @author : sinvon
  * @since : 2024/12/7 上午12:51
@@ -42,7 +42,7 @@ public class GoldFoilImageUtilsServiceImpl implements GoldFoilImageUtilsService 
     private SpringCoupletBackgroundImageUtilsService springCoupletBackgroundImageUtilsService;
 
     /**
-     * 创建金梅毛碑文字图片
+     * 创建文字图片
      *
      * @param context 上下文对象
      * @return BufferedImage 图片对象
@@ -70,11 +70,6 @@ public class GoldFoilImageUtilsServiceImpl implements GoldFoilImageUtilsService 
         try {
             if ("三极泼墨体".equals(fontType)) {
                 File fontFile = fontResourceUtil.getFontFile("三极泼墨体.ttf");
-                font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
-                font = font.deriveFont(150f); // 设置字体大小
-                tempG2d.setFont(font);
-            } else if ("金梅毛碑楷".equals(fontType)) {
-                File fontFile = fontResourceUtil.getFontFile("金梅毛碑楷.ttf");
                 font = Font.createFont(Font.TRUETYPE_FONT, fontFile);
                 font = font.deriveFont(150f); // 设置字体大小
                 tempG2d.setFont(font);
