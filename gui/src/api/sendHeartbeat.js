@@ -9,9 +9,12 @@ const apiClient = axios.create({
 // 用于发送心跳请求
 export const sendHeartbeat = () => {
     const send = () => {
-        apiClient.get('/heartbeat')
-            .then(response => console.log("Heartbeat sent"))
-            .catch(error => console.error("Heartbeat failed", error));
+        apiClient.get('/heartbeat').catch(() => {
+            // 错误处理可以留空以避免控制台打印
+        });
+        // apiClient.get('/heartbeat')
+        //     .then(response => console.log("Heartbeat sent"))
+        //     .catch(error => console.error("Heartbeat failed", error));
     };
 
     // 每 1 秒发送一次心跳请求
