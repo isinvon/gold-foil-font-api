@@ -22,10 +22,15 @@ public class WebConfig {
         return new WebMvcConfigurer() {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
+                // 添加 API 接口 CORS 配置
                 registry.addMapping("/api/**")
                         .allowedOrigins(projectConfig.frontendHost)
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowCredentials(true); // 如果需要发送 Cookie
+                // 添加心跳接口的 CORS 配置
+                registry.addMapping("/heartbeat")
+                        .allowedOrigins(projectConfig.frontendHost)
+                        .allowedMethods("GET");
             }
         };
     }
