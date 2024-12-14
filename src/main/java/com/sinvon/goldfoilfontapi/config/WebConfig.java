@@ -30,7 +30,7 @@ public class WebConfig {
                 // 添加心跳接口的 CORS 配置
                 registry.addMapping("/heartbeat")
                         .allowedOrigins(projectConfig.frontendHost)
-                        .allowedMethods("GET");
+                        .allowedMethods("GET", "POST");
                 // 添加系统字体获取的 CORS 配置
                 registry.addMapping("/font/**")
                         .allowedOrigins(projectConfig.frontendHost)

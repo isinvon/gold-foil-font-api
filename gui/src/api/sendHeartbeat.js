@@ -9,19 +9,23 @@ const apiClient = axios.create({
 // 用于发送心跳请求
 export const sendHeartbeat = () => {
     const send = () => {
-        apiClient.get('/heartbeat').catch(() => {
-            // 错误处理可以留空以避免控制台打印
-        });
-        // apiClient.get('/heartbeat')
-        //     .then(response => console.log("Heartbeat sent"))
-        //     .catch(error => console.error("Heartbeat failed", error));
+        if (document.visibilityState === 'visible') {
+            // 页面可见时发送正常心跳请求
+            apiClient.get('/heartbeat').catch(() => {
+                // 错误处理可以留空以避免控制台打印
+            });
+        } else {
+            // 页面隐藏时使用 sendBeacon
+            navigator.sendBeacon('http://localhost:8080/heartbeat');
+        }
     };
 
-    // 每 1 秒发送一次心跳请求
-    const heartbeatInterval = setInterval(send, 1000);
+    // 每 0.5 秒发送一次心跳请求
+    const heartbeatInterval = setInterval(send, 500);
 
-    // 当页面被关闭时，清除心跳请求
+    // 页面关闭或刷新时，确保发送心跳
     window.addEventListener("beforeunload", () => {
         clearInterval(heartbeatInterval);
+        navigator.sendBeacon('http://localhost:8080/heartbeat');
     });
 };

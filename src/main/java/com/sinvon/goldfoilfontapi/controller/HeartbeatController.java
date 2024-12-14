@@ -1,7 +1,9 @@
 package com.sinvon.goldfoilfontapi.controller;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -20,7 +22,14 @@ class HeartbeatController {
     public String receiveHeartbeat() {
         // 更新心跳时间
         lastHeartbeatTime = System.currentTimeMillis();
-        return "Heartbeat received";
+        return "Heartbeat received with GET";
+    }
+
+    // 支持 POST 请求（用于 sendBeacon）
+    @PostMapping("/heartbeat")
+    public ResponseEntity<String> postHeartbeat() {
+        lastHeartbeatTime = System.currentTimeMillis();
+        return ResponseEntity.ok("Heartbeat received with POST");
     }
 
     // 定时检查心跳
