@@ -32,7 +32,7 @@ public class WebConfig {
                         .allowedOrigins(projectConfig.frontendHost)
                         .allowedMethods("GET");
                 // 添加系统字体获取的 CORS 配置
-                registry.addMapping("/font/getSystemFonts")
+                registry.addMapping("/font/**")
                         .allowedOrigins(projectConfig.frontendHost)
                         .allowedMethods("GET");
             }
