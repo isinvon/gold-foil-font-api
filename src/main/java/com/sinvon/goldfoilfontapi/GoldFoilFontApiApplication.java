@@ -1,6 +1,6 @@
 package com.sinvon.goldfoilfontapi;
 
-import com.sinvon.goldfoilfontapi.utils.BrowserUtils;
+import dev.webview.webview_java.Webview;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -15,6 +15,10 @@ public class GoldFoilFontApiApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(GoldFoilFontApiApplication.class, args);
-        BrowserUtils.openBrowser("http://localhost:8080/index.html");
+        Webview webview = new Webview(true,1200,800);
+        webview.setTitle("GoldFoilFontApi");
+        webview.loadURL("http://localhost:8080/index.html");
+        webview.run();
+        webview.close();
     }
 }
