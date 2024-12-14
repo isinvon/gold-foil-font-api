@@ -10,6 +10,13 @@
       />
     </el-form-item>
 
+    <!-- 字体类型 -->
+    <el-form-item label="字体类型">
+      <el-select v-model="settings.fontType" placeholder="选择字体, 默认是三极泼墨体" default-first-option>
+        <el-option v-for="item in systemFontList" :key="item" :label="item" :value="item"/>
+      </el-select>
+    </el-form-item>
+
     <!-- 字体颜色类型 -->
     <el-form-item label="字体颜色类型">
       <el-select v-model="settings.fontColorType" placeholder="选择颜色, 默认是金色">
@@ -25,10 +32,13 @@
     </el-form-item>
 
     <!--只有在自定义, 自定义渐变的时候才显示-->
-    <el-form-item v-if="settings.fontColorType === 'custom' || settings.fontColorType === 'customGradient'" label="自定义字体颜色">
+    <el-form-item v-if="settings.fontColorType === 'custom' || settings.fontColorType === 'customGradient'"
+                  label="自定义字体颜色">
       <el-color-picker v-model="settings.fontCustomColor" size="default"/>
       <el-divider content-position="center" direction="vertical" border-style="hidden"/>
-      <el-button v-show="settings.fontCustomColor !== ''" class="apply-btn" type="info" @click="settings.fontCustomColor = ''">清除</el-button>
+      <el-button v-show="settings.fontCustomColor !== ''" class="apply-btn" type="info"
+                 @click="settings.fontCustomColor = ''">清除
+      </el-button>
     </el-form-item>
 
     <!-- 背景 -->
@@ -53,7 +63,9 @@
     <el-form-item v-if="settings.isBackground && !settings.isRandomBackground" label="选择背景颜色">
       <el-color-picker v-model="settings.backgroundColor" size="default"/>
       <el-divider content-position="center" direction="vertical" border-style="hidden"/>
-      <el-button v-show="settings.backgroundColor !== ''" class="apply-btn" type="info" @click="settings.backgroundColor = ''">清除</el-button>
+      <el-button v-show="settings.backgroundColor !== ''" class="apply-btn" type="info"
+                 @click="settings.backgroundColor = ''">清除
+      </el-button>
     </el-form-item>
 
     <!-- 渐变方向 -->
@@ -82,6 +94,10 @@
 </template>
 
 <script setup>
+import {onMounted, ref} from "vue";
+import {getSystemFonts} from "@/api/fontApi.js";
+import {ElMessage} from "element-plus";
+
 const props = defineProps({
   settings: {
     type: Object,
@@ -89,12 +105,34 @@ const props = defineProps({
   },
 });
 
+const systemFontList = ref(['三极泼墨体', '金梅毛碑楷'])
 const emit = defineEmits(['update:settings', 'generate']); // 定义事件
+
+//从后端接口请求getSystemFonts获取系统字体列表
+
+const getFontList = async () => {
+  try {
+    const res = await getSystemFonts();
+    console.log("系统字体列表:", res);
+    // 将res合并到给systemFontList
+    systemFontList.value = [...systemFontList.value, ...res];
+    // console.log("systemFontList:", systemFontList) // debug
+  } catch (error) {
+    // console.error("获取字体列表失败:", error); // debug
+    ElMessage.error('获取系统字体列表失败,将只显示程序默认字体');
+  }
+};
+
 
 // 触发不同的生成事件
 const generate = (type) => {
   emit('generate', type); // 将生成类型发送到父组件
 };
+
+// 在组件加载时调用 fetchSystemFonts
+onMounted(() => {
+  getFontList();
+});
 </script>
 
 <style lang="less" scoped>
