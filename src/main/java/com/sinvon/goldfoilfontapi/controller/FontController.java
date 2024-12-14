@@ -1,5 +1,6 @@
 package com.sinvon.goldfoilfontapi.controller;
 
+import com.sinvon.goldfoilfontapi.enums.DefaultFontType;
 import com.sinvon.goldfoilfontapi.utils.FontResourceUtil;
 import com.sinvon.goldfoilfontapi.utils.SystemFontUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,10 @@ public class FontController {
 
     @GetMapping("/fontIsExist")
     public ResponseEntity<String> getFont(@RequestParam String fontType) {
+        // 如果是app自带的字体，则直接返回ok
+        if (fontType.equals(DefaultFontType.APP_DEFAULT_FONT_TYPE)) {
+            return ResponseEntity.ok("this fontType is app default fontType, is usable");
+        }
         try {
             String fontPath = SystemFontUtils.getFontPathByName(fontType);
             File fontFile = fontResourceUtil.getFontFileFromPath(fontPath);
