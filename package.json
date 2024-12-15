@@ -26,6 +26,8 @@
     "build-electron": "pnpm run build-vue && cross-env NODE_ENV=production electron-builder",
     "🥵### 从全局环境生成jre ###": "echo \"jre已经生成,在根目录的resources/java/jre中\" && exit 1",
     "jre-generate": "jlink --module-path jmods --add-modules java.desktop --output resources/java/jre",
+    "🥵### 删除项目中已有的jre ###": "echo \"项目根目录的jre已经删除\" && exit 1",
+    "remove-jre": "npx rimraf resources/java/jre && echo \"你已经将项目根目录resources/java/jre删除了\" && exit 1",
     "🫢### Java项目打包成jar ###": "echo \"Java项目打包成jar\" && exit 1",
     "java-package-jar": "cd backend && mvn clean package",
     "java-package-jar-skipTest": "cd backend && mvn clean package -Dmaven.test.skip=true",
