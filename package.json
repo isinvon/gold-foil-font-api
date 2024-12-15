@@ -27,6 +27,10 @@
     "🫢### Java项目打包成jar ###": "echo \"Java项目打包成jar\" && exit 1",
     "java-package-jar": "cd backend && mvn clean package",
     "java-package-jar-skipTest": "cd backend && mvn clean package -Dmaven.test.skip=true",
+    "🫢### 清除打包的文件 ###": "echo \"清除打包的文件\" && exit 1",
+    "clean-vue-dist": "npx rimraf gui/dist && echo \"你已经将vue的打包文件gui/dist删除了\" && exit 1",
+    "clean-java-target": "npx rimraf backend/target && echo \"你已经将java的打包文件backend/target删除了\" && exit 1",
+    "clean-all": "run-s clean-vue-dist clean-java-target",
     "🧐### 测试脚本 ###": "echo \"测试脚本\" && exit 1",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
