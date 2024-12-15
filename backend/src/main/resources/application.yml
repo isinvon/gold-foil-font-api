@@ -11,7 +11,8 @@ server:
   port: 8080
 
 frontend:
-  host: "http://localhost:3000"
+  host: "http://localhost:5174"
+  prod-host: "classpath:/static/"  # For production
 
 # 项目相关配置
 app:
