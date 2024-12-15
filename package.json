@@ -42,6 +42,39 @@
     "🧐### 测试脚本 ###": "echo \"测试脚本\" && exit 1",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "build": {
+    "appId": "com.sinvon.goldfoilfontapi",
+    "productName": "GoldFoilFontApi",
+    "directories": {
+      "buildResources": "assets",
+      "mac": {
+        "icon": "assets/icons/favicon.icns"
+      },
+      "win": {
+        "icon": "assets/icons/favicon.ico"
+      },
+      "linux": {
+        "icon": "assets/icons/favicon.png"
+      }
+    },
+    "icon": "assets/icons/favicon.ico",
+    "extraResources": [
+      {
+        "from": "resources/java",
+        "to": "resources",
+        "filter": [
+          "**/*"
+        ]
+      },
+      {
+        "from": "backend/target/backend.jar",
+        "to": "backend/target/",
+        "filter": [
+          "**/*"
+        ]
+      }
+    ]
+  },
   "devDependencies": {
     "@types/electron": "^1.6.12",
     "cross-env": "^7.0.3",
