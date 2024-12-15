@@ -12,7 +12,7 @@ export default defineConfig({
   },
   server: {
     host: "0.0.0.0", // 开发服务器可通过 IP 访问
-    port: 3000, // 默认端口
+    port: 5174, // 默认端口
     changeOrigin: true,
     proxy: {
       "/api": {

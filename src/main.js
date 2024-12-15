@@ -17,7 +17,7 @@ const createWindow = () => {
 
     if (isDevelopment) {
         // 开发环境：加载 Vue 的开发服务器
-        win.loadURL('http://localhost:3000');
+        win.loadURL('http://localhost:5174');
     } else {
         // 生产环境：加载打包后的静态文件
         win.loadFile(path.join(__dirname, 'gui/dist/index.html'));
