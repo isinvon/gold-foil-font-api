@@ -50,9 +50,6 @@ run_command('cd gui && pnpm build --emptyOutDir && cd ..')
 # 清理项目
 run_command('mvn clean')
 
-# 清理项目
-run_command('mvn clean')
-
 # 打包项目
 run_command('mvn package -DskipTests')
 
@@ -83,6 +80,7 @@ jpackage_command = (
     f'--dest "{OUTPUT_DIR}" '
     f'--win-dir-chooser '  # 允许用户选择安装目录
     f'--win-help-url "{HELP_URL}" '  # 帮助链接
+    # f'--runtime-image "{RUNTIME_IMAGE_DIR}" '  # 使用自定义的运行时镜像
     # --win-menu 和 --win-menu-group <menu-group-name> 使用说明看底部注释
     # f'--win-menu'  # 开启菜单
     # f'--win-menu-group "GoldFoilFont" '  # 菜单组名称
