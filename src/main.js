@@ -20,7 +20,7 @@ const createWindow = () => {
         win.loadURL('http://localhost:5174');
     } else {
         // 生产环境：加载打包后的静态文件
-        win.loadFile(path.join(__dirname, 'gui/dist/index.html'));
+        win.loadFile(path.join(app.getAppPath(), 'gui/dist/index.html'));
     }
 };
 

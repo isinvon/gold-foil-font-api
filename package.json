@@ -58,6 +58,9 @@
       }
     },
     "icon": "assets/icons/favicon.ico",
+    "files": [
+      "gui/dist/**/*"
+    ],
     "extraResources": [
       {
         "from": "resources/java",
