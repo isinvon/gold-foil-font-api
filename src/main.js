@@ -6,8 +6,8 @@ const isDevelopment = process.env.NODE_ENV === 'development';
 
 const createWindow = () => {
     const win = new BrowserWindow({
-        width: 800,
-        height: 600,
+        width: 1000,
+        height: 700,
         webPreferences: {
             nodeIntegration: false, // 推荐禁用 nodeIntegration
             contextIsolation: true, // 启用上下文隔离
