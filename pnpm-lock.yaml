@@ -8,6 +8,9 @@ importers:
 
   .:
     devDependencies:
+      '@types/electron':
+        specifier: ^1.6.12
+        version: 1.6.12
       cross-env:
         specifier: ^7.0.3
         version: 7.0.3
@@ -102,6 +105,10 @@ packages:
 
   '@types/debug@4.1.12':
     resolution: {integrity: sha512-vIChWdVG3LG1SMxEvI/AK+FWJthlrqlTu7fbrlywTkkaONwk/UAGaULXRlf8vkzFBLVm0zkMdCquhL5aOjhXPQ==}
+
+  '@types/electron@1.6.12':
+    resolution: {integrity: sha512-NIJokDkGv9h+MStCL1IuiL1FOHYVkszoWeNxJtSI5dcEKRGbX83JcVYNAgk019qOQgJkHtz9WdP0CDXvrArrGg==}
+    deprecated: This is a stub types definition. electron provides its own type definitions, so you do not need this installed.
 
   '@types/fs-extra@9.0.13':
     resolution: {integrity: sha512-nEnwB++1u5lVDM2UI4c1+5R+FYaKfaAzS4OococimjVm3nQw3TuzH5UNsocrcTBbhnerblyHj4A49qXbIiZdpA==}
@@ -1872,6 +1879,12 @@ snapshots:
   '@types/debug@4.1.12':
     dependencies:
       '@types/ms': 0.7.34
+
+  '@types/electron@1.6.12':
+    dependencies:
+      electron: 33.2.1
+    transitivePeerDependencies:
+      - supports-color
 
   '@types/fs-extra@9.0.13':
     dependencies:
