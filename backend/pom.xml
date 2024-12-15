@@ -107,6 +107,6 @@
                 </configuration>
             </plugin>
         </plugins>
+        <finalName>backend</finalName> <!-- 设置文件名,可以让打包的jar文件没有版本号,即直接生成backend.jar -->
     </build>
-
 </project>
