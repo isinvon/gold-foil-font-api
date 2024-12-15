@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [vue()],
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src"), // 定义 @ 为 src 目录
+      "@": path.resolve(__dirname, "src"), // 定义 @ 为 src 目录
     },
   },
   server: {
@@ -24,7 +24,7 @@ export default defineConfig({
   },
   build: {
     sourcemap: false, // 生产环境关闭 Source Map
-    outDir: "../src/main/resources/static", // 输出目录
+    outDir: "dist", // 输出目录
     rollupOptions: {
       output: {
         manualChunks: {
