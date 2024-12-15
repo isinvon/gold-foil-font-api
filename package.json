@@ -1,0 +1,36 @@
+{
+  "name": "gold-foil-font-api",
+  "version": "0.0.3",
+  "author": "sinvon",
+  "license": "MIT",
+  "description": "gold-foil-font-api 烫金字体, 为新年欢呼!",
+  "main": "src/main.js",
+  "scripts": {
+    "🧐### 这是依赖安装 ###": "echo \"这是依赖安装\" && exit 1",
+    "install-vue": "cd gui && pnpm install",
+    "install-electron": "pnpm install",
+    "install-vue-electron": "run-p install-vue install-electron",
+    "🧐### 开发环境启动 ###": "echo \"开发环境启动\" && exit 1",
+    "dev-vue": "cd gui && cross-env NODE_ENV=development pnpm run dev",
+    "dev-electron": "cross-env NODE_ENV=development electron .",
+    "dev-vue-electron": "run-p dev-vue dev-electron",
+    "🧐### 生产环境启动 ###": "echo \"生产环境启动\" && exit 1",
+    "start-vue": "cd gui && pnpm start",
+    "start-electron": "cross-env NODE_ENV=production electron .",
+    "start-vue-electron": "run-p start-vue start-electron",
+    "🧐### 项目preview ###": "echo \"项目preview\" && exit 1",
+    "preview-vue": "cd gui && pnpm run preview",
+    "preview-vue-electron": "pnpm run build-vue && cross-env NODE_ENV=production electron .",
+    "🧐### 项目构建 ###": "echo \"项目构建\" && exit 1",
+    "build-vue": "cd gui && pnpm run build --emptyOutDir",
+    "build-electron": "pnpm run build-vue && cross-env NODE_ENV=production electron-builder",
+    "🧐### 测试脚本 ###": "echo \"测试脚本\" && exit 1",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "cross-env": "^7.0.3",
+    "electron": "^33.2.1",
+    "electron-builder": "^25.1.8",
+    "npm-run-all": "^4.1.5"
+  }
+}
