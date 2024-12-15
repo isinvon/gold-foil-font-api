@@ -1,5 +1,6 @@
 const { app, BrowserWindow } = require('electron');
 const path = require('path');
+const {exec} = require("child_process");
 
 // 判断当前的环境
 const isDevelopment = process.env.NODE_ENV === 'development';
@@ -25,6 +26,14 @@ const createWindow = () => {
 };
 
 app.whenReady().then(() => {
+    // ==============jar启动========start========
+    // 获取捆绑的jre的绝对路径
+    const jrePath = path.join(app.getAppPath(), 'resources/java/jre/bin/java');
+    // 获取当前程序jar的绝对路径
+    const jarPath = path.join(app.getAppPath(), 'backend/target/backend.jar');
+    // 使用捆绑的 JRE 启动后端
+    const backend = exec(`"${jrePath}" -jar "${jarPath}"`);
+    // ==============jar启动=========end========
     createWindow();
 
     app.on('activate', () => {
