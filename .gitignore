@@ -44,6 +44,9 @@ __pycache__/
 env/
 venv/
 
+### java
+jre/
+
 ### node
 node_modules/
 dist/
