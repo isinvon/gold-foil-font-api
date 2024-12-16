@@ -83,7 +83,7 @@ function startBackend() {
 function stopBackend() {
     return new Promise((resolve) => {
         if (backendProcess) {
-            backendProcess.kill('SIGTERM');
+            backendProcess.kill('SIGKILL');
             backendProcess.on('close', () => {
                 logToFile('Backend process terminated.');
                 resolve();
