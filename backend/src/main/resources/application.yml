@@ -17,19 +17,19 @@ frontend:
 # 项目相关配置
 app:
   # 文件存放路径
-  profile: "#{systemProperties['os.name'].toLowerCase().contains('win') ? 'D:\\gold-foil-font-api' : '/home/gold-foil-font-api'}"
+  profile: "#{systemProperties['os.name'].toLowerCase().contains('win') ? 'C:/Users/${user.name}/AppData/Roaming/gold-foil-font-api' : '/home/${user.name}/gold-foil-font-api'}"
   # 图片存放路径(在profile下的image中)
-  image: "#{systemProperties['os.name'].toLowerCase().contains('win') ? 'D:\\gold-foil-font-api\\image' : '/home/gold-foil-font-api/image'}"
+  image: "#{systemProperties['os.name'].toLowerCase().contains('win') ? 'C:/Users/${user.name}/AppData/Roaming/gold-foil-font-api/image' : '/home/${user.name}/gold-foil-font-api/image'}"
   # SVG存放路径
-  svg: "#{systemProperties['os.name'].toLowerCase().contains('win') ? 'D:\\gold-foil-font-api\\svg' : '/home/gold-foil-font-api/svg'}"
+  svg: "#{systemProperties['os.name'].toLowerCase().contains('win') ? 'C:/Users/${user.name}/AppData/Roaming/gold-foil-font-api/svg' : '/home/${user.name}/gold-foil-font-api/svg'}"
   # HTML存放路径
-  html: "#{systemProperties['os.name'].toLowerCase().contains('win') ? 'D:\\gold-foil-font-api\\html' : '/home/gold-foil-font-api/html'}"
+  html: "#{systemProperties['os.name'].toLowerCase().contains('win') ? 'C:/Users/${user.name}/AppData/Roaming/gold-foil-font-api/html' : '/home/${user.name}/gold-foil-font-api/html'}"
   # 文件名称(不加后缀的)
   filename: "gold-foil-font"
   # 背景图片名称(不加后缀的)
   background-image-filename: "backgroundImage"
   # 背景图片路径
-  background-image-path: "#{systemProperties['os.name'].toLowerCase().contains('win') ? 'D:\\gold-foil-font-api\\backgroundImage' : '/home/gold-foil-font-api/backgroundImage'}"
+  background-image-path: "#{systemProperties['os.name'].toLowerCase().contains('win') ? 'C:/Users/${user.name}/AppData/Roaming/gold-foil-font-api/backgroundImage' : '/home/${user.name}/gold-foil-font-api/backgroundImage'}"
 
 # GUI相关配置
 webview:
