@@ -66,12 +66,16 @@
       {
         "from": "resources/java/jre",
         "to": "resources/java/jre",
-        "filter": ["**/*"]
+        "filter": [
+          "**/*"
+        ]
       },
       {
         "from": "backend/target",
         "to": "backend/target",
-        "filter": ["*.jar"]
+        "filter": [
+          "*.jar"
+        ]
       }
     ],
     "mac": {
