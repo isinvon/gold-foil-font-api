@@ -118,11 +118,8 @@ const handleGenerate = (type) => {
 .app-container {
   // 银色渐变上中下
   background: linear-gradient(111deg, #f5f5f5, #d2d2d2, #f5f5f5);
-  padding: 35px;
+  padding: 30px;
   border-radius: @Global-radius;
-  margin-top: 20px;
-  margin-left: 20px;
-  margin-right: 20px;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
 
