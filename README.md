@@ -1,22 +1,24 @@
-<img src="./image/gold-foil-font-api title.png"/>
+<img src="image/gold-foil-font-api%20title.png"/>
 
 [//]: # (<img src="./image/gold-foil-font-api.png" width="800" />)
 
 
-<img src="./image/gold-foil-font-api description chinese.png" width="800" />
-<img src="./image/gold-foil-font-api description english.png" width="800" />
+<img src="image/gold-foil-font-api%20description%20chinese.png" width="800" />
+<img src="image/gold-foil-font-api%20description%20english.png" width="800" />
 
 <div style="display: flex; justify-content: center; align-items: center;gap: 20px;margin: 20px">
 <a href="https://github.com/isinvon/gold-foil-font-api/blob/main/README.md">
-<img src="./image/chinese readme.png" alt="README.md"/>
+<img src="image/chinese%20readme.png" alt="README.md"/>
 </a>
 
 <a href="https://github.com/isinvon/gold-foil-font-api/blob/main/README_en.md">
-<img src="image/english readme.png" alt="README_en.md">
+<img src="image/english%20readme.png" alt="README_en.md">
 </a>
 </div>
 
-## 🖼️ GUI界面 ➽
+## 🖼️ GUI界面➽
+
+GUI由electron重构(因为Jpackage打包的一些问题导致webview在某些用户系统上无法启动)
 
 下载地址: [🔗GitHub Releases](https://github.com/isinvon/gold-foil-font-api/releases)
 
@@ -68,7 +70,7 @@
 http://localhost:8080/api/gold-foil-image?text=新年快乐
 
 
-<img src="./image/happy new year gold.png" width="800" />
+<img src="image/happy%20new%20year%20gold.png" width="800" />
 
 ### ⚪ 银色 ➽
 
@@ -77,7 +79,7 @@ http://localhost:8080/api/gold-foil-image?text=新年快乐
 http://localhost:8080/api/gold-foil-image?text=新年快乐&fontColorType=silver
 
 
-<img src="./image/happy new year silver.png" width="800" />
+<img src="image/happy%20new%20year%20silver.png" width="800" />
 
 ### ⚫ 黑色 ➽
 
@@ -86,7 +88,7 @@ http://localhost:8080/api/gold-foil-image?text=新年快乐&fontColorType=silver
 http://localhost:8080/api/gold-foil-image?text=新年快乐&fontColorType=black
 
 
-<img src="./image/happy new year black.png" width="800" />
+<img src="image/happy%20new%20year%20black.png" width="800" />
 
 ### 🖤 黑色渐变 ➽
 
@@ -95,7 +97,7 @@ http://localhost:8080/api/gold-foil-image?text=新年快乐&fontColorType=black
 http://localhost:8080/api/gold-foil-image?text=新年快乐&fontColorType=blackGradient
 
 
-<img src="./image/happy new year blackGradient.png" width="800" />
+<img src="image/happy%20new%20year%20blackGradient.png" width="800" />
 
 ## ✏️ 修改字体内容 ➽
 
@@ -103,7 +105,7 @@ http://localhost:8080/api/gold-foil-image?text=新年快乐&fontColorType=blackG
 
 http://localhost:8080/api/gold-foil-image?text=66大顺
 
-<img src="./image/66大顺.png" width="800" />
+<img src="image/66大顺.png" width="800" />
 
 ## 🎨 修改字体颜色类型 ➽
 
@@ -190,13 +192,13 @@ http://localhost:8080/api/gold-foil-image?text=鸡你太美&isBackground=true&is
 
 每一次请求都是随机的，所以每次请求的背景颜色都是不一样的，例如:
 
-<img src="./image/ikun-1.png" width="800" />
+<img src="image/ikun-1.png" width="800" />
 
-<img src="./image/ikun-2.png" width="800" />
+<img src="image/ikun-2.png" width="800" />
 
-<img src="./image/ikun-3.png" width="800" />
+<img src="image/ikun-3.png" width="800" />
 
-<img src="./image/ikun-4.png" width="800" />
+<img src="image/ikun-4.png" width="800" />
 
 ## ☀️ 渐变方向 ➽
 
@@ -291,4 +293,4 @@ http://localhost:8080/api/gold-foil-svg?text=你好
 
 请求之后出现如下页面, 直接复制即可
 
-<img src="./image/svg.png" width="800" />
+<img src="image/svg.png" width="800" />
