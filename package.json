@@ -40,6 +40,8 @@
     "clean-vue-dist": "npx rimraf gui/dist",
     "clean-java-target": "cd backend && mvn clean",
     "clean-all": "run-s clean-vue-dist clean-java-target",
+    "🫢### 清除electron打包后的整个dist文件夹 ###": "echo \"清除electron打包后的整个dist文件夹\" && exit 1",
+    "clean-electron-dist": "npx rimraf dist",
     "🧐### 测试脚本 ###": "echo \"测试脚本\" && exit 1",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
