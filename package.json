@@ -51,6 +51,8 @@
   "build": {
     "appId": "com.sinvon.goldfoilfontapi",
     "productName": "GoldFoilFontApi",
+    "appId": "com.sinvon.gold-foil-font-api",
+    "productName": "gold-foil-font-api",
     "directories": {
       "buildResources": "assets",
       "mac": {
