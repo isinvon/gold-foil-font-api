@@ -21,6 +21,7 @@ function createWindow() {
         width: 1000,
         height: 700,
         autoHideMenuBar: true, // 自动隐藏菜单栏
+        icon: path.join(app.getAppPath(), 'gui/dist/favicon.ico'), // 设置图标(这里和应用程序图标不一样,这是标题的图标,因为package.json中用了files捆绑了dist,所以这里用app.getAppPath获取)
         webPreferences: {
             nodeIntegration: false,
             contextIsolation: true,
