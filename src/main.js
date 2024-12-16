@@ -20,6 +20,7 @@ function createWindow() {
     const win = new BrowserWindow({
         width: 1000,
         height: 700,
+        autoHideMenuBar: true, // 自动隐藏菜单栏
         webPreferences: {
             nodeIntegration: false,
             contextIsolation: true,
