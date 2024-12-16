@@ -54,37 +54,35 @@
     "appId": "com.sinvon.gold-foil-font-api",
     "productName": "gold-foil-font-api",
     "directories": {
-      "buildResources": "assets",
-      "mac": {
-        "icon": "assets/icons/favicon.icns"
-      },
-      "win": {
-        "icon": "assets/icons/favicon.ico"
-      },
-      "linux": {
-        "icon": "assets/icons/favicon.png"
-      }
+      "buildResources": "assets"
     },
     "icon": "assets/icons/favicon.ico",
     "files": [
-      "gui/dist/**/*"
+      "gui/dist/**/*",
+      "src/main.js",
+      "src/preload.js"
     ],
     "extraResources": [
       {
-        "from": "resources/java",
-        "to": "resources",
-        "filter": [
-          "**/*"
-        ]
+        "from": "resources/java/jre",
+        "to": "resources/java/jre",
+        "filter": ["**/*"]
       },
       {
-        "from": "backend/target/backend.jar",
-        "to": "backend/target/",
-        "filter": [
-          "**/*"
-        ]
+        "from": "backend/target",
+        "to": "backend/target",
+        "filter": ["*.jar"]
       }
-    ]
+    ],
+    "mac": {
+      "icon": "assets/icons/favicon.icns"
+    },
+    "win": {
+      "icon": "assets/icons/favicon.ico"
+    },
+    "linux": {
+      "icon": "assets/icons/favicon.png"
+    }
   },
   "devDependencies": {
     "@types/electron": "^1.6.12",
