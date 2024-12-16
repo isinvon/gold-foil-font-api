@@ -2,6 +2,7 @@ const {app, BrowserWindow} = require('electron');
 const path = require('path');
 const {spawn} = require('child_process');
 const fs = require('fs');
+const kill = require('tree-kill');
 
 let backendProcess; // 用于存储后端子进程
 const isDevelopment = process.env.NODE_ENV === 'development';
@@ -85,9 +86,8 @@ function startBackend() {
 function stopBackend() {
     return new Promise((resolve) => {
         if (backendProcess) {
-            backendProcess.kill('SIGKILL');
-            backendProcess.on('close', () => {
-                logToFile('Backend process terminated.');
+            kill(backendProcess.pid, 'SIGKILL', () => {
+                logToFile('Backend process and child processes terminated.');
                 resolve();
             });
         } else {
@@ -95,7 +95,6 @@ function stopBackend() {
         }
     });
 }
-
 // 主进程启动逻辑
 app.whenReady().then(() => {
     startBackend()
