@@ -12,7 +12,7 @@
 
     <!-- 字体类型 -->
     <el-form-item label="字体类型">
-      <el-select v-model="settings.fontType" placeholder="选择字体, 默认是三极泼墨体" default-first-option>
+      <el-select v-model="settings.fontType" placeholder="选择字体" default-first-option>
         <el-option v-for="item in systemFontList" :key="item" :label="item" :value="item"/>
       </el-select>
       <div v-if="settings.fontType !== ''" style="color: #777777">部分字体可能会不支持汉字解析</div>

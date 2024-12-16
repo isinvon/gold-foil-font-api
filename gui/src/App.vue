@@ -55,6 +55,11 @@ const generateContent = async (type) => {
     ElMessage.warning('请输入要生成的文本！');
     return;
   }
+  // 选择字体校验
+  if (settings.value.fontType === '') {
+    ElMessage.warning('请选择字体！');
+    return;
+  }
   if (settings.value.fontColorType === 'custom' && settings.value.fontCustomColor === '') {
     ElMessage.warning('请选择字体颜色！');
     return;
