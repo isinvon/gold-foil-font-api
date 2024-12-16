@@ -32,7 +32,7 @@
     "🥵### 删除项目中的jre并且生成jre ###": "echo \"删除项目中的jre并且生成jre\" && exit 1",
     "remove-jre-generate": "echo \"这个命令还没写呢,下次再说\" && exit 1",
     "🥵### 测试项目中的jre运行jar ###": "echo \"测试项目中的jre运行jar\" && exit 1",
-    "test-use-jre-to-run-jar": "pnpm resources/java/jre/bin/java -jar backend/target/backend-0.0.1.jar\n",
+    "test-use-jre-to-run-jar": "pnpm resources/java/jre/bin/java -jar backend/target/backend.jar\n",
     "🫢### Java项目打包成jar ###": "echo \"Java项目打包成jar\" && exit 1",
     "java-package-jar": "cd backend && mvn clean package",
     "java-package-jar-skipTest": "cd backend && mvn clean package -Dmaven.test.skip=true",
