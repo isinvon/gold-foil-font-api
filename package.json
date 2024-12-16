@@ -43,7 +43,7 @@
     "🫢### 清除electron打包后的整个dist文件夹 ###": "echo \"清除electron打包后的整个dist文件夹\" && exit 1",
     "clean-electron-dist": "npx rimraf dist",
     "🧐### 测试脚本 ###": "echo \"测试脚本\" && exit 1",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
     "🧐### 分割线 ###": "echo \"分割线\" && exit 1",
     "DividingLineStart": "echo \">>>>=============== 开始 ===================>>>>\"",
     "DividingLineEnd": "echo \">>>>=============== 结束 ===================<<<<\""
