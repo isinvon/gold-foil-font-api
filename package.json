@@ -42,6 +42,8 @@
     "clean-all": "run-s clean-vue-dist clean-java-target",
     "🫢### 清除electron打包后的整个dist文件夹 ###": "echo \"清除electron打包后的整个dist文件夹\" && exit 1",
     "clean-electron-dist": "npx rimraf dist",
+    "🤩### 清除->构建->打包(一条龙) ###": "echo \"清除->构建->打包(一条龙)\" && exit 1",
+    "just do it": "pnpm DividingLineStart && pnpm clean-electron-dist && pnpm clean-vue-dist && pnpm clean-java-target && pnpm build-vue && pnpm remove-jre && pnpm jre-generate && pnpm java-package-jar && pnpm build-electron && pnpm DividingLineEnd",
     "🧐### 测试脚本 ###": "echo \"测试脚本\" && exit 1",
     "test": "echo \"Error: no test specified\" && exit 1",
     "🧐### 分割线 ###": "echo \"分割线\" && exit 1",
@@ -49,8 +51,6 @@
     "DividingLineEnd": "echo \">>>>=============== 结束 ===================<<<<\""
   },
   "build": {
-    "appId": "com.sinvon.goldfoilfontapi",
-    "productName": "GoldFoilFontApi",
     "appId": "com.sinvon.gold-foil-font-api",
     "productName": "gold-foil-font-api",
     "directories": {
