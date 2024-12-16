@@ -20,7 +20,7 @@
     "start-vue-electron": "run-p start-vue start-electron",
     "🧐### 项目preview ###": "echo \"项目preview\" && exit 1",
     "preview-vue": "cd gui && pnpm run preview",
-    "preview-vue-electron": "pnpm run build-vue && cross-env NODE_ENV=production electron .",
+    "preview-vue-electron": "pnpm run build-vue && pnpm cross-env NODE_ENV=production electron .",
     "🧐### 项目构建 ###": "echo \"项目构建\" && exit 1",
     "build-vue": "cd gui && pnpm run build --emptyOutDir",
     "build-electron": "cross-env NODE_ENV=production electron-builder",
