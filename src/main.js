@@ -1,40 +1,110 @@
-const { app, BrowserWindow } = require('electron');
+const {app, BrowserWindow} = require('electron');
 const path = require('path');
-const {exec} = require("child_process");
+const {spawn} = require('child_process');
+const fs = require('fs');
 
-// 判断当前的环境
+let backendProcess; // 用于存储后端子进程
 const isDevelopment = process.env.NODE_ENV === 'development';
 
-const createWindow = () => {
+// 日志路径配置
+const userDataPath = app.getPath('userData');
+const logFilePath = path.join(userDataPath, 'backend.log');
+const logStream = fs.createWriteStream(logFilePath, {encoding: 'utf8', flags: 'a'});
+
+function logToFile(message) {
+    logStream.write(`[${new Date().toISOString()}] ${message}\n`);
+}
+
+// 创建 Electron 窗口
+function createWindow() {
     const win = new BrowserWindow({
         width: 1000,
         height: 700,
         webPreferences: {
-            nodeIntegration: false, // 推荐禁用 nodeIntegration
-            contextIsolation: true, // 启用上下文隔离
-            preload: path.join(__dirname, 'preload.js') // 可选：如果你需要主进程与渲染进程通信
-        }
+            nodeIntegration: false,
+            contextIsolation: true,
+            preload: path.join(__dirname, 'preload.js'),
+        },
     });
 
     if (isDevelopment) {
-        // 开发环境：加载 Vue 的开发服务器
         win.loadURL('http://localhost:5174');
     } else {
-        // 生产环境：加载打包后的静态文件
         win.loadFile(path.join(app.getAppPath(), 'gui/dist/index.html'));
     }
-};
+}
 
+// 启动后端服务
+function startBackend() {
+    return new Promise((resolve, reject) => {
+
+        let jrePath = null;
+        let jarPath = null;
+
+        if (isDevelopment) { // 开发环境
+            jrePath = path.join(app.getAppPath(), 'resources/java/jre/bin/java');
+            jarPath = path.join(app.getAppPath(), 'backend/target/backend.jar');
+        } else { // 生产环境
+            const resourcesPath = process.resourcesPath;
+            jrePath = path.join(resourcesPath, 'resources/java/jre/bin/java');
+            jarPath = path.join(resourcesPath, 'backend/target/backend.jar');
+        }
+        const preferredPort = 8080;
+
+        logToFile(`Attempting to start backend on port ${preferredPort}`);
+
+        backendProcess = spawn(jrePath, ['-jar', jarPath, `--server.port=${preferredPort}`]);
+
+        backendProcess.stdout.on('data', (data) => {
+            const message = data.toString();
+            logToFile(`Backend stdout: ${message}`);
+            if (message.includes('Started')) {
+                resolve(preferredPort);
+            }
+        });
+
+        backendProcess.stderr.on('data', (data) => {
+            const error = data.toString();
+            logToFile(`Backend stderr: ${error}`);
+        });
+
+        backendProcess.on('error', (err) => {
+            logToFile(`Failed to start backend: ${err.message}`);
+            reject(err);
+        });
+
+        backendProcess.on('close', (code) => {
+            logToFile(`Backend process exited with code ${code}`);
+        });
+    });
+}
+
+// 停止后端服务
+function stopBackend() {
+    return new Promise((resolve) => {
+        if (backendProcess) {
+            backendProcess.kill('SIGTERM');
+            backendProcess.on('close', () => {
+                logToFile('Backend process terminated.');
+                resolve();
+            });
+        } else {
+            resolve();
+        }
+    });
+}
+
+// 主进程启动逻辑
 app.whenReady().then(() => {
-    // ==============jar启动========start========
-    // 获取捆绑的jre的绝对路径
-    const jrePath = path.join(app.getAppPath(), 'resources/java/jre/bin/java');
-    // 获取当前程序jar的绝对路径
-    const jarPath = path.join(app.getAppPath(), 'backend/target/backend.jar');
-    // 使用捆绑的 JRE 启动后端
-    const backend = exec(`"${jrePath}" -jar "${jarPath}"`);
-    // ==============jar启动=========end========
-    createWindow();
+    startBackend()
+        .then((port) => {
+            logToFile(`Backend started successfully on port ${port}`);
+            createWindow();
+        })
+        .catch((error) => {
+            logToFile(`Failed to start backend: ${error.message}`);
+            app.quit();
+        });
 
     app.on('activate', () => {
         if (BrowserWindow.getAllWindows().length === 0) {
@@ -43,8 +113,19 @@ app.whenReady().then(() => {
     });
 });
 
+// 应用关闭时清理资源
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
-        app.quit();
+        stopBackend().then(() => {
+            app.quit();
+        });
     }
+});
+
+// 优雅退出
+app.on('will-quit', (event) => {
+    event.preventDefault();
+    stopBackend().then(() => {
+        app.quit();
+    });
 });
