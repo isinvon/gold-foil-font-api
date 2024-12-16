@@ -39,6 +39,8 @@
     "🫢### 清除打包的文件 ###": "echo \"清除打包的文件\" && exit 1",
     "clean-vue-dist": "npx rimraf gui/dist && echo \"你已经将vue的打包文件gui/dist删除了\" && exit 1",
     "clean-java-target": "cd backend && mvn clean && echo \"你已经将java的打包文件backend/target清除了\" && exit 1",
+    "clean-vue-dist": "npx rimraf gui/dist",
+    "clean-java-target": "cd backend && mvn clean",
     "clean-all": "run-s clean-vue-dist clean-java-target",
     "🧐### 测试脚本 ###": "echo \"测试脚本\" && exit 1",
     "test": "echo \"Error: no test specified\" && exit 1"
