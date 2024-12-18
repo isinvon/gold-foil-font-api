@@ -1,0 +1,18 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: gold-foil-font-api-app
+    ports:
+      - "22461:8080"  # 后端映射到 22461 端口
+      - "22462:3000"  # 前端映射到 22462 端口
+    restart: unless-stopped  # 容器失败或系统重启后自动重启
+    networks:
+      - default
+
+networks:
+  default:
+    driver: bridge
