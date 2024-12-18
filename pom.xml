@@ -107,6 +107,6 @@
                 </configuration>
             </plugin>
         </plugins>
+        <finalName>gold-foil-font-api</finalName> <!-- 自定义jar包名 -->
     </build>
-
 </project>
