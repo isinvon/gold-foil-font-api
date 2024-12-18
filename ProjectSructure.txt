@@ -1,0 +1,15 @@
+gold-foil-font-api/
+│
+├── src/                            # Spring Boot 项目的代码目录
+│   └── main/java/com/sinvon/goldfoilfontapi/GoldFoilFontApiApplication.java
+│
+├── gui/                            # Vue + Vite 项目目录
+│   ├── package.json
+│   └── ...
+│
+├── target/                         # Spring Boot 打包后的目录，包含 .jar 文件
+│   └── gold-foil-font-api.jar
+│
+├── Dockerfile.backend              # Spring Boot Dockerfile
+├── Dockerfile.frontend             # Vue + Vite Dockerfile
+└── docker-compose.yml              # Docker Compose 配置文件
