@@ -1,3 +1,6 @@
+# ignore Readme image resource
+image/
+
 # 忽略构建输出文件
 target/
 dist/
