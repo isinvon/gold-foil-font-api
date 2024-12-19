@@ -1,34 +1,57 @@
-# 使用 Node.js 20 作为基础镜像
-FROM node:20
+# Stage 1: Build the backend (Spring Boot)
+FROM openjdk:21-jdk-slim as backend-builder
 
-# 安装 JDK 21
-RUN apt-get update && apt-get install -y openjdk-21-jdk
-
-# 设置工作目录
+# Set working directory for backend build
 WORKDIR /app
 
-# 复制前后端源代码
-COPY . /app
+# Copy the backend source code to /temp in Docker
+COPY ./backend /temp/backend
 
-# 安装 Spring Boot 和前端依赖
-# 构建 Spring Boot 应用
-RUN ./mvnw clean package -DskipTests
+# Debug: List the contents of /temp to ensure backend code was copied
+RUN ls -la /temp/backend
 
-# 安装前端依赖
-WORKDIR /app/gui
-RUN npm install
+# Run Maven to build the backend (skip tests)
+RUN cd /temp/backend && ./mvnw clean package -DskipTests
 
-# 构建前端应用
-RUN npm run build
+# Stage 2: Build the frontend (Vue)
+FROM node:20 as frontend-builder
 
-# 安装 serve 和 supervisord
-RUN npm install -g serve && apt-get install -y supervisor
+# Set working directory for frontend build
+WORKDIR /app
 
-# 将 supervisord 配置文件复制到容器中
-COPY ./supervisord.conf /etc/supervisor/conf.d/supervisord.conf
+# 安装 pnpm
+RUN npm install -g pnpm
 
-# 暴露前端和后端端口
-EXPOSE 8080 3000
+# Copy the frontend source code to /temp
+COPY ./frontend /temp/frontend
 
-# 使用 supervisord 启动所有服务
+# Install frontend dependencies and build the frontend
+RUN cd /temp/frontend && pnpm install && pnpm build
+
+# Stage 3: Create the final image
+FROM openjdk:21-jdk-slim
+
+# Set working directory for the final image
+WORKDIR /app
+
+# Copy the built backend .jar file from the backend-builder stage
+COPY --from=backend-builder /temp/backend/target/backend.jar /app/backend/backend.jar
+
+# Copy the built frontend dist folder to Nginx's default directory
+COPY --from=frontend-builder /temp/frontend/dist /usr/share/nginx/html
+
+# Install Nginx
+RUN apt-get update && apt-get install -y nginx
+
+# Copy the Nginx configuration file
+COPY nginx.conf /etc/nginx/nginx.conf
+
+# Remove unnecessary files to reduce image size
+RUN rm -rf /temp
+
+# Expose backend and frontend ports
+# EXPOSE 8080 3000
+EXPOSE 8080 80
+
+# Use supervisord to start Nginx and the backend service
 CMD ["/usr/bin/supervisord"]

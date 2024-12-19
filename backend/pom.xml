@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.sinvon</groupId>
-    <artifactId>gold-foil-font-api</artifactId>
+    <artifactId>backend</artifactId>
     <version>0.0.1</version>
-    <name>gold-foil-font-api</name>
-    <description>gold-foil-font-api</description>
+    <name>backend</name>
+    <description>gold-foil-font-api_backend</description>
     <url/>
     <licenses>
         <license/>
@@ -107,6 +107,6 @@
                 </configuration>
             </plugin>
         </plugins>
-        <finalName>gold-foil-font-api</finalName> <!-- 自定义jar包名 -->
+        <finalName>backend</finalName> <!-- 自定义jar包名 -->
     </build>
 </project>

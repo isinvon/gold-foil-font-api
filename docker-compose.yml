@@ -3,12 +3,12 @@ version: '3.8'
 services:
   app:
     build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: gold-foil-font-api-app
+      context: .  # 使用当前目录构建
+      dockerfile: Dockerfile  # 指定 Dockerfile 文件
+    container_name: gold-foil-font-api
     ports:
-      - "22461:8080"  # 后端映射到 22461 端口
-      - "22462:3000"  # 前端映射到 22462 端口
+      - "22644:8080"  # 后端映射到 8080 端口
+      - "22645:3000"  # 前端映射到 3000 端口
     restart: unless-stopped  # 容器失败或系统重启后自动重启
     networks:
       - default

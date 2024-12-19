@@ -1,10 +1,25 @@
+# 忽略构建输出文件
 target/
+dist/
+build/
 *.log
-*.class
+*.tmp
+
+# 忽略版本控制系统目录
+.git/
+.gitignore
 .idea/
+.vscode/
+
+# 忽略配置文件（可以选择性忽略）
 *.iml
-*.jar
-*.war
+*.swp
 
+# 忽略依赖文件
+node_modules/
 
-image/
+# 忽略 IDE 和编辑器产生的文件
+.DS_Store
+
+# 排除 dockerignore 文件本身
+.dockerignore

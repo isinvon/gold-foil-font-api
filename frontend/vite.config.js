@@ -3,6 +3,7 @@ import vue from "@vitejs/plugin-vue";
 import path from "path";
 
 export default defineConfig({
+  root: path.resolve(__dirname, '.'),  // 设置 Vite 的根目录为 gui
   base: "./",
   plugins: [vue()],
   resolve: {
@@ -24,7 +25,7 @@ export default defineConfig({
   },
   build: {
     sourcemap: false, // 生产环境关闭 Source Map
-    outDir: "../src/main/resources/static", // 输出目录
+    outDir: './dist', // 输出目录设置为 gui/dist
     rollupOptions: {
       output: {
         manualChunks: {
