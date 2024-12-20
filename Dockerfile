@@ -1,57 +1,90 @@
-# Stage 1: Build the backend (Spring Boot)
-FROM openjdk:21-jdk-slim as backend-builder
+# Step 1: Backend Build (Build the backend using Maven)
+FROM eclipse-temurin:21-jdk-alpine AS backend-builder
 
-# Set working directory for backend build
 WORKDIR /app
+# Copy backend source code into the temporary directory
+COPY ./backend /app/temp/backend
 
-# Copy the backend source code to /temp in Docker
-COPY ./backend /temp/backend
+# Build the backend (skip tests) and output logs
+RUN cd /app/temp/backend && ./mvnw clean package -DskipTests -X
 
-# Debug: List the contents of /temp to ensure backend code was copied
-RUN ls -la /temp/backend
+# Debug: List files in the target directory to verify the JAR file exists
+RUN ls -l /app/temp/backend/target/
 
-# Run Maven to build the backend (skip tests)
-RUN cd /temp/backend && ./mvnw clean package -DskipTests
+# Debug: Check for specific .jar file
+RUN find /app/temp/backend/target -name "*.jar"
 
-# Stage 2: Build the frontend (Vue)
-FROM node:20 as frontend-builder
+# Ensure that the JAR file was actually built and exists
+RUN if [ ! -f /app/temp/backend/target/*.jar ]; then echo "No JAR file found"; exit 1; fi
 
-# Set working directory for frontend build
+# Create the backend directory and move the built JAR file from temp directory to /app/backend
+RUN mkdir -p /app/backend && mv /app/temp/backend/target/*.jar /app/backend/backend.jar
+
+# Clean up the temporary directory
+RUN rm -rf /app/temp
+
+# Step 2: Frontend Build (Build the frontend using pnpm)
+FROM node:20-alpine AS frontend-builder
+
 WORKDIR /app
+# Copy frontend code (make sure the package.json exists in this directory)
+COPY ./frontend /app/temp/frontend
 
-# 安装 pnpm
-RUN npm install -g pnpm
+# Ensure the frontend directory contains the necessary files
+WORKDIR /app/temp/frontend
+# Install dependencies and build the frontend
+RUN apk update && apk add --no-cache nginx npm && \
+    npm install -g pnpm && \
+    pnpm install && \
+    pnpm build
 
-# Copy the frontend source code to /temp
-COPY ./frontend /temp/frontend
+# Copy the dist files to both the frontend folder and Nginx's HTML directory
+RUN cp -r /app/temp/frontend/dist /app/frontend && \
+    cp -r /app/temp/frontend/dist /usr/share/nginx/html
 
-# Install frontend dependencies and build the frontend
-RUN cd /temp/frontend && pnpm install && pnpm build
+# Clean up the temporary directory
+RUN rm -rf /app/temp
 
-# Stage 3: Create the final image
-FROM openjdk:21-jdk-slim
+# Step 3: Final image setup
+FROM alpine:latest
 
-# Set working directory for the final image
-WORKDIR /app
+# Install Nginx and OpenJDK runtime environment
+RUN apk update && apk add --no-cache nginx openjdk21
 
-# Copy the built backend .jar file from the backend-builder stage
-COPY --from=backend-builder /temp/backend/target/backend.jar /app/backend/backend.jar
+# Install fontconfig and ttf fonts
+RUN apk add --no-cache \
+    fontconfig \
+    ttf-dejavu \
+    ttf-droid \
+    ttf-freefont \
+    font-noto \
+    libx11 \
+    libxrender \
+    cairo \
+    harfbuzz \
+    pango \
+    libjpeg \
+    libpng \
+    xvfb \
+    ttf-linux-libertine
 
-# Copy the built frontend dist folder to Nginx's default directory
-COPY --from=frontend-builder /temp/frontend/dist /usr/share/nginx/html
+# Debug: List installed fonts to ensure they are available
+RUN fc-list
 
-# Install Nginx
-RUN apt-get update && apt-get install -y nginx
+# Debug: Rebuild font cache
+RUN fc-cache -fv
 
-# Copy the Nginx configuration file
-COPY nginx.conf /etc/nginx/nginx.conf
+# Set JAVA_HOME and PATH environment variables
+ENV JAVA_HOME=/usr/lib/jvm/java-21-openjdk
+ENV PATH=$JAVA_HOME/bin:$PATH
 
-# Remove unnecessary files to reduce image size
-RUN rm -rf /temp
+# Copy the backend JAR and the Nginx configuration file
+COPY --from=backend-builder /app/backend/backend.jar /app/backend/
+COPY --from=frontend-builder /usr/share/nginx/html /usr/share/nginx/html
+COPY ./nginx.conf /etc/nginx/nginx.conf
 
-# Expose backend and frontend ports
-# EXPOSE 8080 3000
-EXPOSE 8080 80
+# Expose ports for backend (8080) and frontend (3000)
+EXPOSE 8080 3000
 
-# Use supervisord to start Nginx and the backend service
-CMD ["/usr/bin/supervisord"]
+# Command to run both backend and frontend
+CMD ["sh", "-c", "java -jar /app/backend/backend.jar & nginx -g 'daemon off;'"]
