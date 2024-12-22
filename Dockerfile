@@ -51,22 +51,39 @@ FROM alpine:latest
 # Install Nginx and OpenJDK runtime environment
 RUN apk update && apk add --no-cache nginx openjdk21
 
-# Install fontconfig and ttf fonts
+# Install fontconfig and ttf fonts (!!! due to some font no support for Chinese, so no use !!!)
+# RUN apk add --no-cache \
+#     fontconfig \
+#     ttf-dejavu \
+#     ttf-droid \
+#     ttf-freefont \
+#     font-noto \
+#     libx11 \
+#     libxrender \
+#     cairo \
+#     harfbuzz \
+#     pango \
+#     libjpeg \
+#     libpng \
+#     xvfb \
+#     ttf-linux-libertine \
+#     # other fonts
+#     ttf-liberation \
+#     font-awesome \
+#     ttf-droid \
+#     ttf-inconsolata \
+#     ttf-font-awesome \
+#     ttf-dejavu
+
+# The tool for dynamically loading fonts must be installed!!!
 RUN apk add --no-cache \
-    fontconfig \
-    ttf-dejavu \
-    ttf-droid \
-    ttf-freefont \
-    font-noto \
-    libx11 \
-    libxrender \
-    cairo \
-    harfbuzz \
-    pango \
-    libjpeg \
-    libpng \
-    xvfb \
-    ttf-linux-libertine
+    fontconfig
+
+# import fonts by yourself
+WORKDIR /usr
+COPY ./myfont /usr/share/fonts/myfont
+
+WORKDIR /app
 
 # Debug: List installed fonts to ensure they are available
 RUN fc-list
