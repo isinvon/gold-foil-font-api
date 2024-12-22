@@ -21,11 +21,31 @@ Download: [🔗GitHub Releases](https://github.com/isinvon/gold-foil-font-api/re
 
 <img src="image/gui_v0.0.2.png" width="800" />
 
-## 🧐 Possible issues that may be encountered
+## 🐋 Docker Installation
 
-😿 Due to the fact that the program is developed based on a webview GUI, if the system does not specify a default
-browser (any one is acceptable), there may be issues where it cannot be opened. Please manually set the system's default
-browser before use.
+Before installing, please note: the Docker image by default only includes a subset of fonts. If you need additional fonts, you should copy `.ttf` font files to the `myfont` directory in the root of the cloned project. The Dockerfile is already configured to copy `.ttf` files into the container during the build process. Once the image is built and the container is running, the additional fonts will be available.  
+(This approach is used to prevent the repository size from becoming too large due to `.ttf` files(about 1GB), which can be quite large. I recommend manually uploading the necessary `.ttf` files, and I'll explain which files are needed below.)
+
+### Steps:
+
+```bash
+git clone --branch docker https://github.com/isinvon/gold-foil-font-api.git # Clone the project's Docker branch
+cd ./gold-foil-font-api # Navigate to the project directory
+docker build -t gold-foil-font-api . # Build the Docker image
+docker run -d --restart always -p 8080:8080 -p 3000:3000 gold-foil-font-api # Run the container. Port 8080 is for the backend, 3000 for the frontend. Modify host port mapping if needed.
+```
+
+### Adding Fonts:
+
+1. Open File Explorer and navigate to `C:\Windows\Fonts`.  
+2. Select the desired font files and copy them.  
+3. Paste the copied `.ttf` files into the `myfont` directory in the cloned project.  
+
+### Final Steps:
+
+Once the `.ttf` files are added to the `myfont` folder, rebuild the image. During the build process, the fonts will be automatically copied into the container, and you can then run the container with the updated fonts.  
+
+![GIF showing the process](./image/PixPin_2024-12-22_18-52-17.gif)
 
 ## ⚙️ Supported Features
 
@@ -282,5 +302,3 @@ http://localhost:8080/api/gold-foil-svg?text=你好
 The resulting page will display the SVG content, which you can directly copy:
 
 <img src="./image/svg.png" width="800" />
-
-

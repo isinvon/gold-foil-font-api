@@ -1,7 +1,6 @@
 <img src="./image/gold-foil-font-api title.png"/>
 
-[//]: # (<img src="./image/gold-foil-font-api.png" width="800" />)
-
+[//]: # '<img src="./image/gold-foil-font-api.png" width="800" />'
 
 <img src="./image/gold-foil-font-api description chinese.png" width="800" />
 <img src="./image/gold-foil-font-api description english.png" width="800" />
@@ -16,15 +15,27 @@
 </a>
 </div>
 
-## 🖼️ GUI界面 ➽
+## 🖼️ GUI 界面 ➽
 
 下载地址: [🔗GitHub Releases](https://github.com/isinvon/gold-foil-font-api/releases)
 
 <img src="image/gui_v0.0.2.png" width="800" />
 
-## 🧐 可能会遇到的问题
+## 🐋Docker 安装
 
-😿由于程序是基于webview开发的gui,所以若系统没有指定默认浏览器(任意一个都可以),那么有可能会出现无法打开的问题，使用前请手动设置系统的默认浏览器。
+安装之前请注意: docker 镜像我设定默认是只导入部分字体,即myfont文件中的少量字体, 如果要更多字体设置, 需要将 ttf 后缀的字体文件复制到 clone 下来的项目根目录下的`myfont`中,我已经在镜像文件中设置好了将 ttf 文件拷贝到容器中的步骤, 接下来构建镜像, 再运行容器即可
+(这么做是考虑到 ttf 字体文件的占用实在太大了, 推送到仓库会导致仓库体积过大(1个G), 所以建议手动上传,具体 ttf 文件我接下来会说明)
+
+```bash
+git clone --branch docker https://github.com/isinvon/gold-foil-font-api.git # 克隆项目docker分支
+cd ./gold-foil-font-api # 进入项目目录
+docker build -t gold-foil-font-api . # 构建镜像
+docker run -d --restart always -p 8080:8080 -p 3000:3000 gold-foil-font-api # 运行容器, 容器内部 8080为后端端口, 3000为前端端口, 宿主机映射端口需要修改请自行操作
+```
+
+### 上传自定义字体 (可选, 此步骤需要在`构建镜像`前操作)
+打开资源管理器, 到`C:\Windows\Fonts`路径下, 复制所选的字体文件, 然后粘贴到咱 clone 下来的`myfont`文件夹中, 然后接下来就可以构建镜像(这一个步骤会自动将所有 ttf 字体文件拷贝到容器中), 然后就可以运行容器了
+<img src="./image/PixPin_2024-12-22_18-52-17.gif" width="800" />
 
 ## ⚙️ 支持功能
 
@@ -48,16 +59,16 @@
 
 ## 接口参数列表
 
-| 参数名                   | 类型     | 默认值      | 描述                                                                                                                                                                                                              
-|-----------------------|--------|----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-| text                  | String | -        | 文字内容，必填                                                                                                                                                                                                         
-| fontType              | String | `三极泼墨体`  | 字体类型，默认为`三极泼墨体`，可选值为系统字体列表                                                                                                                                                                                      
-| gradientPos           | String | `random` | 渐变方向，默认为 `random`，可选值为 `leftToRight`、`topToBottom`、`leftTopToRightBottom`、`leftBottomToRightTop`、`rightToLeft`、`bottomToTop`、`rightTopToLeftBottom`、`rightBottomToLeftTop`、`circular`、`circularRandom`、`random` 
-| fontColorType         | String | `gold`   | 字体颜色类型，默认为 `gold`，可选值为 `silver`、`black`、`blackGradient`、`custom`、`customGradient`、`random`、`randomGradient`                                                                                                     
-| fontCustomColor       | String | -        | 自定义字体颜色，无默认值，仅当 `fontColorType` 为 `custom`或者`customGradient` 时有效，仅支持十六进制颜色，例如：`#ff0000`                                                                                                                         
-| isBackground          | String | `false`  | 是否使用背景，默认为 `false`，可选值为 `true`、`false`                                                                                                                                                                          
-| isRandomBackground    | String | `false`  | 是否使用随机背景，默认为 `false`，可选值为 `true`、`false`                                                                                                                                                                        
-| backgroundCustomColor | String | -        | 自定义背景颜色，无默认值，仅当 `isBackground` 为 `true` ,且`isRandomBackground`为`false`时有效，仅支持十六进制颜色，例如：`#ff0000`                                                                                                                
+| 参数名                | 类型   | 默认值       | 描述                                                                                                                                                                                                                                   |
+| --------------------- | ------ | ------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| text                  | String | -            | 文字内容，必填                                                                                                                                                                                                                         |
+| fontType              | String | `三极泼墨体` | 字体类型，默认为`三极泼墨体`，可选值为系统字体列表                                                                                                                                                                                     |
+| gradientPos           | String | `random`     | 渐变方向，默认为 `random`，可选值为 `leftToRight`、`topToBottom`、`leftTopToRightBottom`、`leftBottomToRightTop`、`rightToLeft`、`bottomToTop`、`rightTopToLeftBottom`、`rightBottomToLeftTop`、`circular`、`circularRandom`、`random` |
+| fontColorType         | String | `gold`       | 字体颜色类型，默认为 `gold`，可选值为 `silver`、`black`、`blackGradient`、`custom`、`customGradient`、`random`、`randomGradient`                                                                                                       |
+| fontCustomColor       | String | -            | 自定义字体颜色，无默认值，仅当 `fontColorType` 为 `custom`或者`customGradient` 时有效，仅支持十六进制颜色，例如：`#ff0000`                                                                                                             |
+| isBackground          | String | `false`      | 是否使用背景，默认为 `false`，可选值为 `true`、`false`                                                                                                                                                                                 |
+| isRandomBackground    | String | `false`      | 是否使用随机背景，默认为 `false`，可选值为 `true`、`false`                                                                                                                                                                             |
+| backgroundCustomColor | String | -            | 自定义背景颜色，无默认值，仅当 `isBackground` 为 `true` ,且`isRandomBackground`为`false`时有效，仅支持十六进制颜色，例如：`#ff0000`                                                                                                    |
 
 ## ✨ 基本用法 ➽
 
@@ -67,7 +78,6 @@
 
 http://localhost:8080/api/gold-foil-image?text=新年快乐
 
-
 <img src="./image/happy new year gold.png" width="800" />
 
 ### ⚪ 银色 ➽
@@ -75,7 +85,6 @@ http://localhost:8080/api/gold-foil-image?text=新年快乐
 修改参数 `text` 为想要的字，且需要将参数 `fontColorType` 设置为 `silver`，例如:
 
 http://localhost:8080/api/gold-foil-image?text=新年快乐&fontColorType=silver
-
 
 <img src="./image/happy new year silver.png" width="800" />
 
@@ -85,7 +94,6 @@ http://localhost:8080/api/gold-foil-image?text=新年快乐&fontColorType=silver
 
 http://localhost:8080/api/gold-foil-image?text=新年快乐&fontColorType=black
 
-
 <img src="./image/happy new year black.png" width="800" />
 
 ### 🖤 黑色渐变 ➽
@@ -94,14 +102,13 @@ http://localhost:8080/api/gold-foil-image?text=新年快乐&fontColorType=black
 
 http://localhost:8080/api/gold-foil-image?text=新年快乐&fontColorType=blackGradient
 
-
 <img src="./image/happy new year blackGradient.png" width="800" />
 
 ## ✏️ 修改字体内容 ➽
 
 修改参数 `text` 为想要的字即可，无需加其他参数，例如:
 
-http://localhost:8080/api/gold-foil-image?text=66大顺
+http://localhost:8080/api/gold-foil-image?text=66 大顺
 
 <img src="./image/66大顺.png" width="800" />
 
@@ -120,17 +127,17 @@ http://localhost:8080/api/gold-foil-image?text=66大顺
 
 修改参数 `fontColorType` 为想要的类型:
 
-例1: http://localhost:8080/api/gold-foil-image?text=新年快乐&fontColorType=silver
+例 1: http://localhost:8080/api/gold-foil-image?text=新年快乐&fontColorType=silver
 
-例2: http://localhost:8080/api/gold-foil-image?text=新年快乐&fontColorType=black
+例 2: http://localhost:8080/api/gold-foil-image?text=新年快乐&fontColorType=black
 
-例3: http://localhost:8080/api/gold-foil-image?text=新年快乐&fontColorType=random
+例 3: http://localhost:8080/api/gold-foil-image?text=新年快乐&fontColorType=random
 
-例4: http://localhost:8080/api/gold-foil-image?text=新年快乐&fontColorType=randomGradient
+例 4: http://localhost:8080/api/gold-foil-image?text=新年快乐&fontColorType=randomGradient
 
-例5: http://localhost:8080/api/gold-foil-image?text=新年快乐&fontColorType=custom&fontCustomColor=#ff0000
+例 5: http://localhost:8080/api/gold-foil-image?text=新年快乐&fontColorType=custom&fontCustomColor=#ff0000
 
-例6: http://localhost:8080/api/gold-foil-image?text=新年快乐&fontColorType=customGradient&fontCustomGradientColor=red&fontCustomGradientColor=#999999
+例 6: http://localhost:8080/api/gold-foil-image?text=新年快乐&fontColorType=customGradient&fontCustomGradientColor=red&fontCustomGradientColor=#999999
 
 ## 🎨 修改字体颜色 ➽
 
@@ -141,19 +148,19 @@ http://localhost:8080/api/gold-foil-image?text=66大顺
 
 自定义
 
-例1: http://localhost:8080/api/gold-foil-image?text=你好&fontColorType=custom&fontCustomColor=#999999
+例 1: http://localhost:8080/api/gold-foil-image?text=你好&fontColorType=custom&fontCustomColor=#999999
 
 自定义渐变:
 
-例2: http://localhost:8080/api/gold-foil-image?text=你好&fontColorTypecustomGradient&fontCustomColor=#999999
+例 2: http://localhost:8080/api/gold-foil-image?text=你好&fontColorTypecustomGradient&fontCustomColor=#999999
 
 随机
 
-例3: http://localhost:8080/api/gold-foil-image?text=你好&fontColorType=random
+例 3: http://localhost:8080/api/gold-foil-image?text=你好&fontColorType=random
 
 随机渐变:
 
-例4: http://localhost:8080/api/gold-foil-image?text=你好&fontColorType=randomGradient&fontCustomGradientColor=#999999
+例 4: http://localhost:8080/api/gold-foil-image?text=你好&fontColorType=randomGradient&fontCustomGradientColor=#999999
 
 ## 🎨 修改背景 ➽
 
@@ -174,13 +181,13 @@ http://localhost:8080/api/gold-foil-image?text=66大顺
 三者结合示例:
 
 开启随机背景(此时不允许设置背景颜色),
-例1: http://localhost:8080/api/gold-foil-image?text=鸡你太美&isBackground=true&isRandomBackground=true
+例 1: http://localhost:8080/api/gold-foil-image?text=鸡你太美&isBackground=true&isRandomBackground=true
 
 关闭随机背景,
-例2: http://localhost:8080/api/gold-foil-image?text=鸡你太美&isBackground=true&isRandomBackground=false&backgroundColor=#ff0000
+例 2: http://localhost:8080/api/gold-foil-image?text=鸡你太美&isBackground=true&isRandomBackground=false&backgroundColor=#ff0000
 
 关闭随机背景并且不设置颜色,就会是无色的背景
-例3: http://localhost:8080/api/gold-foil-image?text=鸡你太美&isBackground=true&isRandomBackground=false
+例 3: http://localhost:8080/api/gold-foil-image?text=鸡你太美&isBackground=true&isRandomBackground=false
 
 ## 🏮 春联背景展示 ➽
 
@@ -279,11 +286,11 @@ http://localhost:8080/api/gold-foil-image?text=圆形随机&gradientPos=circular
 
 http://localhost:8080/api/gold-foil-image?text=随机渐变&gradientPos=random
 
-## 🌟 SVG 生成 (其他参数和image相同,用法一样)
+## 🌟 SVG 生成 (其他参数和 image 相同,用法一样)
 
 将`http://localhost:8080/api/gold-foil-image`
 换成`http://localhost:8080/api/gold-foil-svg`
-就是请求生成svg了
+就是请求生成 svg 了
 
 例如, 请使用以下接口
 
