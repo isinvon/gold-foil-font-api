@@ -13,8 +13,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 public class WebConfig {
 
-    // @Autowired
-    // private ProjectConfig projectConfig;
+    @Autowired
+    private ProjectConfig projectConfig;
 
     @Bean
     public WebMvcConfigurer corsConfigurer() {
@@ -24,16 +24,16 @@ public class WebConfig {
             public void addCorsMappings(CorsRegistry registry) {
                 // 添加 API 接口 CORS 配置
                 registry.addMapping("/api/**")
-                        .allowedOrigins("*") // 临时允许所有来源
+                        .allowedOrigins(projectConfig.frontendHost) // 使用配置中的前端地址
                         .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
                         .allowCredentials(true); // 如果需要发送 Cookie
                 // 添加心跳接口的 CORS 配置
                 registry.addMapping("/heartbeat")
-                        .allowedOrigins("*") // 临时允许所有来源
+                        .allowedOrigins(projectConfig.frontendHost) // 使用配置中的前端地址
                         .allowedMethods("GET", "POST");
                 // 添加系统字体获取的 CORS 配置
                 registry.addMapping("/font/**")
-                        .allowedOrigins("*") // 临时允许所有来源
+                        .allowedOrigins(projectConfig.frontendHost) // 使用配置中的前端地址
                         .allowedMethods("GET");
             }
         };
