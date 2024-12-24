@@ -46,3 +46,6 @@ venv/
 
 ### node
 node_modules/
+
+### plugin's file
+.history/
