@@ -3,7 +3,7 @@ import axios from "axios";
 import {ElMessage} from "element-plus";
 
 const apiClient = axios.create({
-    baseURL: "http://localhost:8080",
+    baseURL: "/api",
     timeout: 10000,
 });
 
